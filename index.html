@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXE - Execute Your Excellence</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Konfigurasi Tailwind untuk Custom Colors (Sesuai Logo) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            pink: '#d81b60',
+                            orange: '#f57c00',
+                            yellow: '#fbc02d',
+                            dark: '#1f2022'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Gradasi khusus sesuai warna logo EXE */
+        .bg-gradient-brand {
+            background: linear-gradient(135deg, #d81b60 0%, #f57c00 50%, #fbc02d 100%);
+        }
+        .text-gradient-brand {
+            background: linear-gradient(135deg, #d81b60 0%, #f57c00 50%, #fbc02d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* CSS Otomatis untuk Galeri 33 Foto */
+        .auto-galeri a {
+            display: block;
+            border-radius: 0.75rem; /* Melengkungkan sudut */
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .auto-galeri img {
+            width: 100%;
+            height: 150px; /* Tinggi seragam untuk semua foto */
+            object-fit: cover; /* Biar gambar gak gepeng */
+            transition: transform 0.3s ease-in-out;
+        }
+        .auto-galeri a:hover img {
+            transform: scale(1.1); /* Efek membesar saat disentuh mouse */
+        }
+
+        /* Menyembunyikan Scrollbar di Galeri tapi tetap bisa discroll */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 antialiased bg-slate-50 relative">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <img class="h-12 w-auto scale-150 ml-4" src="https://images2.imgbox.com/ad/c5/3XFVIZZN_o.png" alt="Logo EXE Education Centre" onerror="this.src='https://placehold.co/200x80/ffffff/000000?text=LOGO+EXE'">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#beranda" class="text-gray-700 hover:text-brand-pink font-medium transition">Beranda</a>
+                    <a href="#keunggulan" class="text-gray-700 hover:text-brand-pink font-medium transition">Keunggulan</a>
+                    <a href="#program" class="text-gray-700 hover:text-brand-pink font-medium transition">Program</a>
+                    <a href="#galeri" class="text-gray-700 hover:text-brand-pink font-medium transition">Galeri</a>
+                    <a href="#testimoni" class="text-gray-700 hover:text-brand-pink font-medium transition">Testimoni</a>
+                    <a href="https://wa.me/6285141525668" target="_blank" class="bg-gradient-brand text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                        <i class="fab fa-whatsapp mr-2"></i> Hubungi Kami
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-brand-pink focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3">
+                <a href="#beranda" class="block px-3 py-2 text-gray-700 hover:text-brand-pink font-medium">Beranda</a>
+                <a href="#keunggulan" class="block px-3 py-2 text-gray-700 hover:text-brand-pink font-medium">Keunggulan</a>
+                <a href="#program" class="block px-3 py-2 text-gray-700 hover:text-brand-pink font-medium">Program</a>
+                <a href="#galeri" class="block px-3 py-2 text-gray-700 hover:text-brand-pink font-medium">Galeri</a>
+                <a href="#testimoni" class="block px-3 py-2 text-gray-700 hover:text-brand-pink font-medium">Testimoni</a>
+                <a href="https://wa.me/6285141525668" target="_blank" class="block px-3 py-2 mt-4 bg-gradient-brand text-white text-center rounded-full font-semibold">
+                    <i class="fab fa-whatsapp mr-2"></i> Hubungi Kami
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION -->
+    <section id="beranda" class="pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Teks Hero -->
+                <div class="text-center md:text-left">
+                    <div class="inline-block bg-pink-100 text-brand-pink px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+                        🌟 Execute Your Excellence
+                    </div>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-brand-dark">
+                        Bantu Anak Raih <br>
+                        <span class="text-gradient-brand">Nilai Sempurna</span> <br>
+                        Tanpa Stres Belajar!
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">
+                        Fasilitas lengkap, tutor berpengalaman, dan metode belajar super asyik yang bikin anak makin percaya diri di sekolah.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="https://wa.me/6285141525668" target="_blank" class="bg-gradient-brand text-white px-8 py-3.5 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all text-center">
+                            Konsultasi Gratis via WA
+                        </a>
+                        <a href="#program" class="bg-white text-brand-dark border-2 border-gray-200 px-8 py-3.5 rounded-full font-bold text-lg hover:border-brand-pink hover:text-brand-pink transition-all text-center">
+                            Lihat Program
+                        </a>
+                    </div>
+                </div>
+                <!-- Gambar Hero -->
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-brand rounded-3xl transform rotate-3 scale-105 opacity-20"></div>
+                    
+                    <!-- Kumpulan Beberapa Foto Suasana Kelas (Grid Estetik) - VERSI HD -->
+                    <div class="relative z-10 grid grid-cols-2 gap-4 items-center">
+                        <div class="space-y-4">
+                            <img src="https://images2.imgbox.com/f5/80/TjOAtLoI_o.png" alt="Suasana Kelas 1" class="rounded-3xl shadow-xl w-full h-48 md:h-64 object-cover">
+                            <img src="https://images2.imgbox.com/d5/95/NowXSLAW_o.png" alt="Suasana Kelas 2" class="rounded-3xl shadow-xl w-full h-48 md:h-64 object-cover">
+                        </div>
+                        <div class="space-y-4 transform translate-y-8">
+                            <img src="https://images2.imgbox.com/73/3f/yZwgOiwF_o.png" alt="Suasana Kelas 3" class="rounded-3xl shadow-xl w-full h-48 md:h-64 object-cover">
+                            <img src="https://images2.imgbox.com/30/c3/LXrciVye_o.png" alt="Suasana Kelas 4" class="rounded-3xl shadow-xl w-full h-48 md:h-64 object-cover">
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
+                        <div class="bg-green-100 p-3 rounded-full text-green-600">
+                            <i class="fas fa-check-circle text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-gray-500 font-semibold">Tingkat Kelulusan</p>
+                            <p class="text-xl font-bold text-brand-dark">98%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. KEUNGGULAN SECTION -->
+    <section id="keunggulan" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-brand-dark mb-4">Kenapa Memilih EXE?</h2>
+                <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="p-6 bg-slate-50 rounded-2xl hover:shadow-lg transition-all border border-gray-100 group flex flex-col">
+                    <div class="w-14 h-14 bg-pink-100 rounded-xl flex items-center justify-center text-brand-pink text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-chalkboard-user"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Tutor Profesional dan Berpengalaman</h3>
+                    <p class="text-gray-600 text-sm">Pengajar muda, asyik, dan sangat ahli di bidang Matematika dan Fisika.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="p-6 bg-slate-50 rounded-2xl hover:shadow-lg transition-all border border-gray-100 group flex flex-col">
+                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center text-brand-orange text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-laptop-house"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">100% Online Interaktif</h3>
+                    <p class="text-gray-600 text-sm">Belajar nyaman dari rumah via Zoom Premium dengan fitur papan tulis digital interaktif agar tetap fokus.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="p-6 bg-slate-50 rounded-2xl hover:shadow-lg transition-all border border-gray-100 group">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center text-brand-yellow text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Modul Latihan Soal</h3>
+                    <p class="text-gray-600 text-sm">Dilengkapi dengan modul materi dan ribuan bank soal terupdate untuk melatih kesiapan siswa menghadapi ujian.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="p-6 bg-slate-50 rounded-2xl hover:shadow-lg transition-all border border-gray-100 group">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-500 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Harga Terjangkau</h3>
+                    <p class="text-gray-600 text-sm">Kualitas fasilitas dan pengajaran bintang lima, namun harga tetap bersahabat dengan kantong.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2.5 TIM TUTOR SECTION -->
+    <section id="tim-tutor" class="py-20 bg-slate-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-brand-dark mb-4">Tim Tutor EXE</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Pengajar berpengalaman yang siap membimbing siswa dengan metode yang asyik dan mudah dipahami.</p>
+                <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
+            </div>
+
+            <!-- WADAH FOTO CAROUSEL DENGAN PANAH -->
+            <div class="relative group">
+                <button onclick="slideTutorCarousel(-1)" class="absolute -left-4 md:-left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
+                    <i class="fas fa-chevron-left text-xl"></i>
+                </button>
+
+                <div id="tutor-gallery-container" class="flex overflow-x-auto gap-6 pb-8 pt-4 scroll-smooth snap-x snap-mandatory hide-scrollbar justify-start">
+                    <a href="https://imgbox.com/HWrRNOHa" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
+                        <img src="https://images2.imgbox.com/f7/69/HWrRNOHa_o.jpeg" alt="Tutor 1" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
+                    </a>
+                    <a href="https://imgbox.com/y42WZtJF" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/f9/a2/y42WZtJF_o.jpeg" alt="Tutor 2" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
+                    </a>
+                    <a href="https://imgbox.com/rUOEA9Vz" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/4a/33/rUOEA9Vz_o.jpeg" alt="Tutor 3" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
+                    </a>
+                    <a href="https://imgbox.com/JesCIhfb" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/d3/a8/JesCIhfb_o.jpeg" alt="Tutor 4" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
+                    </a>
+                    <a href="https://imgbox.com/QvkxMWn7" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/fd/10/QvkxMWn7_o.jpeg" alt="Tutor 5" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
+                    </a>
+                    <a href="https://imgbox.com/3FT311AY" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/4c/60/3FT311AY_o.jpeg" alt="Tutor 6" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
+                    </a>
+                    <a href="https://imgbox.com/14l8MDuv" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/06/d5/14l8MDuv_o.jpeg" alt="Tutor 7" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
+                    </a>
+                    <a href="https://imgbox.com/VHAFU2PH" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/52/29/VHAFU2PH_o.jpeg" alt="Tutor 8" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
+                    </a>
+                    <a href="https://imgbox.com/bgb8URc4" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/65/6d/bgb8URc4_o.jpeg" alt="Tutor 9" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
+                    </a>
+                    <a href="https://imgbox.com/Y4xfGTIv" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/5d/e5/Y4xfGTIv_o.jpeg" alt="Tutor 10" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
+                    </a>
+                </div>
+
+                <button onclick="slideTutorCarousel(1)" class="absolute -right-4 md:-right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
+                    <i class="fas fa-chevron-right text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PROGRAM SECTION (DINAMIS DARI GOOGLE SHEETS) -->
+    <section id="program" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-brand-dark mb-4">Pilihan Program Belajar</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Kami menyediakan program terpadu sesuai jenjang pendidikan dengan fokus pada pemahaman konsep dasar.</p>
+                <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Paket SD -->
+                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all overflow-hidden border border-gray-100 flex flex-col">
+                    <div class="h-32 bg-pink-100 relative flex items-center justify-center">
+                        <i class="fas fa-child text-5xl text-brand-pink opacity-50 absolute right-4 bottom-4"></i>
+                        <h3 class="text-2xl font-bold text-brand-dark relative z-10">Program SD</h3>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <p class="text-gray-500 text-sm mb-6">Pilihan program untuk tingkat Sekolah Dasar</p>
+                        
+                        <div id="program-sd-list" class="space-y-4 mb-8 flex-1">
+                            <div class="animate-pulse flex flex-col items-center justify-center h-full text-brand-pink">
+                                <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i>
+                                <span class="text-sm font-semibold">Memuat program terbaru...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paket SMP -->
+                <div class="bg-white rounded-3xl shadow-xl transform md:-translate-y-4 border-2 border-brand-orange overflow-hidden flex flex-col relative">
+                    <div class="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">PILIHAN FAVORIT</div>
+                    <div class="h-32 bg-gradient-brand relative flex items-center justify-center">
+                        <i class="fas fa-user-graduate text-5xl text-white opacity-30 absolute right-4 bottom-4"></i>
+                        <h3 class="text-2xl font-bold text-white relative z-10">Program SMP</h3>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <p class="text-gray-500 text-sm mb-6">Pilihan program untuk tingkat Menengah Pertama</p>
+                        
+                        <div id="program-smp-list" class="space-y-4 mb-8 flex-1">
+                            <div class="animate-pulse flex flex-col items-center justify-center h-full text-brand-orange">
+                                <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i>
+                                <span class="text-sm font-semibold">Memuat program terbaru...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paket SMA -->
+                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all overflow-hidden border border-gray-100 flex flex-col">
+                    <div class="h-32 bg-yellow-100 relative flex items-center justify-center">
+                        <i class="fas fa-book-open text-5xl text-brand-yellow opacity-50 absolute right-4 bottom-4"></i>
+                        <h3 class="text-2xl font-bold text-brand-dark relative z-10">Program SMA</h3>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <p class="text-gray-500 text-sm mb-6">Pilihan program untuk tingkat Menengah Atas & Gap Year</p>
+                        
+                        <div id="program-sma-list" class="space-y-4 mb-8 flex-1">
+                            <div class="animate-pulse flex flex-col items-center justify-center h-full text-brand-yellow">
+                                <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i>
+                                <span class="text-sm font-semibold">Memuat program terbaru...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3.5 GALERI SECTION -->
+    <section id="galeri" class="py-20 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-brand-dark mb-4">Galeri Dokumentasi Privat dan Kelas</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Cuplikan interaksi asyik dan semangat belajar para siswa di kelas online kami.</p>
+                <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
+            </div>
+
+            <!-- WADAH FOTO CAROUSEL DENGAN PANAH -->
+            <div class="relative group">
+                <button onclick="slideGallery(-1)" class="absolute -left-4 md:-left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
+                    <i class="fas fa-chevron-left text-xl"></i>
+                </button>
+
+                <div id="gallery-container" class="flex overflow-x-auto gap-4 pb-8 pt-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
+                    <a href="https://imgbox.com/TjOAtLoI" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
+                        <img src="https://images2.imgbox.com/f5/80/TjOAtLoI_o.png" alt="Galeri 1" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/NowXSLAW" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/d5/95/NowXSLAW_o.png" alt="Galeri 2" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/yZwgOiwF" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/73/3f/yZwgOiwF_o.png" alt="Galeri 3" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/LXrciVye" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/30/c3/LXrciVye_o.png" alt="Galeri 4" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/HpybxLLp" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/4d/ba/HpybxLLp_o.png" alt="Galeri 5" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/cszMQX8D" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/90/85/cszMQX8D_o.png" alt="Galeri 6" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/sfdgWCrC" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/f8/7c/sfdgWCrC_o.png" alt="Galeri 7" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/5wHJq6ir" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/cf/d4/5wHJq6ir_o.png" alt="Galeri 8" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/H9bvnMii" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/64/42/H9bvnMii_o.png" alt="Galeri 9" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/T0OKg2Tn" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/f1/33/T0OKg2Tn_o.png" alt="Galeri 10" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/INq76yqb" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/af/93/INq76yqb_o.png" alt="Galeri 11" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/YxZtGJTa" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/5d/dd/YxZtGJTa_o.png" alt="Galeri 12" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/pCKcqIh8" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/50/a4/pCKcqIh8_o.png" alt="Galeri 13" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/zwX6udun" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/5f/f6/zwX6udun_o.png" alt="Galeri 14" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/3UOJ9WsQ" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/24/0e/3UOJ9WsQ_o.png" alt="Galeri 15" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/w6ey6Y92" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/d8/d0/w6ey6Y92_o.png" alt="Galeri 16" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/Oelns2zn" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/46/31/Oelns2zn_o.png" alt="Galeri 17" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/YtbR2oMI" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/58/a6/YtbR2oMI_o.png" alt="Galeri 18" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/UJl8iBOx" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/81/68/UJl8iBOx_o.png" alt="Galeri 19" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/k1kxZCjE" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/61/de/k1kxZCjE_o.png" alt="Galeri 20" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/yIi0Ysey" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/5a/69/yIi0Ysey_o.png" alt="Galeri 21" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/kdr4KUid" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/8b/64/kdr4KUid_o.png" alt="Galeri 22" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/ThBdPEKB" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/6e/96/ThBdPEKB_o.png" alt="Galeri 23" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/13gWRpLU" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/58/88/13gWRpLU_o.png" alt="Galeri 24" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/Wc3IMEbp" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/4c/89/Wc3IMEbp_o.png" alt="Galeri 25" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/iF786bbd" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/03/31/iF786bbd_o.png" alt="Galeri 26" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/36zhUn1j" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/9c/57/36zhUn1j_o.png" alt="Galeri 27" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/9yYqhpXf" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/bc/b8/9yYqhpXf_o.png" alt="Galeri 28" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/ybX4dODU" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/9b/68/ybX4dODU_o.png" alt="Galeri 29" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/NPoDZ853" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/0e/65/NPoDZ853_o.png" alt="Galeri 30" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/RaCyGt8O" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/27/a3/RaCyGt8O_o.png" alt="Galeri 31" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/LUmNkcwx" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/42/ab/LUmNkcwx_o.png" alt="Galeri 32" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+                    <a href="https://imgbox.com/ACl7diOi" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                        <img src="https://images2.imgbox.com/64/74/ACl7diOi_o.png" alt="Galeri 33" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
+                    </a>
+
+                </div>
+
+                <button onclick="slideGallery(1)" class="absolute -right-4 md:-right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
+                    <i class="fas fa-chevron-right text-xl"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- 4. TESTIMONI SECTION -->
+        <section id="testimoni" class="py-20 bg-slate-50 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-brand-dark mb-4">Apa Kata Mereka?</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Bukti nyata kepuasan orang tua dan siswa yang telah bergabung dan merasakan langsung peningkatan belajarnya bersama EXE.</p>
+                    <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
+                </div>
+
+                <!-- WADAH FOTO CAROUSEL TESTIMONI -->
+                <div class="relative group">
+                    <button onclick="slideTestimoni(-1)" class="absolute -left-4 md:-left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
+                        <i class="fas fa-chevron-left text-xl"></i>
+                    </button>
+
+                    <div id="testimoni-container" class="flex overflow-x-auto gap-6 pb-8 pt-4 scroll-smooth snap-x snap-mandatory hide-scrollbar justify-start">
+                        <a href="https://imgbox.com/Mbdnr074" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
+                            <img src="https://images2.imgbox.com/41/60/Mbdnr074_o.jpeg" alt="Testimoni 1" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x600/ffffff/d81b60?text=Klik+untuk+Lihat+Testimoni'"/>
+                        </a>
+                        <a href="https://imgbox.com/DoEFG17p" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                            <img src="https://images2.imgbox.com/4e/8b/DoEFG17p_o.jpeg" alt="Testimoni 2" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x600/ffffff/d81b60?text=Klik+untuk+Lihat+Testimoni'"/>
+                        </a>
+                        <a href="https://imgbox.com/TzEsFinB" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                            <img src="https://images2.imgbox.com/a9/99/TzEsFinB_o.jpeg" alt="Testimoni 3" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x600/ffffff/d81b60?text=Klik+untuk+Lihat+Testimoni'"/>
+                        </a>
+                        <a href="https://imgbox.com/FCmW9FKH" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                            <img src="https://images2.imgbox.com/02/a3/FCmW9FKH_o.jpeg" alt="Testimoni 4" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x600/ffffff/d81b60?text=Klik+untuk+Lihat+Testimoni'"/>
+                        </a>
+                        <a href="https://imgbox.com/UOXB1l3V" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                            <img src="https://images2.imgbox.com/22/a2/UOXB1l3V_o.jpeg" alt="Testimoni 5" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x600/ffffff/d81b60?text=Klik+untuk+Lihat+Testimoni'"/>
+                        </a>
+                        <a href="https://imgbox.com/RMkI0dUy" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                            <img src="https://images2.imgbox.com/66/e1/RMkI0dUy_o.jpeg" alt="Testimoni 6" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x600/ffffff/d81b60?text=Klik+untuk+Lihat+Testimoni'"/>
+                        </a>
+                        <a href="https://imgbox.com/tg8wUsni" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                            <img src="https://images2.imgbox.com/a0/af/tg8wUsni_o.jpeg" alt="Testimoni 7" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x600/ffffff/d81b60?text=Klik+untuk+Lihat+Testimoni'"/>
+                        </a>
+                        <a href="https://imgbox.com/grGTo7ni" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
+                            <img src="https://images2.imgbox.com/07/a3/grGTo7ni_o.jpeg" alt="Testimoni 8" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x600/ffffff/d81b60?text=Klik+untuk+Lihat+Testimoni'"/>
+                        </a>
+
+                    </div>
+
+                    <button onclick="slideTestimoni(1)" class="absolute -right-4 md:-right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
+                        <i class="fas fa-chevron-right text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    <!-- 5. PROMO / CTA SECTION -->
+    <section class="py-16">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-brand rounded-3xl p-10 md:p-16 text-center text-white shadow-2xl relative overflow-hidden">
+                <!-- Dekorasi Background -->
+                <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+                <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+                
+                <h2 class="text-3xl md:text-5xl font-extrabold mb-6 relative z-10">🎉 PROMO PERSIAPAN UJIAN!</h2>
+                <p class="text-lg md:text-xl mb-10 opacity-90 max-w-2xl mx-auto relative z-10">
+                    Dapatkan <strong>Diskon 20%</strong> untuk pendaftaran bulan ini dan nikmati tambahan <strong>Gratis Modul Belajar</strong> selama 1 semester. Kuota terbatas!
+                </p>
+                <a href="https://wa.me/6285141525668" target="_blank" class="inline-block bg-white text-brand-orange px-8 py-4 rounded-full font-bold text-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all relative z-10">
+                    Klaim Promo 20% Sekarang
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FOOTER -->
+    <footer id="kontak" class="bg-brand-dark text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                <!-- Info Brand -->
+                <div>
+                    <!-- Logo Teks EXE Education Centre yang diperbesar -->
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-6 tracking-tight">
+                        EXE <span class="text-gradient-brand">Education Centre</span>
+                    </h2>
+                    <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                        Konsultan belajar terpercaya yang berfokus pada keunggulan penguasaan konsep dasar. Mencetak generasi <strong class="italic text-gray-200">endless spirit of lifelong learner</strong>.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/exe_educentre/" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-pink transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/6285141525668" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-pink transition-colors">
+                            <i class="fab fa-whatsapp text-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Kontak -->
+                <div>
+                    <h4 class="text-xl font-bold mb-6 border-b border-gray-700 pb-2 inline-block">Hubungi Kami</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-center">
+                            <i class="fab fa-whatsapp text-brand-pink mr-3 w-5"></i>
+                            <span class="text-gray-400 text-sm">0851-4152-5668</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-brand-pink mr-3 w-5"></i>
+                            <span class="text-gray-400 text-sm">exeeducentre@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8 text-center md:flex md:justify-between md:items-center md:text-left">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2026 <span class="text-base md:text-lg font-bold text-white">EXE Education Centre</span> (Execute Your Excellence). All Rights Reserved.
+                </p>
+                <div class="mt-4 md:mt-0">
+                    <span class="text-gray-600 text-xs">Dibuat dengan ❤️ untuk kemajuan pendidikan.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL FORM PENDAFTARAN (POP-UP) -->
+    <div id="registration-modal" class="hidden fixed inset-0 z-[100] bg-brand-dark/80 backdrop-blur-sm overflow-y-auto">
+        <div class="min-h-screen px-4 text-center">
+            <span class="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
+            <div class="inline-block w-full max-w-2xl p-6 md:p-10 my-8 overflow-hidden text-left align-middle transition-all transform bg-white rounded-3xl shadow-2xl relative">
+                
+                <button type="button" onclick="closeRegistration()" class="absolute top-6 right-6 text-gray-400 hover:text-brand-pink transition-colors focus:outline-none">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+
+                <div class="text-center mb-8">
+                    <img src="https://images2.imgbox.com/ad/c5/3XFVIZZN_o.png" alt="Logo" class="h-10 mx-auto mb-4" onerror="this.src='https://placehold.co/200x80/ffffff/000000?text=LOGO'">
+                    <h3 class="text-2xl font-bold text-brand-dark mb-2">Formulir Pendaftaran</h3>
+                    <p class="text-gray-500 text-sm">Pilihan Paket: <span id="selected-package" class="font-bold text-brand-pink"></span></p>
+                </div>
+
+                <form id="reg-form" onsubmit="submitRegistration(event)" class="space-y-5">
+                    <!-- Paket Tersembunyi (Diset via JS) -->
+                    <input type="hidden" id="reg-paket" value="">
+
+                    <!-- Nama Lengkap -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap Siswa</label>
+                        <input type="text" id="reg-nama" required placeholder="Masukkan nama lengkap siswa" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
+                    </div>
+                    <!-- Nama Orang Tua -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Orang Tua / Wali</label>
+                        <input type="text" id="reg-ortu" required placeholder="Masukkan nama orang tua/wali" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
+                    </div>
+                    <!-- Nomor HP -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Nomor HP / WhatsApp Aktif</label>
+                        <input type="tel" id="reg-hp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
+                    </div>
+                    <!-- Kelas Dropdown -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Kelas Asal</label>
+                        <select id="reg-kelas" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-white text-gray-700">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="Kelas 4 SD">Kelas 4 SD</option>
+                            <option value="Kelas 5 SD">Kelas 5 SD</option>
+                            <option value="Kelas 6 SD">Kelas 6 SD</option>
+                            <option value="Kelas 7 SMP">Kelas 7 SMP</option>
+                            <option value="Kelas 8 SMP">Kelas 8 SMP</option>
+                            <option value="Kelas 9 SMP">Kelas 9 SMP</option>
+                            <option value="Kelas 10 SMA">Kelas 10 SMA</option>
+                            <option value="Kelas 11 SMA">Kelas 11 SMA</option>
+                            <option value="Kelas 12 SMA">Kelas 12 SMA</option>
+                            <option value="Alumni / Gap Year">Alumni / Gap Year</option>
+                        </select>
+                    </div>
+                    <!-- Alamat -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Alamat Lengkap</label>
+                        <textarea id="reg-alamat" rows="3" required placeholder="Jalan, RT/RW, Kelurahan, Kecamatan" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all resize-none"></textarea>
+                    </div>
+                    <!-- Provinsi & Kota grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Provinsi</label>
+                            <select id="reg-provinsi" onchange="updateKota()" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-white text-gray-700">
+                                <option value="">-- Pilih Provinsi --</option>
+                                <!-- Opsi di-generate via JavaScript -->
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Kota / Kabupaten</label>
+                            <select id="reg-kota" onchange="checkKotaLainnya()" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-white text-gray-700" disabled>
+                                <option value="">-- Pilih Kota --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Kota Lainnya (Muncul jika pilih 'Lainnya') -->
+                    <div id="kota-lainnya-container" class="hidden">
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Ketik Nama Kota/Kabupaten</label>
+                        <input type="text" id="reg-kota-lainnya" placeholder="Masukkan nama kota secara manual" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
+                    </div>
+                    <!-- Bukti Bayar -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Bukti Pembayaran / Transfer</label>
+                        <p class="text-xs text-gray-500 mb-2 italic">* Karena pendaftaran via WhatsApp, siapkan file bukti transfer untuk dikirimkan di chat selanjutnya.</p>
+                        <input type="file" id="reg-bukti" accept="image/*,.pdf" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-brand-pink hover:file:bg-pink-100 transition-all text-gray-500">
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="w-full bg-gradient-brand text-white font-bold py-4 rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all mt-4 text-lg">
+                        <i class="fas fa-paper-plane mr-2"></i> Lanjutkan ke WhatsApp Admin
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SUCCESS ALERT -->
+    <div id="success-modal" class="hidden fixed inset-0 z-[110] bg-brand-dark/80 flex items-center justify-center backdrop-blur-sm px-4">
+        <div class="bg-white p-8 rounded-3xl max-w-sm text-center shadow-2xl">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-500 text-4xl mx-auto mb-6">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Mantap!</h3>
+            <p class="text-gray-600 mb-6 text-sm">Biodata sedang dirangkum. Jangan lupa <strong>Lampirkan Bukti Pembayaran</strong> di chat WhatsApp Admin ya!</p>
+            <div class="w-8 h-8 border-4 border-brand-pink border-t-transparent rounded-full animate-spin mx-auto"></div>
+        </div>
+    </div>
+
+    <!-- SCRIPT UTAMA -->
+    <script>
+        // --- SCRIPT NAVBAR MOBILE ---
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+            } else {
+                menu.classList.add('hidden');
+            }
+        });
+
+        // --- SCRIPT CAROUSEL (GALERI & TUTOR & TESTIMONI) ---
+        function slideGallery(direction) {
+            const container = document.getElementById('gallery-container');
+            container.scrollBy({ left: direction * 300, behavior: 'smooth' });
+        }
+        function slideTutorCarousel(direction) {
+            const container = document.getElementById('tutor-gallery-container');
+            container.scrollBy({ left: direction * 350, behavior: 'smooth' });
+        }
+        function slideTestimoni(direction) {
+            const container = document.getElementById('testimoni-container');
+            container.scrollBy({ left: direction * 320, behavior: 'smooth' });
+        }
+
+        // --- SCRIPT LOAD DATA PROGRAM DARI GOOGLE SHEETS ---
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0zjxtS9igW82t3xkNccKs2CfZ1OkWOyaWv71gjRO6dIotyoN5V_KZ7Hv4mhS4JRO70A/exec';
+
+        // Konfigurasi warna untuk masing-masing Jenjang agar terbaca oleh Tailwind
+        const themeConfig = {
+            "SD": {
+                color: "pink",
+                border: "border-pink-100",
+                text: "text-brand-pink",
+                bg: "bg-brand-pink",
+                hoverBg: "hover:bg-pink-700",
+                btnText: "text-white",
+                badgeBg: "bg-pink-100"
+            },
+            "SMP": {
+                color: "orange",
+                border: "border-orange-200",
+                text: "text-brand-orange",
+                bg: "bg-brand-orange",
+                hoverBg: "hover:bg-orange-600",
+                btnText: "text-white",
+                badgeBg: "bg-orange-100"
+            },
+            "SMA": {
+                color: "yellow",
+                border: "border-yellow-200",
+                text: "text-brand-yellow",
+                bg: "bg-brand-yellow",
+                hoverBg: "hover:bg-yellow-500",
+                btnText: "text-brand-dark font-bold", // Tulisan gelap biar kontras dengan kuning
+                badgeBg: "bg-yellow-100"
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadDynamicPrograms();
+        });
+
+        async function loadDynamicPrograms() {
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL);
+                if (!response.ok) throw new Error("Gagal terhubung (Network Error)");
+                
+                const result = await response.json();
+                
+                if (result && result.status === "success") {
+                    if (result.data.length === 0) {
+                        showErrorState("Data program di Spreadsheet masih kosong.");
+                    } else {
+                        renderProgramsToHTML(result.data);
+                    }
+                } else {
+                    showErrorState(result.message || "Error dari server Apps Script.");
+                }
+            } catch (error) {
+                showErrorState("Diblokir oleh sistem pratinjau keamanan. Silakan tes dengan cara Save As file ini jadi .html lalu buka di browser.");
+            }
+        }
+
+        function showErrorState(pesan) {
+            const errorHtml = `
+                <div class="text-center text-red-500 py-6 border border-red-200 rounded-xl bg-red-50 mx-4">
+                    <i class="fas fa-exclamation-triangle mb-2 text-2xl"></i>
+                    <p class="font-semibold text-sm">Gagal memuat program.</p>
+                    <p class="text-xs mt-1 px-4">${pesan}</p>
+                </div>`;
+            document.getElementById('program-sd-list').innerHTML = errorHtml;
+            document.getElementById('program-smp-list').innerHTML = errorHtml;
+            document.getElementById('program-sma-list').innerHTML = errorHtml;
+        }
+
+        function renderProgramsToHTML(data) {
+            // Pisahkan data per jenjang
+            const dataSD = data.filter(item => item.Jenjang && item.Jenjang.toUpperCase() === "SD");
+            const dataSMP = data.filter(item => item.Jenjang && item.Jenjang.toUpperCase() === "SMP");
+            const dataSMA = data.filter(item => item.Jenjang && item.Jenjang.toUpperCase() === "SMA");
+
+            // Render ke HTML
+            document.getElementById('program-sd-list').innerHTML = dataSD.length > 0 ? dataSD.map(item => createCardHTML(item, "SD")).join('') : '<p class="text-sm text-gray-400 text-center italic">Belum ada paket tersedia di Google Sheets.</p>';
+            
+            document.getElementById('program-smp-list').innerHTML = dataSMP.length > 0 ? dataSMP.map(item => createCardHTML(item, "SMP")).join('') : '<p class="text-sm text-gray-400 text-center italic">Belum ada paket tersedia di Google Sheets.</p>';
+            
+            document.getElementById('program-sma-list').innerHTML = dataSMA.length > 0 ? dataSMA.map(item => createCardHTML(item, "SMA")).join('') : '<p class="text-sm text-gray-400 text-center italic">Belum ada paket tersedia di Google Sheets.</p>';
+        }
+
+        function createCardHTML(item, jenjang) {
+            const theme = themeConfig[jenjang] || themeConfig["SD"]; // Fallback ke SD
+            
+            // Mengubah teks dari kolom Benefit (yang dipisah enter) jadi format list <li>
+            const benefitsArray = (item.Benefit || "").split('\n').filter(b => b.trim() !== '');
+            const benefitsHTML = benefitsArray.map(b => `
+                <li class="flex items-start">
+                    <i class="fas fa-caret-right ${theme.text} mt-1 mr-2"></i>
+                    <span>${b}</span>
+                </li>
+            `).join('');
+
+            // Label/Badge opsional (kalau di sheet diisi)
+            let badgeHTML = '';
+            if (item.Label && item.Label.trim() !== '') {
+                badgeHTML = `<span class="${theme.badgeBg} ${theme.text} text-[10px] font-extrabold px-2.5 py-0.5 rounded ml-3 uppercase tracking-wider">${item.Label}</span>`;
+            }
+
+            return `
+            <details class="group ${theme.border} border rounded-xl bg-slate-50 [&_summary::-webkit-details-marker]:hidden mt-4 first:mt-0">
+                <summary class="flex flex-col cursor-pointer p-4 font-semibold text-gray-700 hover:${theme.text} focus:outline-none">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <span class="text-sm font-bold text-brand-dark">${item['Nama Paket']}</span>
+                            ${badgeHTML}
+                        </div>
+                        <span class="transition duration-300 group-open:-rotate-180 ${theme.text}">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </div>
+                    <span class="text-xs text-gray-500 font-normal mt-1">${item.Deskripsi}</span>
+                </summary>
+                <div class="px-4 pb-4 pt-2 text-sm text-gray-600 border-t ${theme.border}">
+                    <ul class="space-y-2 mt-2">
+                        ${benefitsHTML}
+                        <li class="flex items-start">
+                            <i class="fas fa-caret-right ${theme.text} mt-1 mr-2"></i>
+                            <span><strong class="text-brand-dark">Biaya investasi :</strong> ${item.Harga}</span>
+                        </li>
+                    </ul>
+                    <button type="button" onclick="openRegistration('${item['Nama Paket']} (Program ${jenjang})')" class="mt-5 block w-full text-center ${theme.bg} ${theme.btnText} py-2.5 rounded-xl ${theme.hoverBg} hover:shadow-lg transition-all text-sm shadow-md">
+                        <i class="fas fa-edit mr-1"></i> Daftar Sekarang
+                    </button>
+                </div>
+            </details>
+            `;
+        }
+
+        // --- DATA PROVINSI & KOTA DI INDONESIA ---
+        const locationData = {
+            "Aceh": ["Banda Aceh", "Lhokseumawe", "Sabang", "Lainnya"],
+            "Sumatera Utara": ["Medan", "Binjai", "Pematangsiantar", "Deli Serdang", "Lainnya"],
+            "Sumatera Barat": ["Padang", "Bukittinggi", "Pariaman", "Lainnya"],
+            "Riau": ["Pekanbaru", "Dumai", "Bengkalis", "Lainnya"],
+            "Kepulauan Riau": ["Batam", "Tanjungpinang", "Lainnya"],
+            "Sumatera Selatan": ["Palembang", "Lubuklinggau", "Prabumulih", "Lainnya"],
+            "Bengkulu": ["Bengkulu", "Lainnya"],
+            "Lampung": ["Bandar Lampung", "Metro", "Lainnya"],
+            "Banten": ["Kota Tangerang", "Tangerang Selatan", "Kab. Tangerang", "Serang", "Cilegon", "Lainnya"],
+            "DKI Jakarta": ["Jakarta Pusat", "Jakarta Utara", "Jakarta Barat", "Jakarta Selatan", "Jakarta Timur", "Kepulauan Seribu"],
+            "Jawa Barat": ["Kota Bandung", "Kab. Bandung", "Kota Bekasi", "Kab. Bekasi", "Kota Bogor", "Kab. Bogor", "Kota Depok", "Cimahi", "Cirebon", "Sukabumi", "Tasikmalaya", "Lainnya"],
+            "Jawa Tengah": ["Semarang", "Surakarta (Solo)", "Magelang", "Pekalongan", "Salatiga", "Tegal", "Banyumas", "Lainnya"],
+            "DI Yogyakarta": ["Kota Yogyakarta", "Sleman", "Bantul", "Gunungkidul", "Kulon Progo"],
+            "Jawa Timur": ["Surabaya", "Malang", "Batu", "Sidoarjo", "Gresik", "Kediri", "Madiun", "Mojokerto", "Lainnya"],
+            "Bali": ["Denpasar", "Badung", "Gianyar", "Buleleng", "Lainnya"],
+            "Nusa Tenggara Barat": ["Mataram", "Bima", "Lombok Barat", "Lainnya"],
+            "Kalimantan Barat": ["Pontianak", "Singkawang", "Lainnya"],
+            "Kalimantan Selatan": ["Banjarmasin", "Banjarbaru", "Lainnya"],
+            "Kalimantan Timur": ["Samarinda", "Balikpapan", "Bontang", "Lainnya"],
+            "Sulawesi Selatan": ["Makassar", "Parepare", "Palopo", "Lainnya"],
+            "Sulawesi Utara": ["Manado", "Bitung", "Lainnya"],
+            "Papua": ["Jayapura", "Merauke", "Lainnya"],
+            "Provinsi Lainnya (Di luar daftar)": ["Lainnya"]
+        };
+
+        // Inisialisasi Dropdown Provinsi
+        const provSelect = document.getElementById("reg-provinsi");
+        for (let prov in locationData) {
+            let option = document.createElement("option");
+            option.value = prov;
+            option.text = prov;
+            provSelect.add(option);
+        }
+
+        // --- FUNGSI MODAL & DROPDOWN ---
+        function updateKota() {
+            const kotaSelect = document.getElementById("reg-kota");
+            const selectedProv = document.getElementById("reg-provinsi").value;
+            const containerLainnya = document.getElementById("kota-lainnya-container");
+            const inputLainnya = document.getElementById("reg-kota-lainnya");
+
+            // Reset dropdown kota
+            kotaSelect.innerHTML = '<option value="">-- Pilih Kota --</option>';
+            containerLainnya.classList.add("hidden");
+            inputLainnya.removeAttribute("required");
+
+            if (selectedProv && locationData[selectedProv]) {
+                kotaSelect.disabled = false;
+                let cities = locationData[selectedProv];
+                cities.forEach(function(kota) {
+                    let option = document.createElement("option");
+                    option.value = kota;
+                    option.text = kota;
+                    kotaSelect.add(option);
+                });
+            } else {
+                kotaSelect.disabled = true;
+            }
+        }
+
+        function checkKotaLainnya() {
+            const kotaSelect = document.getElementById("reg-kota").value;
+            const containerLainnya = document.getElementById("kota-lainnya-container");
+            const inputLainnya = document.getElementById("reg-kota-lainnya");
+
+            if (kotaSelect === "Lainnya") {
+                containerLainnya.classList.remove("hidden");
+                inputLainnya.setAttribute("required", "true");
+            } else {
+                containerLainnya.classList.add("hidden");
+                inputLainnya.removeAttribute("required");
+            }
+        }
+
+        function openRegistration(packageName) {
+            document.getElementById('registration-modal').classList.remove('hidden');
+            document.getElementById('selected-package').innerText = packageName;
+            document.getElementById('reg-paket').value = packageName;
+        }
+
+        function closeRegistration() {
+            document.getElementById('registration-modal').classList.add('hidden');
+            // Reset form jika di-close
+            document.getElementById('reg-form').reset();
+            document.getElementById('reg-kota').disabled = true;
+            document.getElementById("kota-lainnya-container").classList.add("hidden");
+        }
+
+        // --- SUBMIT PENDAFTARAN (SIMPAN KE SPREADSHEET & ARAHKAN KE WA) ---
+        async function submitRegistration(event) {
+            event.preventDefault(); // Mencegah reload halaman
+
+            // Matikan tombol sementara biar gak diklik dobel
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+
+            // Ambil semua data dari Form
+            const paket = document.getElementById('reg-paket').value;
+            const nama = document.getElementById('reg-nama').value;
+            const ortu = document.getElementById('reg-ortu').value;
+            const hp = document.getElementById('reg-hp').value;
+            const kelas = document.getElementById('reg-kelas').value;
+            const alamat = document.getElementById('reg-alamat').value;
+            const provinsi = document.getElementById('reg-provinsi').value;
+            
+            let kota = document.getElementById('reg-kota').value;
+            if (kota === "Lainnya") {
+                kota = document.getElementById('reg-kota-lainnya').value;
+            }
+
+            // Munculkan Modal Loading
+            document.getElementById('registration-modal').classList.add('hidden');
+            document.getElementById('success-modal').classList.remove('hidden');
+
+            // 1. SIAPKAN DATA UNTUK GOOGLE SHEETS
+            const formData = new FormData();
+            formData.append('paket', paket);
+            formData.append('nama', nama);
+            formData.append('ortu', ortu);
+            formData.append('hp', hp);
+            formData.append('kelas', kelas);
+            formData.append('alamat', alamat);
+            formData.append('provinsi', provinsi);
+            formData.append('kota', kota);
+
+            try {
+                // Proses mengirim data ke URL Google Script (tanpa reload web)
+                await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData });
+            } catch (error) {
+                // Lewatkan diam-diam ke WA
+            }
+
+            // 2. MERANGKAI PESAN WHATSAPP
+            const waNumber = "6285141525668"; // Format internasional tanpa '+' atau '0'
+            let waMessage = `Halo Admin EXE Bimbel, saya ingin mendaftar dengan biodata berikut:\n\n`;
+            waMessage += `*Pilihan Paket:* ${paket}\n`;
+            waMessage += `*Nama Siswa:* ${nama}\n`;
+            waMessage += `*Nama Orang Tua:* ${ortu}\n`;
+            waMessage += `*No. HP/WA:* ${hp}\n`;
+            waMessage += `*Kelas Asal:* ${kelas}\n`;
+            waMessage += `*Alamat:* ${alamat}\n`;
+            waMessage += `*Provinsi:* ${provinsi}\n`;
+            waMessage += `*Kota/Kabupaten:* ${kota}\n\n`;
+            waMessage += `_Catatan: Saya akan melampirkan file foto/PDF bukti pembayaran setelah pesan ini._\n\nTerima kasih!`;
+
+            // Encode pesan agar formatnya aman di URL (spasi jadi %20, enter jadi %0A)
+            const encodedMessage = encodeURIComponent(waMessage);
+            const waLink = `https://wa.me/${waNumber}?text=${encodedMessage}`;
+
+            // 3. SELESAI & REDIRECT
+            // Beri jeda sedikit biar mulus, lalu sembunyikan loading & buka WA
+            setTimeout(() => {
+                document.getElementById('success-modal').classList.add('hidden');
+                document.getElementById('reg-form').reset(); // reset form
+                submitBtn.disabled = false; // nyalakan tombol lagi
+                window.open(waLink, '_blank'); // Buka WA di tab baru
+            }, 500);
+        }
+    </script>
+</body>
+</html>
