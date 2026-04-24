@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Terpadu Math Champs - Final Zero Clash</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
+        .session-card { transition: all 0.2s ease; border-left-width: 4px; }
+        .calendar-day { min-height: 260px; }
+    </style>
+</head>
+<body class="bg-zinc-50 min-h-screen text-zinc-900 pb-20">
+
+    <!-- Header Section -->
+    <header class="bg-white border-b border-zinc-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-[1600px] mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+                <img src="https://thumbs2.imgbox.com/fe/f7/vG6l8Sws_t.png" alt="Logo" class="h-12 w-auto">
+                <div>
+                    <h1 class="text-xl font-black tracking-tight uppercase leading-none">Execute Your Excellence</h1>
+                    <p class="text-[9px] font-bold text-red-600 uppercase tracking-[0.3em] mt-1">QC Verified: SNBT 7 Mapel & TKA</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-2 bg-zinc-100 p-1.5 rounded-2xl border border-zinc-200">
+                <button onclick="window.changeMonth(-1)" class="p-2 hover:bg-white rounded-xl transition-all shadow-sm"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                <span id="month-display" class="px-6 font-black text-xs min-w-[160px] text-center uppercase tracking-widest text-zinc-600 italic">Oktober 2026</span>
+                <button onclick="window.changeMonth(1)" class="p-2 hover:bg-white rounded-xl transition-all shadow-sm"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1600px] mx-auto p-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Sidebar Controls -->
+        <div class="lg:col-span-3 space-y-6">
+            <div class="bg-white rounded-[2.5rem] p-6 shadow-sm border border-zinc-200">
+                <h3 class="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-6 flex items-center gap-2">
+                    <i data-lucide="filter" class="w-4 h-4 text-red-500"></i> Pilih Kelas
+                </h3>
+                <div class="space-y-2" id="class-selector">
+                    <button onclick="window.setClass('PREMIUM_1')" id="btn-PREMIUM_1" class="w-full text-left px-5 py-4 rounded-3xl border-2 transition-all font-bold text-xs bg-red-600 border-red-600 text-white shadow-lg">EXE-Premium 1 (Sen-Rab)</button>
+                    <button onclick="window.setClass('PREMIUM_2')" id="btn-PREMIUM_2" class="w-full text-left px-5 py-4 rounded-3xl border-2 transition-all font-bold text-xs border-zinc-100 text-zinc-500 hover:border-red-200">EXE-Premium 2 (Sel-Kam)</button>
+                    <button onclick="window.setClass('GOLD')" id="btn-GOLD" class="w-full text-left px-5 py-4 rounded-3xl border-2 transition-all font-bold text-xs border-zinc-100 text-zinc-500 hover:border-red-200">EXE-Gold (Jum-Sab)</button>
+                    <button onclick="window.setClass('ALL')" id="btn-ALL" class="mt-4 w-full text-left px-5 py-4 rounded-3xl border-2 transition-all font-bold text-xs border-zinc-100 text-zinc-400 hover:bg-zinc-50 flex justify-between items-center">
+                        LIHAT SEMUA JADWAL <i data-lucide="layers" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Subject Legend -->
+            <div class="bg-zinc-900 rounded-[2.5rem] p-6 text-white shadow-xl">
+                <h3 class="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-6 italic text-center">Reference Mapel SNBT</h3>
+                <div class="space-y-3">
+                    <div class="p-3 rounded-2xl bg-white/5 border border-white/10 flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-zinc-300">PK, PM, PU</span>
+                        <span class="text-[8px] px-2 py-0.5 bg-blue-600 rounded font-black">MATH</span>
+                    </div>
+                    <div class="p-3 rounded-2xl bg-white/5 border border-white/10 flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-zinc-300">PPU, PBM, LBI</span>
+                        <span class="text-[8px] px-2 py-0.5 bg-emerald-600 rounded font-black">INDO</span>
+                    </div>
+                    <div class="p-3 rounded-2xl bg-white/5 border border-white/10 flex justify-between items-center">
+                        <span class="text-[10px] font-bold text-zinc-300">LBE</span>
+                        <span class="text-[8px] px-2 py-0.5 bg-orange-600 rounded font-black">ENG</span>
+                    </div>
+                </div>
+                <p class="mt-6 text-[9px] text-zinc-500 leading-relaxed text-center px-2 italic">Semua sesi dihitung bersih potong libur nasional & periode internal.</p>
+            </div>
+        </div>
+
+        <!-- Calendar Display -->
+        <div class="lg:col-span-9 space-y-6">
+            <div class="bg-white rounded-[3rem] shadow-sm border border-zinc-200 overflow-hidden">
+                <div class="grid grid-cols-7 border-b border-zinc-100 bg-zinc-50/50">
+                    <div class="py-4 text-center text-[10px] font-black text-red-500 uppercase tracking-widest">Ahad</div>
+                    <div class="py-4 text-center text-[10px] font-black text-zinc-400 uppercase tracking-widest">Senin</div>
+                    <div class="py-4 text-center text-[10px] font-black text-zinc-400 uppercase tracking-widest">Selasa</div>
+                    <div class="py-4 text-center text-[10px] font-black text-zinc-400 uppercase tracking-widest">Rabu</div>
+                    <div class="py-4 text-center text-[10px] font-black text-zinc-400 uppercase tracking-widest">Kamis</div>
+                    <div class="py-4 text-center text-[10px] font-black text-zinc-400 uppercase tracking-widest">Jumat</div>
+                    <div class="py-4 text-center text-[10px] font-black text-zinc-400 uppercase tracking-widest">Sabtu</div>
+                </div>
+                <div id="calendar-grid" class="grid grid-cols-7 gap-px bg-zinc-100"></div>
+            </div>
+
+            <!-- Detailed Audit Recap -->
+            <div id="recap-section" class="bg-zinc-950 rounded-[3.5rem] p-8 lg:p-14 text-white shadow-2xl relative overflow-hidden">
+                <!-- Recap JS injected -->
+            </div>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            // DATA & CONFIG
+            const MONTHS = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+            
+            const HOLIDAYS = {
+                "2026-05-01": "Hari Buruh Internasional", "2026-05-14": "Kenaikan Yesus Kristus",
+                "2026-05-27": "Hari Raya Idul Adha 1447 H", "2026-05-29": "Hari Raya Waisak 2570 BE",
+                "2026-06-01": "Hari Lahir Pancasila", "2026-06-16": "Tahun Baru Islam 1448 H",
+                "2026-08-17": "Hari Kemerdekaan RI", "2026-08-25": "Maulid Nabi Muhammad SAW",
+                "2026-12-25": "Hari Raya Natal", "2027-01-01": "Tahun Baru 2027 Masehi",
+                "2027-01-25": "Isra Mikraj Nabi Muhammad SAW", "2027-02-06": "Tahun Baru Imlek 2578 Kongzili",
+                "2027-03-09": "Hari Suci Nyepi 1949", "2027-03-10": "Hari Raya Idul Fitri 1448 H",
+                "2027-03-11": "Hari Raya Idul Fitri 1448 H", "2027-03-26": "Wafat Yesus Kristus",
+                "2027-03-28": "Hari Paskah", "2027-05-01": "Hari Buruh Internasional",
+                "2027-05-06": "Kenaikan Yesus Kristus", "2027-05-16": "Hari Raya Idul Adha 1448 H",
+                "2027-05-20": "Hari Raya Waisak 2571 BE", "2027-06-01": "Hari Lahir Pancasila",
+                "2027-07-06": "Tahun Baru Islam 1449 H"
+            };
+
+            const TEACHER_GROUPS = { MATH: ["Wahyu", "Dhanar"], INDO: ["Restu"], ENG: ["Bayu"] };
+            const SNBT_MAPELS = {
+                PK: { id: 'PK', name: 'Pengetahuan Kuantitatif', group: 'MATH', color: 'blue' },
+                PPU: { id: 'PPU', name: 'P. dan Pemahaman Umum', group: 'INDO', color: 'emerald' },
+                PM: { id: 'PM', name: 'Penalaran Matematika', group: 'MATH', color: 'blue' },
+                PBM: { id: 'PBM', name: 'Pemahaman Bacaan & Menulis', group: 'INDO', color: 'emerald' },
+                PU: { id: 'PU', name: 'Penalaran Umum', group: 'MATH', color: 'blue' },
+                LBI: { id: 'LBI', name: 'Literasi Bahasa Indonesia', group: 'INDO', color: 'emerald' },
+                LBE: { id: 'LBE', name: 'Literasi Bahasa Inggris', group: 'ENG', color: 'orange' }
+            };
+            const SNBT_SEQUENCE = ['PK', 'PPU', 'PM', 'PBM', 'PU', 'LBI', 'LBE'];
+            const CLASS_CONFIG = {
+                PREMIUM_1: { label: 'P1', name: 'EXE-Premium 1', days: [1, 3], color: 'bg-zinc-800' },
+                PREMIUM_2: { label: 'P2', name: 'EXE-Premium 2', days: [2, 4], color: 'bg-red-600' },
+                GOLD: { label: 'G', name: 'EXE-Gold', days: [5, 6], color: 'bg-amber-500' }
+            };
+            const RANGE = {
+                TKA_START: new Date(2026, 6, 13), TKA_END: new Date(2026, 9, 31),
+                SNBT_START: new Date(2026, 9, 5), SNBT_END: new Date(2027, 3, 23)
+            };
+
+            let currentClass = 'PREMIUM_1';
+            let currentViewDate = new Date(2026, 9, 1);
+
+            function isLibur(date) {
+                const y = date.getFullYear(), m = date.getMonth(), d = date.getDate();
+                const dStr = `${y}-${String(m+1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                if (HOLIDAYS[dStr]) return HOLIDAYS[dStr];
+                // Internal Rules
+                if (y === 2026 && m === 10 && d >= 1 && d <= 7) return "Libur Periode TKA";
+                if (y === 2026 && m === 11 && d >= 14) return "Libur Akhir Tahun";
+                if (y === 2027 && m === 2 && d >= 8 && d <= 21) return "Libur Pekan Lebaran";
+                return null;
+            }
+
+            function getSessionsTKA(date, classId) {
+                if (date < RANGE.TKA_START || date > RANGE.TKA_END || isLibur(date)) return [];
+                const config = CLASS_CONFIG[classId];
+                if (!config.days.includes(date.getDay())) return [];
+                
+                const daysSinceStart = Math.floor((date - RANGE.TKA_START) / (1000 * 60 * 60 * 24));
+                const weekNumber = Math.floor(daysSinceStart / 7);
+                const cycleWeek = (weekNumber % 4) + 1;
+                const isDayOne = date.getDay() === config.days[0];
+                const times = (classId === 'GOLD' && date.getDay() === 6) ? ["10:00", "12:00"] : ["17:00", "19:00"];
+
+                let sessions = [];
+                if (cycleWeek <= 2) {
+                    if (isDayOne) {
+                        sessions.push({ time: times[0], group: 'MATH', teacher: TEACHER_GROUPS.MATH[0], sub: 'MATH' });
+                        sessions.push({ time: times[1], group: 'INDO', teacher: TEACHER_GROUPS.INDO[0], sub: 'INDO' });
+                    } else {
+                        sessions.push({ time: times[0], group: 'ENG', teacher: TEACHER_GROUPS.ENG[0], sub: 'ENG' });
+                        sessions.push({ time: times[1], group: 'MATH', teacher: TEACHER_GROUPS.MATH[1], sub: 'MATH' });
+                    }
+                } else if (cycleWeek === 3) {
+                    if (isDayOne) {
+                        sessions.push({ time: times[0], group: 'INDO', teacher: TEACHER_GROUPS.INDO[0], sub: 'INDO' });
+                        sessions.push({ time: times[1], group: 'MATH', teacher: TEACHER_GROUPS.MATH[1], sub: 'MATH' });
+                    } else {
+                        sessions.push({ time: times[0], group: 'INDO', teacher: TEACHER_GROUPS.INDO[0], sub: 'INDO' });
+                        sessions.push({ time: times[1], group: 'ENG', teacher: TEACHER_GROUPS.ENG[0], sub: 'ENG' });
+                    }
+                } else {
+                    if (isDayOne) {
+                        sessions.push({ time: times[0], group: 'MATH', teacher: TEACHER_GROUPS.MATH[0], sub: 'MATH' });
+                        sessions.push({ time: times[1], group: 'ENG', teacher: TEACHER_GROUPS.ENG[0], sub: 'ENG' });
+                    } else {
+                        sessions.push({ time: times[0], group: 'ENG', teacher: TEACHER_GROUPS.ENG[0], sub: 'ENG' });
+                        sessions.push({ time: times[1], group: 'INDO', teacher: TEACHER_GROUPS.INDO[0], sub: 'INDO' });
+                    }
+                }
+                return sessions.map(s => ({ ...s, prog: 'TKA', classLabel: config.label, classColor: config.color }));
+            }
+
+            function getSessionsSNBT(date, classId) {
+                if (date < RANGE.SNBT_START || date > RANGE.SNBT_END || isLibur(date)) return [];
+                const config = CLASS_CONFIG[classId];
+                if (!config.days.includes(date.getDay())) return [];
+                
+                let realActiveCounter = 0;
+                const temp = new Date(RANGE.SNBT_START);
+                while (temp < date) {
+                    if (config.days.includes(temp.getDay()) && !isLibur(temp)) realActiveCounter += 2;
+                    temp.setDate(temp.getDate() + 1);
+                }
+
+                const times = (classId === 'GOLD' && date.getDay() === 6) ? ["10:00", "12:00"] : ["17:00", "19:00"];
+                const tka = getSessionsTKA(date, classId);
+
+                // CROSS LOGIC: Menghindari bentrok pengajar di jam yang sama
+                function findNonBentrok(index, tkaGroup) {
+                    let offset = 0;
+                    while (offset < 7) {
+                        const sid = SNBT_SEQUENCE[(index + offset) % 7];
+                        if (SNBT_MAPELS[sid].group !== tkaGroup) return sid;
+                        offset++;
+                    }
+                    return SNBT_SEQUENCE[index % 7];
+                }
+
+                const g1 = tka.length > 0 ? tka[0].group : null;
+                const g2 = tka.length > 1 ? tka[1].group : null;
+
+                const m1Id = findNonBentrok(realActiveCounter, g1);
+                const m2Id = findNonBentrok(realActiveCounter + 1, g2);
+
+                const m1 = SNBT_MAPELS[m1Id];
+                const m2 = SNBT_MAPELS[m2Id];
+                const getT = (m, i) => TEACHER_GROUPS[m.group][i % TEACHER_GROUPS[m.group].length];
+
+                return [
+                    { time: times[0], sub: m1Id, group: m1.group, teacher: getT(m1, realActiveCounter), prog: 'SNBT', classLabel: config.label, classColor: config.color },
+                    { time: times[1], sub: m2Id, group: m2.group, teacher: getT(m2, realActiveCounter + 1), prog: 'SNBT', classLabel: config.label, classColor: config.color }
+                ];
+            }
+
+            function renderRecap() {
+                const r = {};
+                ['PREMIUM_1', 'PREMIUM_2', 'GOLD'].forEach(c => {
+                    r[c] = { TKA: { MATH:0, INDO:0, ENG:0 }, SNBT: {} };
+                    SNBT_SEQUENCE.forEach(sid => r[c].SNBT[sid] = 0);
+                });
+                let d = new Date(RANGE.TKA_START);
+                while (d <= RANGE.SNBT_END) {
+                    ['PREMIUM_1', 'PREMIUM_2', 'GOLD'].forEach(c => {
+                        getSessionsTKA(new Date(d), c).forEach(s => r[c].TKA[s.sub]++);
+                        getSessionsSNBT(new Date(d), c).forEach(s => r[c].SNBT[s.sub]++);
+                    });
+                    d.setDate(d.getDate() + 1);
+                }
+                const container = document.getElementById('recap-section');
+                container.innerHTML = `
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-5 mb-14">
+                            <div class="bg-red-600 p-3.5 rounded-3xl shadow-xl shadow-red-950/40"><i data-lucide="bar-chart-3" class="w-7 h-7 text-white"></i></div>
+                            <div>
+                                <h3 class="text-3xl font-black uppercase tracking-tight">Audit Sesi Akademik Final</h3>
+                                <p class="text-zinc-500 text-[11px] font-bold uppercase tracking-[0.2em] mt-1 italic leading-none">Dihitung otomatis (Bersih Potong Libur & Bentrok)</p>
+                            </div>
+                        </div>
+                        <div class="space-y-16">
+                            ${['PREMIUM_1', 'PREMIUM_2', 'GOLD'].map(c => `
+                                <div class="bg-white/5 border border-white/10 rounded-[3.5rem] p-10 lg:p-14">
+                                    <div class="flex items-center justify-between mb-12 border-b border-white/5 pb-10">
+                                        <h4 class="text-2xl font-black uppercase tracking-widest flex items-center gap-5">
+                                            <span class="${CLASS_CONFIG[c].color} w-5 h-5 rounded-full shadow-lg"></span> ${CLASS_CONFIG[c].name}
+                                        </h4>
+                                        <div class="text-[11px] font-black text-zinc-500 uppercase tracking-widest text-right leading-relaxed">
+                                            REAL SNBT: ${SNBT_SEQUENCE.reduce((a,b) => a + r[c].SNBT[b], 0)} SESI<br>
+                                            REAL TKA: ${r[c].TKA.MATH + r[c].TKA.INDO + r[c].TKA.ENG} SESI
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                                        <div class="lg:col-span-4">
+                                            <p class="text-[12px] font-black text-red-500 uppercase mb-8 tracking-[0.3em] flex items-center gap-3">
+                                                <span class="w-8 h-px bg-red-500"></span> SUMMARY TKA
+                                            </p>
+                                            <div class="space-y-4">
+                                                <div class="flex justify-between p-5 rounded-2xl bg-white/5 border border-white/5 text-[12px] font-bold"><span>MATEMATIKA</span><span>${r[c].TKA.MATH}</span></div>
+                                                <div class="flex justify-between p-5 rounded-2xl bg-white/5 border border-white/5 text-[12px] font-bold"><span>INDONESIA</span><span>${r[c].TKA.INDO}</span></div>
+                                                <div class="flex justify-between p-5 rounded-2xl bg-white/5 border border-white/5 text-[12px] font-bold"><span>INGGRIS</span><span>${r[c].TKA.ENG}</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="lg:col-span-8">
+                                            <p class="text-[12px] font-black text-blue-500 uppercase mb-8 tracking-[0.3em] flex items-center gap-3">
+                                                <span class="w-8 h-px bg-blue-500"></span> DETAIL SNBT (7 MAPEL)
+                                            </p>
+                                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                                                ${SNBT_SEQUENCE.map(sid => `
+                                                    <div class="bg-white/5 border border-white/10 p-5 rounded-3xl">
+                                                        <p class="text-[10px] font-black text-zinc-500 uppercase mb-3 truncate leading-none px-1">${SNBT_MAPELS[sid].name.replace(' & ', ' &<br>')}</p>
+                                                        <p class="text-[12px] font-black text-blue-400 mb-2">${sid}</p>
+                                                        <p class="text-4xl font-black tracking-tighter">${r[c].SNBT[sid]}</p>
+                                                    </div>`).join('')}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`).join('')}
+                        </div>
+                    </div>`;
+                lucide.createIcons();
+            }
+
+            function renderCalendar() {
+                const grid = document.getElementById('calendar-grid');
+                grid.innerHTML = '';
+                const y = currentViewDate.getFullYear(), m = currentViewDate.getMonth();
+                document.getElementById('month-display').innerText = `${MONTHS[m]} ${y}`;
+                const firstDay = new Date(y, m, 1).getDay();
+                const daysInMonth = new Date(y, m + 1, 0).getDate();
+                for (let i = 0; i < firstDay; i++) grid.appendChild(document.createElement('div')).className = "bg-slate-50/50 border border-zinc-100";
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const date = new Date(y, m, d);
+                    const holiday = isLibur(date);
+                    const isSun = date.getDay() === 0;
+                    let sessions = [];
+                    if (currentClass === 'ALL') {
+                        ['PREMIUM_1', 'PREMIUM_2', 'GOLD'].forEach(c => { sessions.push(...getSessionsTKA(date, c)); sessions.push(...getSessionsSNBT(date, c)); });
+                    } else {
+                        sessions.push(...getSessionsTKA(date, currentClass));
+                        sessions.push(...getSessionsSNBT(date, currentClass));
+                    }
+                    const dayEl = document.createElement('div');
+                    dayEl.className = `calendar-day bg-white p-3 border border-zinc-100 flex flex-col gap-2 transition-all ${isSun || holiday ? 'bg-red-50/20 border-red-100' : 'hover:bg-zinc-50/50'}`;
+                    let inner = '';
+                    if (holiday) {
+                        inner = `<div class="mt-6 text-[9px] font-black bg-red-100 text-red-600 p-2.5 rounded-2xl text-center uppercase border border-red-200">${holiday}</div>`;
+                    } else {
+                        sessions.forEach(s => {
+                            const border = s.group === 'MATH' ? 'border-blue-500 bg-blue-50 text-blue-700' : s.group === 'INDO' ? 'border-emerald-500 bg-emerald-50 text-emerald-700' : 'border-orange-500 bg-orange-50 text-orange-700';
+                            inner += `<div class="session-card p-3 rounded-2xl border-l-4 shadow-sm ${border}"><div class="flex justify-between items-center text-[7px] mb-1 font-black uppercase"><div class="flex items-center gap-1"><span class="${s.prog === 'TKA' ? 'text-red-500' : 'text-blue-500'}">${s.prog}</span><span class="text-zinc-400">• ${s.time}</span></div>${currentClass === 'ALL' ? `<span class="${s.classColor} text-white px-1.5 py-0.5 rounded-md text-[6px] font-black">${s.classLabel}</span>` : ''}</div><p class="text-[11px] font-black uppercase truncate leading-none mb-1">${s.sub}</p><p class="text-[8px] font-bold opacity-60 truncate tracking-tight uppercase">${s.teacher}</p></div>`;
+                        });
+                    }
+                    dayEl.innerHTML = `<div class="flex justify-between items-center mb-1 px-1"><span class="text-[12px] font-black ${isSun || holiday ? 'text-red-600' : 'text-zinc-200'}">${d}</span></div><div class="flex flex-col gap-2 overflow-y-auto custom-scrollbar pr-0.5 pb-2">${inner}</div>`;
+                    grid.appendChild(dayEl);
+                }
+                lucide.createIcons();
+                renderRecap();
+            }
+
+            // EXPOSE GLOBAL
+            window.setClass = function(cid) {
+                currentClass = cid;
+                document.querySelectorAll('#class-selector button').forEach(btn => btn.className = "w-full text-left px-5 py-4 rounded-3xl border-2 transition-all font-bold text-xs border-zinc-100 text-zinc-500 hover:border-red-200");
+                const activeBtn = document.getElementById(`btn-${cid}`);
+                activeBtn.className = `w-full text-left px-5 py-4 rounded-3xl border-2 transition-all font-bold text-xs ${cid === 'ALL' ? 'bg-zinc-800 border-zinc-800' : 'bg-red-600 border-red-600'} text-white shadow-lg flex justify-between items-center`;
+                renderCalendar();
+            };
+            window.changeMonth = function(delta) {
+                currentViewDate = new Date(currentViewDate.getFullYear(), currentViewDate.getMonth() + delta, 1);
+                renderCalendar();
+            };
+            window.onload = renderCalendar;
+        })();
+    </script>
+</body>
+</html>
