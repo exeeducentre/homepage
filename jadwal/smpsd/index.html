@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Akademik Math Champs 2025-2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #e4e4e7; border-radius: 10px; }
+        .session-card { transition: all 0.2s ease; border-left-width: 4px; }
+        .session-card:hover { transform: translateY(-2px); }
+        .calendar-day { min-height: 165px; }
+    </style>
+</head>
+<body class="bg-zinc-50 min-h-screen text-zinc-900 pb-20">
+
+    <!-- Top Navigation -->
+    <div class="bg-white border-b border-zinc-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <img src="https://thumbs2.imgbox.com/fe/f7/vG6l8Sws_t.png" alt="Logo" class="h-10 object-contain">
+                <div class="h-6 w-[1px] bg-zinc-200 hidden md:block"></div>
+                <h1 class="font-black text-sm uppercase tracking-tighter hidden md:block">Academic System v2.0</h1>
+            </div>
+            
+            <div class="flex bg-zinc-100 p-1 rounded-xl">
+                <button onclick="setProgram('EXE')" id="p-EXE" class="prog-btn px-4 py-2 rounded-lg text-[10px] font-black transition-all">EXE 2026</button>
+                <button onclick="setProgram('TKA_SMP')" id="p-TKA_SMP" class="prog-btn px-4 py-2 rounded-lg text-[10px] font-black transition-all">TKA SMP</button>
+                <button onclick="setProgram('TKA_SD')" id="p-TKA_SD" class="prog-btn px-4 py-2 rounded-lg text-[10px] font-black transition-all">TKA SD</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <div class="max-w-7xl mx-auto px-4 mt-8 mb-8 text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+            <p id="program-subtitle" class="text-red-600 font-black text-[10px] uppercase tracking-[0.2em] mb-1">PROGRAM UNGGULAN</p>
+            <h2 id="program-title" class="text-3xl md:text-4xl font-black text-zinc-900 leading-tight tracking-tight">TKA SMP - Master Class</h2>
+            <p id="program-period" class="text-zinc-500 font-medium mt-1 text-sm tracking-wide">Periode: 15 Juli 2025 — 18 April 2026</p>
+        </div>
+        <div class="bg-white px-6 py-4 rounded-[2rem] border border-zinc-200 shadow-sm flex items-center gap-6">
+            <div class="text-center border-r border-zinc-100 pr-6">
+                <p class="text-[9px] font-bold text-zinc-400 uppercase">Siklus</p>
+                <p class="font-black text-lg">4 Minggu</p>
+            </div>
+            <div class="text-center">
+                <p class="text-[9px] font-bold text-zinc-400 uppercase">Status</p>
+                <p class="font-black text-lg text-emerald-600 flex items-center gap-1">LIVE <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-4 gap-8">
+        
+        <div class="space-y-6">
+            <!-- Paket Selector -->
+            <div class="bg-white p-6 rounded-[2.5rem] shadow-sm border border-zinc-200">
+                <h3 class="font-bold text-zinc-800 mb-4 flex items-center gap-2 text-xs uppercase tracking-widest">
+                    <i data-lucide="filter" class="w-4 h-4 text-red-600"></i> Opsi Paket
+                </h3>
+                <div class="space-y-2" id="class-selector"></div>
+            </div>
+
+            <!-- Teachers -->
+            <div class="bg-white p-6 rounded-[2.5rem] shadow-sm border border-zinc-200">
+                <h3 class="font-bold text-zinc-800 mb-4 flex items-center gap-2 text-xs uppercase tracking-widest">
+                    <i data-lucide="users" class="w-4 h-4 text-red-600"></i> Pengajar Utama
+                </h3>
+                <div id="teacher-list" class="space-y-3"></div>
+            </div>
+        </div>
+
+        <div class="lg:col-span-3 space-y-6">
+            <div class="bg-white rounded-[2.5rem] shadow-xl border border-zinc-200 overflow-hidden">
+                <div class="p-6 border-b border-zinc-100 flex justify-between items-center bg-white">
+                    <button onclick="changeMonth(-1)" class="p-3 hover:bg-zinc-100 rounded-2xl transition-colors">
+                        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                    </button>
+                    <div class="text-center">
+                        <h2 id="month-display" class="text-xl font-black text-zinc-800 uppercase tracking-widest"></h2>
+                        <div class="flex flex-col items-center gap-1 mt-1">
+                            <span id="semester-badge" class="px-2 py-0.5 text-[8px] font-black rounded-full uppercase tracking-tighter"></span>
+                            <p id="view-mode-label" class="text-[9px] font-bold text-red-600 uppercase tracking-widest"></p>
+                        </div>
+                    </div>
+                    <button onclick="changeMonth(1)" class="p-3 hover:bg-zinc-100 rounded-2xl transition-colors">
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </button>
+                </div>
+
+                <div class="p-6 overflow-x-auto">
+                    <div class="min-w-[800px]">
+                        <div class="grid grid-cols-7 mb-6">
+                            <div class="text-center text-[10px] font-black text-red-500 uppercase tracking-widest">Ahad</div>
+                            <div class="text-center text-[10px] font-black text-zinc-400 uppercase tracking-widest">Senin</div>
+                            <div class="text-center text-[10px] font-black text-zinc-400 uppercase tracking-widest">Selasa</div>
+                            <div class="text-center text-[10px] font-black text-zinc-400 uppercase tracking-widest">Rabu</div>
+                            <div class="text-center text-[10px] font-black text-zinc-400 uppercase tracking-widest">Kamis</div>
+                            <div class="text-center text-[10px] font-black text-zinc-400 uppercase tracking-widest">Jumat</div>
+                            <div class="text-center text-[10px] font-black text-zinc-400 uppercase tracking-widest">Sabtu</div>
+                        </div>
+                        <div id="calendar-grid" class="grid grid-cols-7 gap-3"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recap Section -->
+            <div class="bg-white rounded-[2.5rem] p-8 border border-zinc-200 shadow-sm">
+                <div class="flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-zinc-900 p-2.5 rounded-2xl">
+                            <i data-lucide="bar-chart-3" class="w-5 h-5 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-black uppercase tracking-widest leading-none">Rekapitulasi Sesi</h3>
+                            <p class="text-[9px] font-bold text-zinc-400 mt-1 uppercase" id="recap-class-label"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="recap-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const MONTHS = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        
+        const HOLIDAYS = {
+            "2025-08-17": "HUT RI ke-80",
+            "2025-09-05": "Maulid Nabi Muhammad SAW",
+            "2025-12-25": "Hari Raya Natal",
+            "2026-01-01": "Tahun Baru 2026",
+            "2026-01-29": "Tahun Baru Imlek 2577",
+            "2026-02-15": "Isra Mi'raj",
+            "2026-03-20": "Hari Raya Idul Fitri 1447H",
+            "2026-03-21": "Hari Raya Idul Fitri 1447H",
+            "2026-03-31": "Hari Raya Nyepi",
+            "2026-04-03": "Wafat Isa Almasih"
+        };
+
+        const SUBJECTS = {
+            MATH: { border: "border-blue-500", bg: "bg-blue-50", text: "text-blue-700", icon: "divide", name: "Matematika" },
+            INDO: { border: "border-emerald-500", bg: "bg-emerald-50", text: "text-emerald-700", icon: "book-marked", name: "B. Indonesia" }
+        };
+
+        const PROGRAMS = {
+            EXE: {
+                title: "Execute Your Excellence 2026",
+                period: "13 Juli — 31 Oktober 2026",
+                start: new Date(2026, 6, 13),
+                end: new Date(2026, 9, 31),
+                classes: {
+                    PREMIUM_1: { label: 'P1', name: 'Premium 1 (Sen & Rab)', days: [1, 3] },
+                    PREMIUM_2: { label: 'P2', name: 'Premium 2 (Sel & Kam)', days: [2, 4] },
+                    GOLD: { label: 'G', name: 'Gold (Jum & Sab)', days: [5, 6] }
+                }
+            },
+            TKA_SMP: {
+                title: "TKA SMP - Master Class",
+                period: "15 Juli 2025 — 18 April 2026",
+                start: new Date(2025, 6, 15),
+                end: new Date(2026, 3, 18),
+                classes: {
+                    PREMIUM_1: { label: 'P1', name: 'Premium 1 (Sen & Rab)', days: [1, 3] },
+                    PREMIUM_2: { label: 'P2', name: 'Premium 2 (Sel & Kam)', days: [2, 4] },
+                    GOLD: { label: 'G', name: 'Gold (Jum & Sab)', days: [5, 6] }
+                }
+            },
+            TKA_SD: {
+                title: "TKA SD - Junior Champ",
+                period: "15 Juli 2025 — 18 April 2026",
+                start: new Date(2025, 6, 15),
+                end: new Date(2026, 3, 18),
+                classes: {
+                    PREMIUM_1: { label: 'P1', name: 'Premium 1 (Sen & Rab)', days: [1, 3] },
+                    PREMIUM_2: { label: 'P2', name: 'Premium 2 (Sel & Kam)', days: [2, 4] },
+                    GOLD: { label: 'G', name: 'Gold (Jum & Sab)', days: [5, 6] }
+                }
+            }
+        };
+
+        let currentProgramKey = 'TKA_SMP';
+        let currentClassKey = 'PREMIUM_1';
+        let currentViewDate = new Date(2025, 6, 1);
+
+        function setProgram(pKey) {
+            currentProgramKey = pKey;
+            currentClassKey = 'PREMIUM_1';
+            currentViewDate = new Date(PROGRAMS[pKey].start);
+            currentViewDate.setDate(1);
+            
+            document.querySelectorAll('.prog-btn').forEach(b => {
+                b.className = "prog-btn px-4 py-2 rounded-lg text-[10px] font-black transition-all text-zinc-500 hover:bg-zinc-200";
+            });
+            document.getElementById(`p-${pKey}`).className = "prog-btn px-4 py-2 rounded-lg text-[10px] font-black transition-all bg-zinc-800 text-white shadow-md";
+
+            document.getElementById('program-title').innerText = PROGRAMS[pKey].title;
+            document.getElementById('program-period').innerText = `Periode: ${PROGRAMS[pKey].period}`;
+            
+            renderClassSelectors();
+            renderTeachers();
+            renderCalendar();
+            renderRecap();
+        }
+
+        function renderClassSelectors() {
+            const container = document.getElementById('class-selector');
+            container.innerHTML = '';
+            const config = PROGRAMS[currentProgramKey].classes;
+
+            Object.keys(config).forEach(key => {
+                const isActive = currentClassKey === key;
+                const btn = document.createElement('button');
+                btn.onclick = () => { currentClassKey = key; renderClassSelectors(); renderCalendar(); renderRecap(); };
+                btn.className = `w-full text-left px-4 py-3 rounded-2xl border-2 transition-all font-bold text-[10px] uppercase tracking-wider ${isActive ? 'bg-red-600 border-red-600 text-white shadow-md' : 'border-zinc-100 text-zinc-600 hover:border-red-200 bg-white'}`;
+                btn.innerHTML = config[key].name;
+                container.appendChild(btn);
+            });
+
+            const allBtn = document.createElement('button');
+            allBtn.onclick = () => { currentClassKey = 'ALL'; renderClassSelectors(); renderCalendar(); renderRecap(); };
+            allBtn.className = `mt-4 w-full text-left px-4 py-3 rounded-2xl border-2 border-dashed transition-all font-black text-[10px] uppercase tracking-wider flex items-center justify-between ${currentClassKey === 'ALL' ? 'bg-zinc-800 border-zinc-800 text-white' : 'border-zinc-200 text-zinc-400 hover:bg-zinc-100'}`;
+            allBtn.innerHTML = `<span>Tampilkan Semua</span> <i data-lucide="layers" class="w-3.5 h-3.5"></i>`;
+            container.appendChild(allBtn);
+            lucide.createIcons();
+        }
+
+        function renderTeachers() {
+            const list = document.getElementById('teacher-list');
+            const teachers = [
+                { name: "Wahyu / Dhanar", sub: "Matematika", bg: "bg-blue-50", dot: "bg-blue-500", text: "text-blue-900" },
+                { name: "Restu", sub: "B. Indonesia", bg: "bg-emerald-50", dot: "bg-emerald-500", text: "text-emerald-900" }
+            ];
+            list.innerHTML = teachers.map(t => `
+                <div class="p-4 ${t.bg} rounded-2xl border border-white/60 flex items-center justify-between">
+                    <div><span class="text-[11px] font-black ${t.text} uppercase leading-none">${t.name}</span><p class="text-[9px] opacity-70 font-bold uppercase mt-1">${t.sub}</p></div>
+                    <div class="w-2 h-2 ${t.dot} rounded-full shadow-sm"></div>
+                </div>
+            `).join('');
+        }
+
+        function getSessions(date, classKey, programKey) {
+            const program = PROGRAMS[programKey];
+            if (date < program.start || date > program.end) return [];
+            
+            const dayOfWeek = date.getDay();
+            const config = program.classes[classKey];
+            if (!config || !config.days.includes(dayOfWeek)) return [];
+
+            const isSem2 = date.getFullYear() === 2026 && date.getMonth() >= 0;
+            const diffDays = Math.floor((date - program.start) / (1000 * 60 * 60 * 24));
+            const cycleWeek = (Math.floor(diffDays / 7) % 4) + 1;
+            const isDayOne = dayOfWeek === config.days[0];
+
+            let sessions = [];
+            
+            // Logic EXE (Legacy)
+            if (programKey === 'EXE') {
+                const times = (classKey === 'GOLD') ? (dayOfWeek === 5 ? ["17:00 - 18:30", "19:00 - 20:30"] : ["10:00 - 11:30", "12:00 - 13:30"]) : ["17:00 - 18:30", "19:00 - 20:30"];
+                if (cycleWeek <= 2) {
+                    sessions.push({ time: times[0], sub: isDayOne ? SUBJECTS.MATH : SUBJECTS.INDO, teacher: isDayOne ? "Wahyu" : "Restu" });
+                    sessions.push({ time: times[1], sub: isDayOne ? SUBJECTS.INDO : SUBJECTS.MATH, teacher: isDayOne ? "Restu" : "Dhanar" });
+                } else {
+                    sessions.push({ time: times[0], sub: isDayOne ? SUBJECTS.INDO : SUBJECTS.MATH, teacher: isDayOne ? "Restu" : "Dhanar" });
+                    sessions.push({ time: times[1], sub: isDayOne ? SUBJECTS.MATH : SUBJECTS.INDO, teacher: isDayOne ? "Wahyu" : "Restu" });
+                }
+                return sessions.map(s => ({...s, classLabel: config.label}));
+            }
+
+            // Logic TKA (Corrected QC)
+            if (!isSem2) {
+                // Semester 1: 1 Sesi per Hari
+                const time = (classKey === 'GOLD' && dayOfWeek === 6) ? "10:00 - 11:30" : "15:00 - 16:30";
+                const sub = isDayOne ? SUBJECTS.MATH : SUBJECTS.INDO;
+                sessions.push({ time, sub, teacher: sub === SUBJECTS.MATH ? "Wahyu" : "Restu" });
+            } else {
+                // Semester 2: 2 Sesi per Hari (Sesuai QC User)
+                let times = [];
+                if (classKey === 'GOLD') {
+                    if (dayOfWeek === 5) times = ["15:00 - 16:30", "17:00 - 18:30"];
+                    else times = ["10:00 - 11:30", "12:00 - 13:30"];
+                } else {
+                    times = ["15:00 - 16:30", "17:00 - 18:00"];
+                }
+                sessions.push({ time: times[0], sub: SUBJECTS.MATH, teacher: "Wahyu" });
+                sessions.push({ time: times[1], sub: SUBJECTS.INDO, teacher: "Restu" });
+            }
+            return sessions.map(s => ({...s, classLabel: config.label}));
+        }
+
+        function renderCalendar() {
+            const grid = document.getElementById('calendar-grid');
+            const display = document.getElementById('month-display');
+            const semBadge = document.getElementById('semester-badge');
+            const modeLabel = document.getElementById('view-mode-label');
+            grid.innerHTML = '';
+            
+            const y = currentViewDate.getFullYear();
+            const m = currentViewDate.getMonth();
+            display.innerText = `${MONTHS[m]} ${y}`;
+            
+            const isSem2 = y > 2025 || (y === 2026 && m >= 0);
+            const isProgramEXE = currentProgramKey === 'EXE';
+
+            if (isProgramEXE) {
+                semBadge.innerText = "Periode Intensif";
+                semBadge.className = "px-2 py-0.5 bg-red-600 text-white text-[8px] font-black rounded-full uppercase tracking-tighter";
+            } else {
+                semBadge.innerText = isSem2 ? "Semester 2 (2 Sesi)" : "Semester 1 (1 Sesi)";
+                semBadge.className = isSem2 ? "px-2 py-0.5 bg-zinc-900 text-white text-[8px] font-black rounded-full uppercase tracking-tighter" : "px-2 py-0.5 bg-zinc-400 text-white text-[8px] font-black rounded-full uppercase tracking-tighter";
+            }
+            
+            modeLabel.innerText = currentClassKey === 'ALL' ? "Mode: Semua Jadwal" : `Mode Paket: ${PROGRAMS[currentProgramKey].classes[currentClassKey].name}`;
+
+            const firstDay = new Date(y, m, 1).getDay();
+            const daysInMonth = new Date(y, m + 1, 0).getDate();
+
+            for (let i = 0; i < firstDay; i++) grid.appendChild(document.createElement('div'));
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const date = new Date(y, m, d);
+                const dateStr = `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+                const holiday = HOLIDAYS[dateStr];
+                const isSunday = date.getDay() === 0;
+
+                let sessions = [];
+                if (currentClassKey === 'ALL') {
+                    Object.keys(PROGRAMS[currentProgramKey].classes).forEach(key => {
+                        sessions.push(...getSessions(date, key, currentProgramKey));
+                    });
+                } else {
+                    sessions = getSessions(date, currentClassKey, currentProgramKey);
+                }
+
+                const dayEl = document.createElement('div');
+                dayEl.className = `calendar-day p-2 border border-zinc-100 rounded-3xl bg-white flex flex-col gap-2 transition-all hover:shadow-lg ${isSunday ? 'bg-zinc-50' : ''}`;
+                
+                let sessionHtml = '';
+                if (holiday) {
+                    sessionHtml = `<div class="mt-2 p-3 bg-red-50 border-l-4 border-red-500 rounded-2xl"><p class="text-[8px] font-black text-red-600 uppercase">Libur Nasional</p><p class="text-[9px] font-bold text-red-800 leading-tight mt-1">${holiday}</p></div>`;
+                } else {
+                    sessions.forEach(s => {
+                        sessionHtml += `
+                            <div class="session-card p-2 rounded-xl border-l-4 ${s.sub.border} ${s.sub.bg} shadow-sm">
+                                <div class="flex justify-between items-center mb-1">
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="bg-zinc-800 text-white text-[7px] font-black px-1.5 py-0.5 rounded-md uppercase">${s.classLabel}</span>
+                                        <span class="font-black ${s.sub.text} text-[9px] tracking-tight">${s.time}</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-1 opacity-80">
+                                    <i data-lucide="${s.sub.icon}" class="w-2.5 h-2.5 ${s.sub.text}"></i>
+                                    <p class="text-[8px] font-black ${s.sub.text} truncate uppercase leading-none">${s.teacher}</p>
+                                </div>
+                            </div>
+                        `;
+                    });
+                }
+
+                dayEl.innerHTML = `
+                    <div class="flex justify-between px-2 py-1">
+                        <span class="text-xs font-black ${isSunday ? 'text-red-500' : holiday ? 'text-red-600 font-bold' : 'text-zinc-400'}">${d}</span>
+                        ${sessions.length > 0 && !holiday ? '<span class="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse mt-1"></span>' : ''}
+                    </div>
+                    <div class="flex flex-col gap-1.5 px-0.5 pb-2 overflow-y-auto custom-scrollbar max-h-[145px]">
+                        ${sessionHtml}
+                    </div>
+                `;
+                grid.appendChild(dayEl);
+            }
+            lucide.createIcons();
+        }
+
+        function renderRecap() {
+            const container = document.getElementById('recap-container');
+            const label = document.getElementById('recap-class-label');
+            const program = PROGRAMS[currentProgramKey];
+            let counts = { math: 0, indo: 0 };
+            
+            label.innerText = currentClassKey === 'ALL' ? "Kalkulasi Seluruh Paket Terdaftar" : `Kalkulasi Paket Aktif: ${program.classes[currentClassKey].name}`;
+
+            let iterDate = new Date(program.start);
+            while (iterDate <= program.end) {
+                const dateStr = `${iterDate.getFullYear()}-${String(iterDate.getMonth() + 1).padStart(2, '0')}-${String(iterDate.getDate()).padStart(2, '0')}`;
+                if (!HOLIDAYS[dateStr]) {
+                    let sessions = [];
+                    if (currentClassKey === 'ALL') {
+                        Object.keys(program.classes).forEach(key => {
+                            sessions.push(...getSessions(new Date(iterDate), key, currentProgramKey));
+                        });
+                    } else {
+                        sessions = getSessions(new Date(iterDate), currentClassKey, currentProgramKey);
+                    }
+                    
+                    sessions.forEach(s => {
+                        if (s.sub === SUBJECTS.MATH) counts.math++;
+                        if (s.sub === SUBJECTS.INDO) counts.indo++;
+                    });
+                }
+                iterDate.setDate(iterDate.getDate() + 1);
+            }
+
+            container.innerHTML = `
+                <div class="bg-blue-50/50 p-6 rounded-[2.5rem] border border-blue-100/50">
+                    <div class="flex justify-between items-center mb-4"><span class="text-[10px] font-black text-blue-600 uppercase tracking-widest">Matematika</span><i data-lucide="divide" class="w-4 h-4 text-blue-400"></i></div>
+                    <div class="flex items-baseline gap-2"><span class="text-6xl font-black text-blue-900">${counts.math}</span><span class="text-xs font-bold text-blue-500 uppercase">Sesi Terjadwal</span></div>
+                </div>
+                <div class="bg-emerald-50/50 p-6 rounded-[2.5rem] border border-emerald-100/50">
+                    <div class="flex justify-between items-center mb-4"><span class="text-[10px] font-black text-emerald-600 uppercase tracking-widest">Bahasa Indonesia</span><i data-lucide="book-marked" class="w-4 h-4 text-emerald-400"></i></div>
+                    <div class="flex items-baseline gap-2"><span class="text-6xl font-black text-emerald-900">${counts.indo}</span><span class="text-xs font-bold text-emerald-500 uppercase">Sesi Terjadwal</span></div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function changeMonth(delta) {
+            currentViewDate.setMonth(currentViewDate.getMonth() + delta);
+            renderCalendar();
+        }
+
+        window.onload = () => setProgram('TKA_SMP');
+    </script>
+</body>
+</html>
