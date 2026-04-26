@@ -312,6 +312,7 @@
 
                 <!-- Paket SMP -->
                 <div class="bg-white rounded-3xl shadow-xl transform md:-translate-y-4 border-2 border-brand-orange overflow-hidden flex flex-col relative">
+                    <div class="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">PILIHAN FAVORIT</div>
                     <div class="h-32 bg-gradient-brand relative flex items-center justify-center">
                         <i class="fas fa-user-graduate text-5xl text-white opacity-30 absolute right-4 bottom-4"></i>
                         <h3 class="text-2xl font-bold text-white relative z-10">Program SMP</h3>
@@ -490,6 +491,7 @@
                     </button>
 
                     <div id="testimoni-container" class="flex overflow-x-auto gap-6 pb-8 pt-4 scroll-smooth snap-x snap-mandatory hide-scrollbar justify-start">
+                        
                         <a href="https://imgbox.com/Mbdnr074" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
                             <img src="https://images2.imgbox.com/41/60/Mbdnr074_o.jpeg" alt="Testimoni 1" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x600/ffffff/d81b60?text=Klik+untuk+Lihat+Testimoni'"/>
                         </a>
@@ -592,6 +594,33 @@
             </div>
         </div>
     </footer>
+
+    <!-- FLOATING CTA BUTTONS -->
+    <div class="fixed bottom-6 right-6 z-[90] flex flex-col gap-4">
+        <!-- Button 3: Daftar Program (Paling Atas) -->
+        <a href="#program" class="w-14 h-14 bg-brand-pink text-white rounded-full flex items-center justify-center text-xl shadow-xl hover:scale-110 transition-transform focus:outline-none group relative">
+            <i class="fas fa-rocket"></i>
+            <span class="absolute right-16 bg-white text-gray-800 text-xs font-bold px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                Daftar Program
+            </span>
+        </a>
+        
+        <!-- Button 2: Try Out Gratis (Tengah) -->
+        <a href="#" class="w-14 h-14 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl shadow-xl hover:scale-110 transition-transform focus:outline-none group relative">
+            <i class="fas fa-laptop-code"></i>
+            <span class="absolute right-16 bg-white text-gray-800 text-xs font-bold px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                Try Out Gratis
+            </span>
+        </a>
+        
+        <!-- Button 1: WhatsApp (Paling Bawah) -->
+        <a href="https://wa.me/6285141525668" target="_blank" class="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-xl hover:scale-110 transition-transform focus:outline-none group relative">
+            <i class="fab fa-whatsapp"></i>
+            <span class="absolute right-16 bg-white text-gray-800 text-xs font-bold px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                Tanya Admin
+            </span>
+        </a>
+    </div>
 
     <!-- MODAL FORM PENDAFTARAN (POP-UP) -->
     <div id="registration-modal" class="hidden fixed inset-0 z-[100] bg-brand-dark/80 backdrop-blur-sm overflow-y-auto">
