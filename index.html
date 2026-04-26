@@ -1058,19 +1058,26 @@
             document.getElementById('success-modal').classList.remove('hidden');
 
             // 1. SIAPKAN DATA UNTUK GOOGLE SHEETS
-            const formData = new FormData();
-            formData.append('paket', paket);
-            formData.append('nama', nama);
-            formData.append('ortu', ortu);
-            formData.append('hp', hp);
-            formData.append('kelas', kelas);
-            formData.append('alamat', alamat);
-            formData.append('provinsi', provinsi);
-            formData.append('kota', kota);
+            const urlEncodedData = new URLSearchParams();
+            urlEncodedData.append('paket', paket);
+            urlEncodedData.append('nama', nama);
+            urlEncodedData.append('ortu', ortu);
+            urlEncodedData.append('hp', hp);
+            urlEncodedData.append('kelas', kelas);
+            urlEncodedData.append('alamat', alamat);
+            urlEncodedData.append('provinsi', provinsi);
+            urlEncodedData.append('kota', kota);
 
             try {
                 // Proses mengirim data ke URL Google Script (tanpa reload web)
-                await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData });
+                await fetch(GOOGLE_SCRIPT_URL, { 
+                    method: 'POST', 
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: urlEncodedData 
+                });
             } catch (error) {
                 // Lewatkan diam-diam ke WA
             }
