@@ -757,13 +757,13 @@
                     <!-- Bukti Bayar -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Bukti Pembayaran / Transfer</label>
-                        <p class="text-xs text-gray-500 mb-2 italic">* Karena pendaftaran via WhatsApp, siapkan file bukti transfer untuk dikirimkan di chat selanjutnya.</p>
+                        <p class="text-xs text-gray-500 mb-2 italic">* File opsional, bisa dikirimkan nanti saat admin kami menghubungi Anda melalui WhatsApp.</p>
                         <input type="file" id="reg-bukti" accept="image/*,.pdf" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-brand-pink hover:file:bg-pink-100 transition-all text-gray-500">
                     </div>
 
                     <!-- Submit -->
                     <button type="submit" class="w-full bg-gradient-brand text-white font-bold py-4 rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all mt-4 text-lg">
-                        <i class="fas fa-paper-plane mr-2"></i> Lanjutkan ke WhatsApp Admin
+                        <i class="fas fa-paper-plane mr-2"></i> Kirim Data Pendaftaran
                     </button>
                 </form>
             </div>
@@ -776,9 +776,11 @@
             <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-500 text-4xl mx-auto mb-6">
                 <i class="fas fa-check"></i>
             </div>
-            <h3 class="text-2xl font-bold text-gray-800 mb-2">Mantap!</h3>
-            <p class="text-gray-600 mb-6 text-sm">Biodata sedang dirangkum. Jangan lupa <strong>Lampirkan Bukti Pembayaran</strong> di chat WhatsApp Admin ya!</p>
-            <div class="w-8 h-8 border-4 border-brand-pink border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Pendaftaran Berhasil!</h3>
+            <p class="text-gray-600 mb-6 text-sm">Data Anda telah masuk ke sistem kami. Tim admin EXE Bimbel akan segera menghubungi Anda.</p>
+            <button onclick="closeSuccessModal()" class="w-full bg-green-500 text-white font-bold py-3 rounded-xl hover:bg-green-600 hover:shadow-lg transition-all">
+                Tutup
+            </button>
         </div>
     </div>
 
@@ -1031,13 +1033,19 @@
             document.getElementById("kota-lainnya-container").classList.add("hidden");
         }
 
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+        }
+
         // --- SUBMIT PENDAFTARAN (SIMPAN KE SPREADSHEET & ARAHKAN KE WA) ---
         async function submitRegistration(event) {
             event.preventDefault(); // Mencegah reload halaman
 
             // Matikan tombol sementara biar gak diklik dobel
             const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
             submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Mengirim Data...';
 
             // Ambil semua data dari Form
             const paket = document.getElementById('reg-paket').value;
@@ -1054,58 +1062,34 @@
             }
 
             // Munculkan Modal Loading
-            document.getElementById('registration-modal').classList.add('hidden');
-            document.getElementById('success-modal').classList.remove('hidden');
+            // (Tidak dipanggil lagi di sini, tombol form jadi indikator loading)
 
             // 1. SIAPKAN DATA UNTUK GOOGLE SHEETS
-            const urlEncodedData = new URLSearchParams();
-            urlEncodedData.append('paket', paket);
-            urlEncodedData.append('nama', nama);
-            urlEncodedData.append('ortu', ortu);
-            urlEncodedData.append('hp', hp);
-            urlEncodedData.append('kelas', kelas);
-            urlEncodedData.append('alamat', alamat);
-            urlEncodedData.append('provinsi', provinsi);
-            urlEncodedData.append('kota', kota);
+            const formData = new FormData();
+            formData.append('paket', paket);
+            formData.append('nama', nama);
+            formData.append('ortu', ortu);
+            formData.append('hp', hp);
+            formData.append('kelas', kelas);
+            formData.append('alamat', alamat);
+            formData.append('provinsi', provinsi);
+            formData.append('kota', kota);
 
             try {
                 // Proses mengirim data ke URL Google Script (tanpa reload web)
-                await fetch(GOOGLE_SCRIPT_URL, { 
-                    method: 'POST', 
-                    mode: 'no-cors',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: urlEncodedData 
-                });
+                await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData });
             } catch (error) {
-                // Lewatkan diam-diam ke WA
+                // Lewatkan diam-diam
             }
 
-            // 2. MERANGKAI PESAN WHATSAPP
-            const waNumber = "6285141525668"; // Format internasional tanpa '+' atau '0'
-            let waMessage = `Halo Admin EXE Bimbel, saya ingin mendaftar dengan biodata berikut:\n\n`;
-            waMessage += `*Pilihan Paket:* ${paket}\n`;
-            waMessage += `*Nama Siswa:* ${nama}\n`;
-            waMessage += `*Nama Orang Tua:* ${ortu}\n`;
-            waMessage += `*No. HP/WA:* ${hp}\n`;
-            waMessage += `*Kelas Asal:* ${kelas}\n`;
-            waMessage += `*Alamat:* ${alamat}\n`;
-            waMessage += `*Provinsi:* ${provinsi}\n`;
-            waMessage += `*Kota/Kabupaten:* ${kota}\n\n`;
-            waMessage += `_Catatan: Saya akan melampirkan file foto/PDF bukti pembayaran setelah pesan ini._\n\nTerima kasih!`;
-
-            // Encode pesan agar formatnya aman di URL (spasi jadi %20, enter jadi %0A)
-            const encodedMessage = encodeURIComponent(waMessage);
-            const waLink = `https://wa.me/${waNumber}?text=${encodedMessage}`;
-
-            // 3. SELESAI & REDIRECT
-            // Beri jeda sedikit biar mulus, lalu sembunyikan loading & buka WA
+            // 2. SELESAI & TAMPILKAN SUKSES
             setTimeout(() => {
-                document.getElementById('success-modal').classList.add('hidden');
+                document.getElementById('registration-modal').classList.add('hidden');
+                document.getElementById('success-modal').classList.remove('hidden');
+                
                 document.getElementById('reg-form').reset(); // reset form
                 submitBtn.disabled = false; // nyalakan tombol lagi
-                window.open(waLink, '_blank'); // Buka WA di tab baru
+                submitBtn.innerHTML = originalBtnText; // kembalikan tulisan tombol
             }, 500);
         }
     </script>
