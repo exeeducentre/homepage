@@ -76,6 +76,37 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* Animasi Custom untuk Floating Buttons */
+        @keyframes float-up-down {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .animate-float-btn {
+            animation: float-up-down 4s ease-in-out infinite;
+        }
+
+        @keyframes wiggle-left-right {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-6deg); }
+            75% { transform: rotate(6deg); }
+        }
+        .animate-wiggle-btn {
+            animation: wiggle-left-right 3.5s ease-in-out infinite;
+        }
+
+        @keyframes ring-shake {
+            0%, 100% { transform: rotate(0deg); }
+            5% { transform: rotate(10deg); }
+            10% { transform: rotate(-10deg); }
+            15% { transform: rotate(5deg); }
+            20% { transform: rotate(-5deg); }
+            25% { transform: rotate(0deg); }
+        }
+        .animate-ring-btn {
+            animation: ring-shake 4s ease-in-out infinite;
+            transform-origin: center;
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800 antialiased bg-slate-50 relative">
@@ -614,29 +645,35 @@
 
     <!-- FLOATING CTA BUTTONS -->
     <div class="fixed bottom-6 right-6 z-[90] flex flex-col gap-4">
-        <!-- Button 3: Daftar Program (Paling Atas) -->
-        <a href="#program" class="w-14 h-14 bg-brand-pink text-white rounded-full flex items-center justify-center text-xl shadow-xl hover:scale-110 transition-transform focus:outline-none group relative">
-            <i class="fas fa-rocket"></i>
-            <span class="absolute right-16 bg-white text-gray-800 text-xs font-bold px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                Daftar Program
-            </span>
-        </a>
+        <!-- Button 3: Daftar Program (Paling Atas) - Efek Melayang -->
+        <div class="animate-float-btn">
+            <a href="#program" class="relative flex items-center justify-center hover:scale-110 transition-transform focus:outline-none group">
+                <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Rocket.png" alt="Daftar Program" class="w-14 h-14 md:w-16 md:h-16 drop-shadow-lg">
+                <span class="absolute right-16 bg-white text-gray-800 text-xs font-bold px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                    Daftar Program
+                </span>
+            </a>
+        </div>
         
-        <!-- Button 2: Try Out Gratis (Tengah) -->
-        <a href="#" class="w-14 h-14 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl shadow-xl hover:scale-110 transition-transform focus:outline-none group relative">
-            <i class="fas fa-laptop-code"></i>
-            <span class="absolute right-16 bg-white text-gray-800 text-xs font-bold px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                Try Out Gratis
-            </span>
-        </a>
+        <!-- Button 2: Try Out Gratis (Tengah) - Efek Goyang Kanan Kiri -->
+        <div class="animate-wiggle-btn">
+            <a href="#" class="relative flex items-center justify-center hover:scale-110 transition-transform focus:outline-none group">
+                <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Laptop.png" alt="Try Out Gratis" class="w-14 h-14 md:w-16 md:h-16 drop-shadow-lg">
+                <span class="absolute right-16 bg-white text-gray-800 text-xs font-bold px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                    Try Out Gratis
+                </span>
+            </a>
+        </div>
         
-        <!-- Button 1: WhatsApp (Paling Bawah) -->
-        <a href="https://wa.me/6285141525668" target="_blank" class="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-xl hover:scale-110 transition-transform focus:outline-none group relative">
-            <i class="fab fa-whatsapp"></i>
-            <span class="absolute right-16 bg-white text-gray-800 text-xs font-bold px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-                Tanya Admin
-            </span>
-        </a>
+        <!-- Button 1: WhatsApp (Paling Bawah) - Efek Getar/Dering -->
+        <div class="animate-ring-btn">
+            <a href="https://wa.me/6285141525668" target="_blank" class="relative flex items-center justify-center hover:scale-110 transition-transform focus:outline-none group">
+                <img src="https://cdn-icons-png.flaticon.com/512/3670/3670051.png" alt="WhatsApp Admin" class="w-14 h-14 md:w-16 md:h-16 drop-shadow-lg">
+                <span class="absolute right-16 bg-white text-gray-800 text-xs font-bold px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                    Tanya Admin
+                </span>
+            </a>
+        </div>
     </div>
 
     <!-- MODAL FORM PENDAFTARAN (POP-UP) -->
