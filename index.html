@@ -101,6 +101,11 @@
             animation: ring-shake 4s ease-in-out infinite;
             transform-origin: center;
         }
+        
+        /* Efek Glow Khusus untuk Tombol LMS/Gamepad */
+        .glow-gamepad {
+            filter: drop-shadow(0 0 8px rgba(216, 27, 96, 0.6));
+        }
     </style>
 </head>
 <body class="font-sans text-gray-800 antialiased bg-slate-50 relative">
@@ -172,6 +177,12 @@
                             Lihat Program
                         </a>
                     </div>
+                    <!-- DITAMBAHKAN: Tombol Coba Platform Belajar EXE tepat di bawahnya -->
+                    <div class="mt-4 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="https:app.exeeducentre.com/" target="_blank" class="bg-white text-brand-pink border-2 border-brand-pink px-8 py-3.5 rounded-full font-bold text-lg hover:bg-brand-pink hover:text-white transition-all text-center flex justify-center items-center gap-2 shadow-lg glow-gamepad">
+                            <i class="fas fa-gamepad text-xl"></i> Coba Platform Belajar EXE
+                        </a>
+                    </div>
                 </div>
                 <!-- Gambar Hero -->
                 <div class="relative">
@@ -205,7 +216,7 @@
     <!-- 2. KEUNGGULAN SECTION -->
     <section id="keunggulan" class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- BANNER TRY OUT GRATIS (BARU) -->
+            <!-- BANNER TRY OUT GRATIS -->
             <div class="mb-20 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl p-8 md:p-10 border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition-shadow">
                 <div class="text-center md:text-left">
                     <div class="inline-block bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold mb-3 uppercase tracking-wider">
@@ -611,7 +622,7 @@
 
     <!-- FLOATING CTA BUTTONS -->
     <div class="fixed bottom-6 right-6 z-[90] flex flex-col gap-4">
-        <!-- Button 3: Daftar Program (Paling Atas) - Efek Melayang -->
+        <!-- Button 4: Daftar Program (Paling Atas) - Efek Melayang -->
         <div class="animate-float-btn">
             <a href="#program" class="relative flex items-center justify-center hover:scale-110 transition-transform focus:outline-none group">
                 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Rocket.png" alt="Daftar Program" class="w-14 h-14 md:w-16 md:h-16 drop-shadow-lg">
@@ -620,7 +631,8 @@
                 </span>
             </a>
         </div>
-        <!-- Button 2: Try Out Gratis (Tengah) - Efek Goyang Kanan Kiri -->
+        
+        <!-- Button 3: Try Out Gratis -->
         <div class="animate-wiggle-btn">
             <a href="#" class="relative flex items-center justify-center hover:scale-110 transition-transform focus:outline-none group">
                 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Laptop.png" alt="Try Out Gratis" class="w-14 h-14 md:w-16 md:h-16 drop-shadow-lg">
@@ -629,6 +641,17 @@
                 </span>
             </a>
         </div>
+
+        <!-- Button 2: DITAMBAHKAN - Coba Gratis Platform (Tengah) - Efek Melayang & Glow -->
+        <div class="animate-float-btn" style="animation-delay: 1s;">
+            <a href="https://exeeducentre.github.io/staging-platform/" target="_blank" class="relative flex items-center justify-center hover:scale-110 transition-transform focus:outline-none group">
+                <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Video%20Game.png" alt="Coba LMS Gratis" class="w-14 h-14 md:w-16 md:h-16 glow-gamepad">
+                <span class="absolute right-16 bg-white text-gray-800 text-xs font-bold px-3 py-2 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-pink-100">
+                    Coba Gratis Platform Kami ✨
+                </span>
+            </a>
+        </div>
+
         <!-- Button 1: WhatsApp (Paling Bawah) - Efek Getar/Dering -->
         <div class="animate-ring-btn">
             <a href="https://wa.me/6285141525668" target="_blank" class="relative flex items-center justify-center hover:scale-110 transition-transform focus:outline-none group">
@@ -656,21 +679,25 @@
                 <form id="reg-form" onsubmit="submitRegistration(event)" class="space-y-5">
                     <!-- Paket Tersembunyi (Diset via JS) -->
                     <input type="hidden" id="reg-paket" value="">
+                    
                     <!-- Nama Lengkap -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap Siswa</label>
                         <input type="text" id="reg-nama" required placeholder="Masukkan nama lengkap siswa" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
                     </div>
+                    
                     <!-- Nama Orang Tua -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Orang Tua / Wali</label>
                         <input type="text" id="reg-ortu" required placeholder="Masukkan nama orang tua/wali" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
                     </div>
+                    
                     <!-- Nomor HP -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Nomor HP / WhatsApp Aktif</label>
                         <input type="tel" id="reg-hp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
                     </div>
+                    
                     <!-- Kelas Dropdown -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Kelas Asal</label>
@@ -688,11 +715,13 @@
                             <option value="Alumni / Gap Year">Alumni / Gap Year</option>
                         </select>
                     </div>
+                    
                     <!-- Alamat -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Alamat Lengkap</label>
                         <textarea id="reg-alamat" rows="3" required placeholder="Jalan, RT/RW, Kelurahan, Kecamatan" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all resize-none"></textarea>
                     </div>
+                    
                     <!-- Provinsi & Kota grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
@@ -708,11 +737,13 @@
                             </select>
                         </div>
                     </div>
+                    
                     <!-- Kota Lainnya (Muncul jika pilih 'Lainnya') -->
                     <div id="kota-lainnya-container" class="hidden">
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Ketik Nama Kota/Kabupaten</label>
                         <input type="text" id="reg-kota-lainnya" placeholder="Masukkan nama kota secara manual" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
                     </div>
+                    
                     <!-- Info Harga & Rekening (Baru) -->
                     <div id="price-container" class="hidden bg-blue-50 border border-blue-100 p-4 rounded-xl text-center">
                         <p class="text-sm font-semibold text-gray-700 mb-1">Total Biaya Investasi:</p>
@@ -723,12 +754,14 @@
                             <p class="text-xs font-semibold text-gray-600">a.n. EXE Education Centre</p>
                         </div>
                     </div>
+                    
                     <!-- Bukti Bayar -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Bukti Pembayaran / Transfer</label>
                         <p class="text-xs text-gray-500 mb-2 italic">* Setelah klik Submit, WhatsApp Anda akan otomatis terbuka. Silakan lampirkan foto bukti pembayaran di sana.</p>
                         <input type="file" id="reg-bukti" accept="image/*,.pdf" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-brand-pink hover:file:bg-pink-100 transition-all text-gray-500">
                     </div>
+                    
                     <!-- Submit -->
                     <button type="submit" class="w-full bg-gradient-brand text-white font-bold py-4 rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all mt-4 text-lg">
                         <i class="fas fa-paper-plane mr-2"></i> Submit & Kirim Bukti via WA
@@ -745,8 +778,14 @@
                 <i class="fas fa-check"></i>
             </div>
             <h3 class="text-2xl font-bold text-gray-800 mb-2">Pendaftaran Berhasil!</h3>
-            <p class="text-gray-600 mb-6 text-sm">Data Anda telah masuk ke sistem. Jendela WhatsApp akan terbuka untuk mengirimkan detail pendaftaran dan foto bukti pembayaran.</p>
-            <button onclick="closeSuccessModal()" class="w-full bg-green-500 text-white font-bold py-3 rounded-xl hover:bg-green-600 hover:shadow-lg transition-all">
+            <p class="text-gray-600 mb-6 text-sm">Data Anda telah masuk ke sistem. Jendela WhatsApp akan terbuka otomatis untuk konfirmasi pembayaran.</p>
+            
+            <!-- Tombol fallback manual ke WA -->
+            <a id="wa-fallback-link" href="#" target="_blank" class="block w-full bg-green-500 text-white font-bold py-3 rounded-xl hover:bg-green-600 hover:shadow-lg transition-all mb-3" onclick="closeSuccessModal()">
+                <i class="fab fa-whatsapp mr-1"></i> Buka WhatsApp Sekarang
+            </a>
+            
+            <button onclick="closeSuccessModal()" class="w-full bg-gray-100 text-gray-700 font-bold py-3 rounded-xl hover:bg-gray-200 transition-all">
                 Tutup
             </button>
         </div>
@@ -754,12 +793,12 @@
 
     <!-- SCRIPT UTAMA -->
     <script>
-        // --- KEAMANAN TAMBAHAN: NONAKTIFKAN KLIK KANAN ---
+        /* --- KEAMANAN TAMBAHAN: NONAKTIFKAN KLIK KANAN --- */
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
 
-        // --- SCRIPT NAVBAR MOBILE ---
+        /* --- SCRIPT NAVBAR MOBILE --- */
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             var menu = document.getElementById('mobile-menu');
             if (menu.classList.contains('hidden')) {
@@ -769,7 +808,7 @@
             }
         });
 
-        // --- SCRIPT CAROUSEL (GALERI & TUTOR & TESTIMONI) ---
+        /* --- SCRIPT CAROUSEL (GALERI & TUTOR & TESTIMONI) --- */
         function slideGallery(direction) {
             const container = document.getElementById('gallery-container');
             container.scrollBy({ left: direction * 300, behavior: 'smooth' });
@@ -783,10 +822,10 @@
             container.scrollBy({ left: direction * 320, behavior: 'smooth' });
         }
 
-        // --- SCRIPT LOAD DATA PROGRAM DARI GOOGLE SHEETS ---
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwsoa996uYkI39kKak4mrV2NJRCXWii8DU7VG_PviiBUaMBkhsewLdqEKUY83TEj88C2g/exec';
+        /* --- SCRIPT LOAD DATA PROGRAM DARI GOOGLE SHEETS --- */
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxhvbyL8TZqbxRyvkTep78tzaTkEtlg5Rfytvh-656xU85cQ79IZoce78ebYISYj5M-/exec';
 
-        // Konfigurasi warna untuk masing-masing Jenjang agar terbaca oleh Tailwind
+        /* Konfigurasi warna untuk masing-masing Jenjang agar terbaca oleh Tailwind */
         const themeConfig = {
             "SD": {
                 color: "pink",
@@ -812,7 +851,7 @@
                 text: "text-brand-yellow",
                 bg: "bg-brand-yellow",
                 hoverBg: "hover:bg-yellow-500",
-                btnText: "text-brand-dark font-bold", 
+                btnText: "text-brand-dark font-bold",
                 badgeBg: "bg-yellow-100"
             }
         };
@@ -907,7 +946,7 @@
             `;
         }
 
-        // --- DATA PROVINSI & KOTA DI INDONESIA ---
+        /* --- DATA PROVINSI & KOTA DI INDONESIA --- */
         const locationData = {
             "Aceh": ["Banda Aceh", "Lhokseumawe", "Sabang", "Lainnya"],
             "Sumatera Utara": ["Medan", "Binjai", "Pematangsiantar", "Deli Serdang", "Lainnya"],
@@ -942,7 +981,7 @@
             provSelect.add(option);
         }
 
-        // --- FUNGSI MODAL & DROPDOWN ---
+        /* --- FUNGSI MODAL & DROPDOWN --- */
         function updateKota() {
             const kotaSelect = document.getElementById("reg-kota");
             const selectedProv = document.getElementById("reg-provinsi").value;
@@ -1006,16 +1045,15 @@
             document.getElementById('success-modal').classList.add('hidden');
         }
 
-        // --- SUBMIT PENDAFTARAN (KIRIM KE SHEET & GENERATE WA) ---
+        /* --- SUBMIT PENDAFTARAN (KIRIM KE SHEET & GENERATE WA) --- */
         async function submitRegistration(event) {
             event.preventDefault(); 
-
             const submitBtn = event.target.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerHTML;
             submitBtn.disabled = true;
             submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Mengirim Data...';
 
-            // Ambil data
+            /* Ambil data */
             const paket = document.getElementById('reg-paket').value;
             const nama = document.getElementById('reg-nama').value;
             const ortu = document.getElementById('reg-ortu').value;
@@ -1025,11 +1063,12 @@
             const provinsi = document.getElementById('reg-provinsi').value;
             const harga = document.getElementById('reg-harga-display').innerText || "Tanya Admin";
             let kota = document.getElementById('reg-kota').value;
+            
             if (kota === "Lainnya") {
                 kota = document.getElementById('reg-kota-lainnya').value;
             }
 
-            // 1. KIRIM KE GOOGLE SHEETS
+            /* 1. KIRIM KE GOOGLE SHEETS */
             const formData = new FormData();
             formData.append('paket', paket);
             formData.append('nama', nama);
@@ -1043,10 +1082,10 @@
             try {
                 await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData });
             } catch (error) {
-                // Abaikan silent CORS
+                /* Abaikan silent CORS */
             }
 
-            // 2. FORMAT PESAN WHATSAPP
+            /* 2. FORMAT PESAN WHATSAPP */
             const waMessage = 
                 `Halo Admin EXE Education Centre! 👋\n\n` +
                 `Saya ingin mendaftar program belajar:\n` +
@@ -1065,13 +1104,17 @@
 
             const waUrl = `https://wa.me/6285141525668?text=${encodeURIComponent(waMessage)}`;
 
-            // Tampilkan sukses dan buka WA
+            /* Tampilkan sukses dan buka WA */
+            
+            /* Set link fallback di tombol modal sukses */
+            document.getElementById('wa-fallback-link').href = waUrl;
+
             setTimeout(() => {
                 document.getElementById('registration-modal').classList.add('hidden');
                 document.getElementById('success-modal').classList.remove('hidden');
                 
-                // Buka WhatsApp di tab baru
-                window.open(waUrl, '_blank');
+                /* Buka WhatsApp dengan location.href agar tidak diblokir browser */
+                window.location.href = waUrl;
                 
                 document.getElementById('reg-form').reset(); 
                 submitBtn.disabled = false; 
