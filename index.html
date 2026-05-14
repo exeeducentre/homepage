@@ -32,8 +32,13 @@
                             pink: '#d81b60',
                             orange: '#f57c00',
                             yellow: '#fbc02d',
-                            dark: '#1f2022'
+                            dark: '#1f2022',
+                            light: '#f8fafc'
                         }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 8s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
                     }
                 }
             }
@@ -51,21 +56,41 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* --- TAMBAHAN: Ruangguru-style Background Patterns --- */
+        /* Pola Titik-titik (Dot Grid) yang samar di background */
+        .bg-pattern-dots {
+            background-image: radial-gradient(#d81b60 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.05; /* Sangat samar agar tidak mengganggu bacaan */
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Pola Garis Zigzag/Garis Miring samar */
+        .bg-pattern-lines {
+            background: repeating-linear-gradient( 45deg, transparent, transparent 10px, rgba(245, 124, 0, 0.03) 10px, rgba(245, 124, 0, 0.03) 12px );
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
         /* CSS Otomatis untuk Galeri 33 Foto */
         .auto-galeri a {
             display: block;
-            border-radius: 0.75rem; /* Melengkungkan sudut */
+            border-radius: 0.75rem; 
             overflow: hidden;
             box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
         .auto-galeri img {
             width: 100%;
-            height: 150px; /* Tinggi seragam untuk semua foto */
-            object-fit: cover; /* Biar gambar gak gepeng */
+            height: 150px; 
+            object-fit: cover; 
             transition: transform 0.3s ease-in-out;
         }
         .auto-galeri a:hover img {
-            transform: scale(1.1); /* Efek membesar saat disentuh mouse */
+            transform: scale(1.1); 
         }
 
         /* Menyembunyikan Scrollbar di Galeri tapi tetap bisa discroll */
@@ -77,13 +102,21 @@
             scrollbar-width: none;
         }
 
-        /* Animasi Custom untuk Floating Buttons */
+        /* Animasi Custom untuk Floating Buttons & Ornamen */
         @keyframes float-up-down {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-12px); }
         }
         .animate-float-btn {
             animation: float-up-down 4s ease-in-out infinite;
+        }
+
+        @keyframes float-up-down-delay {
+            0%, 100% { transform: translateY(0) rotate(10deg); }
+            50% { transform: translateY(-20px) rotate(-5deg); }
+        }
+        .animate-float-delayed {
+            animation: float-up-down-delay 6s ease-in-out infinite;
         }
 
         @keyframes wiggle-left-right {
@@ -112,12 +145,21 @@
         .glow-gamepad {
             filter: drop-shadow(0 0 8px rgba(216, 27, 96, 0.6));
         }
+
+        /* Ornamen Ruangguru Style */
+        .shape-blob {
+            position: absolute;
+            filter: blur(60px);
+            z-index: 0;
+            opacity: 0.4;
+            border-radius: 50%;
+        }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased bg-slate-50 relative">
+<body class="font-sans text-gray-800 antialiased bg-slate-50 relative overflow-x-hidden">
 
     <!-- NAVBAR -->
-    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm">
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
@@ -162,31 +204,75 @@
     </nav>
 
     <!-- 1. HERO SECTION -->
-    <section id="beranda" class="pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden relative">
+    <section id="beranda" class="pt-28 pb-32 md:pt-36 md:pb-40 relative">
+        <!-- Background Patterns & Ornaments -->
+        <div class="bg-pattern-dots"></div>
+        
+        <!-- Blobs Warna EXE (Gaya Vector Organik) -->
+        <!-- Kiri Atas (Pink) -->
+        <div class="absolute top-0 left-0 -translate-x-1/4 -translate-y-1/4 z-0 opacity-20 w-72 h-72 md:w-[28rem] md:h-[28rem]">
+            <svg viewBox="0 0 200 200" class="w-full h-full text-brand-pink absolute" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-46C87.4,-32.9,90,-16.4,89.5,0.5C88.9,17.4,85.1,34.8,75.4,48.6C65.7,62.4,49.9,72.6,33.2,78.2C16.5,83.8,-1.1,84.8,-18.2,81.8C-35.3,78.8,-51.9,71.8,-65.4,59.8C-78.9,47.8,-89.3,30.8,-92.3,12.5C-95.3,-5.8,-90.9,-25.4,-80.6,-41.4C-70.3,-57.4,-54.1,-69.8,-38.4,-75.9C-22.7,-82,-7.5,-81.8,7.4,-81.3C22.3,-80.8,30.6,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
+            </svg>
+            <svg viewBox="0 0 200 200" class="w-full h-full text-brand-pink absolute translate-x-4 translate-y-4" xmlns="http://www.w3.org/2000/svg">
+                <path fill="none" stroke="currentColor" stroke-width="2" d="M47.5,-67.2C59.9,-59.6,67.2,-43.3,73.4,-27.1C79.6,-10.8,84.7,5.5,80.1,19.3C75.4,33.1,60.9,44.4,46.5,53C32.2,61.7,18,67.6,1.4,65.6C-15.1,63.6,-30.2,53.8,-42.6,43C-55.1,32.2,-64.8,20.4,-68.8,6.8C-72.7,-6.8,-71,-22.3,-62.7,-34C-54.4,-45.6,-39.6,-53.4,-25.8,-60.1C-12.1,-66.8,1,-72.3,16.5,-75C32.1,-77.7,35,-65.1,47.5,-67.2Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+        <!-- Kanan Bawah (Kuning) -->
+        <div class="absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4 z-0 opacity-20 w-80 h-80 md:w-[32rem] md:h-[32rem]">
+            <svg viewBox="0 0 200 200" class="w-full h-full text-brand-yellow absolute" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M42,-64C55.4,-55.8,67.8,-44.7,75.5,-30.8C83.2,-16.9,86.2,-0.2,82.4,14.6C78.6,29.3,68.1,42.1,55,51C41.9,60,26.2,65,-10.1,65C-26.4,65,-40.8,51.8,-53.1,40.1C-65.5,28.4,-75.7,14.2,-78.4,-1.5C-81,-17.1,-76.1,-34.2,-65.3,-46.8C-54.4,-59.5,-37.8,-67.6,-22.4,-72C-6.9,-76.4,7.4,-77,28.6,-72.2C49.9,-67.4,42,-64,42,-64Z" transform="translate(100 100)" />
+            </svg>
+            <svg viewBox="0 0 200 200" class="w-full h-full text-brand-yellow absolute -translate-x-6 -translate-y-4" xmlns="http://www.w3.org/2000/svg">
+                <path fill="none" stroke="currentColor" stroke-width="2" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-46C87.4,-32.9,90,-16.4,89.5,0.5C88.9,17.4,85.1,34.8,75.4,48.6C65.7,62.4,49.9,72.6,33.2,78.2C16.5,83.8,-1.1,84.8,-18.2,81.8C-35.3,78.8,-51.9,71.8,-65.4,59.8C-78.9,47.8,-89.3,30.8,-92.3,12.5C-95.3,-5.8,-90.9,-25.4,-80.6,-41.4C-70.3,-57.4,-54.1,-69.8,-38.4,-75.9C-22.7,-82,-7.5,-81.8,7.4,-81.3C22.3,-80.8,30.6,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+        
+        <!-- Floating Ornaments (Gaya Ruangguru) -->
+        <div class="absolute top-32 left-10 text-brand-orange opacity-40 animate-spin-slow hidden md:block">
+            <i class="fas fa-certificate text-3xl"></i>
+        </div>
+        <div class="absolute bottom-40 left-1/4 text-brand-pink opacity-30 animate-float-delayed hidden md:block">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="absolute top-40 right-1/4 text-brand-yellow opacity-50 animate-bounce-slow hidden md:block">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>
+        </div>
+        <div class="absolute top-1/2 right-10 text-brand-pink opacity-20 animate-wiggle-btn hidden md:block">
+            <i class="fas fa-play text-4xl transform rotate-45"></i>
+        </div>
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <!-- Teks Hero -->
-                <div class="text-center md:text-left">
-                    <div class="inline-block bg-pink-100 text-brand-pink px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+                <div class="text-center md:text-left bg-white/40 backdrop-blur-sm p-6 rounded-3xl md:bg-transparent md:backdrop-blur-none md:p-0">
+                    <div class="inline-block bg-pink-100 border border-pink-200 text-brand-pink px-4 py-1.5 rounded-full text-sm font-semibold mb-6 shadow-sm">
                         🌟 Execute Your Excellence
                     </div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-brand-dark">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-brand-dark relative">
                         Bantu Anak Raih <br>
-                        <span class="text-gradient-brand">Nilai Sempurna</span> <br>
+                        <span class="text-gradient-brand relative inline-block">
+                            Nilai Sempurna
+                            <!-- Garis lengkung di bawah teks -->
+                            <svg class="absolute w-full h-3 -bottom-1 left-0 text-brand-yellow opacity-70" viewBox="0 0 100 10" preserveAspectRatio="none">
+                                <path d="M0 5 Q 50 15 100 5" stroke="currentColor" stroke-width="4" fill="transparent"/>
+                            </svg>
+                        </span> <br>
                         Tanpa Stres Belajar!
                     </h1>
-                    <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto md:mx-0">
+                    <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto md:mx-0 font-medium">
                         Fasilitas lengkap, tutor berpengalaman, dan metode belajar super asyik yang bikin anak makin percaya diri di sekolah.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="https://wa.me/6285141525668" target="_blank" class="bg-gradient-brand text-white px-8 py-3.5 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all text-center">
-                            Tanya Jadwal & Amankan Kuota Promo
+                        <a href="https://wa.me/6285141525668" target="_blank" class="bg-gradient-brand text-white px-8 py-3.5 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all text-center relative overflow-hidden group">
+                            <span class="relative z-10"><i class="fab fa-whatsapp mr-2"></i> Tanya Jadwal & Promo</span>
+                            <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
                         </a>
-                        <a href="#program" class="bg-white text-brand-dark border-2 border-gray-200 px-8 py-3.5 rounded-full font-bold text-lg hover:border-brand-pink hover:text-brand-pink transition-all text-center">
+                        <a href="#program" class="bg-white text-brand-dark border-2 border-gray-200 px-8 py-3.5 rounded-full font-bold text-lg hover:border-brand-orange hover:text-brand-orange transition-all text-center">
                             Lihat Program
                         </a>
                     </div>
-                    <!-- DITAMBAHKAN: Tombol Coba Platform Belajar EXE tepat di bawahnya -->
+                    <!-- Tombol Coba Platform Belajar EXE tepat di bawahnya -->
                     <div class="mt-4 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                         <a href="https://app.exeeducentre.com/" target="_blank" class="bg-white text-brand-pink border-2 border-brand-pink px-8 py-3.5 rounded-full font-bold text-lg hover:bg-brand-pink hover:text-white transition-all text-center flex justify-center items-center gap-2 shadow-lg glow-gamepad">
                             <i class="fas fa-gamepad text-xl"></i> Coba Platform Belajar EXE
@@ -195,17 +281,19 @@
                 </div>
                 <!-- Gambar Hero -->
                 <div class="relative">
-                    <div class="absolute inset-0 bg-gradient-brand rounded-3xl transform rotate-3 scale-105 opacity-20"></div>
+                    <!-- Aksen dekorasi di belakang gambar -->
+                    <div class="absolute inset-0 bg-gradient-brand rounded-3xl transform rotate-6 scale-105 opacity-10"></div>
+                    <div class="absolute inset-0 border-4 border-dashed border-brand-yellow rounded-3xl transform -rotate-3 scale-105 opacity-30"></div>
                     
                     <!-- Kumpulan Beberapa Foto Suasana Kelas (Grid Estetik) - VERSI HD -->
                     <div class="relative z-10 grid grid-cols-2 gap-4 items-center">
                         <div class="space-y-4">
-                            <img src="https://images2.imgbox.com/f5/80/TjOAtLoI_o.png" alt="Suasana Kelas 1" class="rounded-3xl shadow-xl w-full h-48 md:h-64 object-cover">
-                            <img src="https://images2.imgbox.com/d5/95/NowXSLAW_o.png" alt="Suasana Kelas 2" class="rounded-3xl shadow-xl w-full h-48 md:h-64 object-cover">
+                            <img src="https://images2.imgbox.com/f5/80/TjOAtLoI_o.png" alt="Suasana Kelas 1" class="rounded-3xl shadow-xl border-4 border-white w-full h-48 md:h-64 object-cover">
+                            <img src="https://images2.imgbox.com/d5/95/NowXSLAW_o.png" alt="Suasana Kelas 2" class="rounded-3xl shadow-xl border-4 border-white w-full h-48 md:h-64 object-cover">
                         </div>
                         <div class="space-y-4 transform translate-y-8">
-                            <img src="https://images2.imgbox.com/73/3f/yZwgOiwF_o.png" alt="Suasana Kelas 3" class="rounded-3xl shadow-xl w-full h-48 md:h-64 object-cover">
-                            <img src="https://images2.imgbox.com/30/c3/LXrciVye_o.png" alt="Suasana Kelas 4" class="rounded-3xl shadow-xl w-full h-48 md:h-64 object-cover">
+                            <img src="https://images2.imgbox.com/73/3f/yZwgOiwF_o.png" alt="Suasana Kelas 3" class="rounded-3xl shadow-xl border-4 border-white w-full h-48 md:h-64 object-cover">
+                            <img src="https://images2.imgbox.com/30/c3/LXrciVye_o.png" alt="Suasana Kelas 4" class="rounded-3xl shadow-xl border-4 border-white w-full h-48 md:h-64 object-cover">
                         </div>
                     </div>
                     
@@ -222,75 +310,107 @@
                 </div>
             </div>
         </div>
+
+        <!-- SVG Wave Divider -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0">
+            <svg class="relative block w-full h-12 md:h-20" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118.08,130.83,119.5,187.5,106.6,238.13,95.21,281.39,72.6,321.39,56.44Z" fill="#ffffff"></path>
+            </svg>
+        </div>
     </section>
 
     <!-- 2. KEUNGGULAN SECTION -->
-    <section id="keunggulan" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="keunggulan" class="pt-8 pb-16 bg-white relative overflow-hidden">
+        <!-- SVG Blob Kiri (Pink) -->
+        <div class="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 z-0 opacity-[0.12] w-72 h-72 md:w-[32rem] md:h-[32rem]">
+            <svg viewBox="0 0 200 200" class="w-full h-full text-brand-pink absolute" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M47.5,-67.2C59.9,-59.6,67.2,-43.3,73.4,-27.1C79.6,-10.8,84.7,5.5,80.1,19.3C75.4,33.1,60.9,44.4,46.5,53C32.2,61.7,18,67.6,1.4,65.6C-15.1,63.6,-30.2,53.8,-42.6,43C-55.1,32.2,-64.8,20.4,-68.8,6.8C-72.7,-6.8,-71,-22.3,-62.7,-34C-54.4,-45.6,-39.6,-53.4,-25.8,-60.1C-12.1,-66.8,1,-72.3,16.5,-75C32.1,-77.7,35,-65.1,47.5,-67.2Z" transform="translate(100 100)" />
+            </svg>
+            <svg viewBox="0 0 200 200" class="w-full h-full text-brand-pink absolute translate-x-5 -translate-y-5" xmlns="http://www.w3.org/2000/svg">
+                <path fill="none" stroke="currentColor" stroke-width="2" d="M42,-64C55.4,-55.8,67.8,-44.7,75.5,-30.8C83.2,-16.9,86.2,-0.2,82.4,14.6C78.6,29.3,68.1,42.1,55,51C41.9,60,26.2,65,-10.1,65C-26.4,65,-40.8,51.8,-53.1,40.1C-65.5,28.4,-75.7,14.2,-78.4,-1.5C-81,-17.1,-76.1,-34.2,-65.3,-46.8C-54.4,-59.5,-37.8,-67.6,-22.4,-72C-6.9,-76.4,7.4,-77,28.6,-72.2C49.9,-67.4,42,-64,42,-64Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <!-- BANNER TRY OUT GRATIS -->
-            <div class="mb-20 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl p-8 md:p-10 border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition-shadow">
-                <div class="text-center md:text-left">
-                    <div class="inline-block bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold mb-3 uppercase tracking-wider">
+            <div class="mb-20 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-3xl p-8 md:p-10 border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+                <!-- Hiasan Background Banner -->
+                <div class="absolute -right-10 -top-10 text-blue-200 opacity-50 transform rotate-12">
+                    <i class="fas fa-laptop-code text-9xl"></i>
+                </div>
+                
+                <div class="text-center md:text-left relative z-10">
+                    <div class="inline-block bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-bold mb-3 uppercase tracking-wider shadow-sm">
                         Uji Kemampuanmu
                     </div>
                     <h3 class="text-2xl md:text-3xl font-extrabold text-brand-dark mb-2">Coba Try Out Sekarang! 🚀</h3>
-                    <p class="text-gray-600">Ukur kemampuan akademismu secara gratis dengan sistem tes mirip ujian asli.</p>
+                    <p class="text-gray-600 font-medium">Ukur kemampuan akademismu secara gratis dengan sistem tes mirip ujian asli.</p>
                 </div>
-                <div class="flex-shrink-0">
-                    <a href="https://tryout.exeeducentre.com" target="_blank" class="inline-block bg-blue-500 text-white px-8 py-4 rounded-full font-bold shadow-md hover:bg-blue-600 hover:shadow-lg hover:-translate-y-1 transition-all whitespace-nowrap text-lg">
+                <div class="flex-shrink-0 relative z-10">
+                    <a href="https://tryout.exeeducentre.com" target="_blank" class="inline-block bg-blue-500 text-white px-8 py-4 rounded-full font-bold shadow-[0_4px_15px_rgba(59,130,246,0.4)] hover:bg-blue-600 hover:shadow-lg hover:-translate-y-1 transition-all whitespace-nowrap text-lg">
                         <i class="fas fa-laptop-code mr-2"></i> Mulai Try Out Gratis
                     </a>
                 </div>
             </div>
 
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-brand-dark mb-4">Endless Spirit of Lifelong Learner</h2>
+            <div class="text-center mb-16 relative">
+                <h2 class="text-3xl font-bold text-brand-dark mb-4 relative inline-block">
+                    Endless Spirit of Lifelong Learner
+                    <div class="absolute -right-8 -top-4 text-brand-yellow animate-bounce-slow">
+                        <i class="fas fa-star text-2xl"></i>
+                    </div>
+                </h2>
                 <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full"></div>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Card 1 -->
-                <div class="p-6 bg-slate-50 rounded-2xl hover:shadow-lg transition-all border border-gray-100 group flex flex-col">
-                    <div class="w-14 h-14 bg-pink-100 rounded-xl flex items-center justify-center text-brand-pink text-2xl mb-6 group-hover:scale-110 transition-transform">
+                <div class="p-8 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(216,27,96,0.1)] transition-all border border-gray-50 group flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-pink-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                    <div class="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center text-brand-pink text-3xl mb-6 relative z-10 group-hover:-translate-y-2 transition-transform shadow-sm">
                         <i class="fas fa-chalkboard-user"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Tutor Profesional dan Berpengalaman</h3>
-                    <p class="text-gray-600 text-sm">Pengajar muda, berpengalaman, asyik, dan profesional di bidangnya.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 relative z-10">Tutor Profesional</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed relative z-10">Pengajar muda, berpengalaman, asyik, dan profesional di bidangnya.</p>
                 </div>
                 <!-- Card 2 -->
-                <div class="p-6 bg-slate-50 rounded-2xl hover:shadow-lg transition-all border border-gray-100 group flex flex-col">
-                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center text-brand-orange text-2xl mb-6 group-hover:scale-110 transition-transform">
+                <div class="p-8 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(245,124,0,0.1)] transition-all border border-gray-50 group flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-orange-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                    <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center text-brand-orange text-3xl mb-6 relative z-10 group-hover:-translate-y-2 transition-transform shadow-sm">
                         <i class="fas fa-laptop-house"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">100% Online Interaktif</h3>
-                    <p class="text-gray-600 text-sm">Belajar nyaman dari rumah via aplikasi interaktif dan tatap muka via google meet.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 relative z-10">100% Online</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed relative z-10">Belajar nyaman dari rumah via aplikasi interaktif dan tatap muka via Google Meet.</p>
                 </div>
                 <!-- Card 3 -->
-                <div class="p-6 bg-slate-50 rounded-2xl hover:shadow-lg transition-all border border-gray-100 group">
-                    <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center text-brand-yellow text-2xl mb-6 group-hover:scale-110 transition-transform">
+                <div class="p-8 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(251,192,45,0.15)] transition-all border border-gray-50 group flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-yellow-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                    <div class="w-16 h-16 bg-yellow-100 rounded-2xl flex items-center justify-center text-brand-yellow text-3xl mb-6 relative z-10 group-hover:-translate-y-2 transition-transform shadow-sm">
                         <i class="fas fa-book"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Web Interaktif</h3>
-                    <p class="text-gray-600 text-sm">Dilengkapi dengan web interaktif dengan akses unlimited modul latihan soal dan try out.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 relative z-10">Web Interaktif</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed relative z-10">Dilengkapi dengan web interaktif dengan akses unlimited modul latihan soal & try out.</p>
                 </div>
                 <!-- Card 4 -->
-                <div class="p-6 bg-slate-50 rounded-2xl hover:shadow-lg transition-all border border-gray-100 group">
-                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center text-green-500 text-2xl mb-6 group-hover:scale-110 transition-transform">
+                <div class="p-8 bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(34,197,94,0.1)] transition-all border border-gray-50 group flex flex-col relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-20 h-20 bg-green-50 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                    <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center text-green-500 text-3xl mb-6 relative z-10 group-hover:-translate-y-2 transition-transform shadow-sm">
                         <i class="fas fa-tags"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Harga Terjangkau</h3>
-                    <p class="text-gray-600 text-sm">Kualitas fasilitas dan pengajaran bintang lima, namun harga tetap bersahabat dengan kantong.</p>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 relative z-10">Harga Terjangkau</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed relative z-10">Kualitas fasilitas dan pengajaran bintang lima, namun harga tetap bersahabat.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- 2.5 TIM TUTOR SECTION -->
-    <section id="tim-tutor" class="py-20 bg-slate-50 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="tim-tutor" class="py-20 relative overflow-hidden">
+        <div class="bg-pattern-dots bg-gray-50"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-brand-dark mb-4">Tim Tutor EXE</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Pengajar berpengalaman yang siap membimbing siswa dengan metode yang asyik dan mudah dipahami.</p>
+                <p class="text-gray-600 max-w-2xl mx-auto font-medium">Pengajar berpengalaman yang siap membimbing siswa dengan metode yang asyik dan mudah dipahami.</p>
                 <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
             </div>
 
@@ -311,27 +431,59 @@
                 </button>
             </div>
         </div>
+        
+        <!-- SVG Wave Divider to White -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-0">
+            <svg class="relative block w-full h-8 md:h-12" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" fill="#ffffff"></path>
+            </svg>
+        </div>
     </section>
 
     <!-- 3. PROGRAM SECTION (SEKARANG DINAMIS DARI GOOGLE SHEETS) -->
-    <section id="program" class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="program" class="py-20 bg-white relative overflow-hidden">
+        <!-- SVG Blob Kanan (Kuning) -->
+        <div class="absolute top-1/4 right-0 translate-x-1/3 -translate-y-1/4 z-0 opacity-[0.15] w-80 h-80 md:w-[30rem] md:h-[30rem] pointer-events-none">
+            <svg viewBox="0 0 200 200" class="w-full h-full text-brand-yellow absolute" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M42,-64C55.4,-55.8,67.8,-44.7,75.5,-30.8C83.2,-16.9,86.2,-0.2,82.4,14.6C78.6,29.3,68.1,42.1,55,51C41.9,60,26.2,65,-10.1,65C-26.4,65,-40.8,51.8,-53.1,40.1C-65.5,28.4,-75.7,14.2,-78.4,-1.5C-81,-17.1,-76.1,-34.2,-65.3,-46.8C-54.4,-59.5,-37.8,-67.6,-22.4,-72C-6.9,-76.4,7.4,-77,28.6,-72.2C49.9,-67.4,42,-64,42,-64Z" transform="translate(100 100)" />
+            </svg>
+            <svg viewBox="0 0 200 200" class="w-full h-full text-brand-yellow absolute -translate-x-4 translate-y-6" xmlns="http://www.w3.org/2000/svg">
+                <path fill="none" stroke="currentColor" stroke-width="2" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-46C87.4,-32.9,90,-16.4,89.5,0.5C88.9,17.4,85.1,34.8,75.4,48.6C65.7,62.4,49.9,72.6,33.2,78.2C16.5,83.8,-1.1,84.8,-18.2,81.8C-35.3,78.8,-51.9,71.8,-65.4,59.8C-78.9,47.8,-89.3,30.8,-92.3,12.5C-95.3,-5.8,-90.9,-25.4,-80.6,-41.4C-70.3,-57.4,-54.1,-69.8,-38.4,-75.9C-22.7,-82,-7.5,-81.8,7.4,-81.3C22.3,-80.8,30.6,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+        <!-- SVG Blob Kiri Bawah (Orange) -->
+        <div class="absolute bottom-0 left-0 -translate-x-1/3 translate-y-1/4 z-0 opacity-10 w-96 h-96 md:w-[35rem] md:h-[35rem] pointer-events-none">
+            <svg viewBox="0 0 200 200" class="w-full h-full text-brand-orange absolute" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M47.5,-67.2C59.9,-59.6,67.2,-43.3,73.4,-27.1C79.6,-10.8,84.7,5.5,80.1,19.3C75.4,33.1,60.9,44.4,46.5,53C32.2,61.7,18,67.6,1.4,65.6C-15.1,63.6,-30.2,53.8,-42.6,43C-55.1,32.2,-64.8,20.4,-68.8,6.8C-72.7,-6.8,-71,-22.3,-62.7,-34C-54.4,-45.6,-39.6,-53.4,-25.8,-60.1C-12.1,-66.8,1,-72.3,16.5,-75C32.1,-77.7,35,-65.1,47.5,-67.2Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+
+        <!-- Floating Doodles -->
+        <div class="absolute top-20 left-10 text-brand-yellow opacity-40 hidden lg:block">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/></svg>
+        </div>
+        <div class="absolute top-1/2 right-10 text-brand-orange opacity-30 animate-spin-slow hidden lg:block">
+            <i class="fas fa-times text-4xl"></i>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-brand-dark mb-4">Pilihan Program Reguler</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Kami menyediakan program terpadu sesuai jenjang pendidikan dengan fokus pada pemahaman konsep dasar.</p>
+                <p class="text-gray-600 max-w-2xl mx-auto font-medium">Kami menyediakan program terpadu sesuai jenjang pendidikan dengan fokus pada pemahaman konsep dasar.</p>
                 <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Paket SD -->
-                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all overflow-hidden border border-gray-100 flex flex-col">
-                    <div class="h-32 bg-pink-100 relative flex items-center justify-center">
-                        <i class="fas fa-dna text-5xl text-brand-pink opacity-50 absolute right-4 bottom-4"></i>
+                <div class="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-xl transition-all overflow-hidden border border-gray-100 flex flex-col">
+                    <div class="h-32 bg-pink-50 relative flex items-center justify-center overflow-hidden">
+                        <!-- Abstract shape overlay -->
+                        <div class="absolute top-0 right-0 bg-pink-100 w-32 h-32 rounded-full -mr-10 -mt-10"></div>
+                        <i class="fas fa-dna text-5xl text-brand-pink opacity-40 absolute right-4 bottom-4 z-10"></i>
                         <h3 class="text-2xl font-bold text-brand-dark relative z-10">Program SD</h3>
                     </div>
                     <div class="p-8 flex-1 flex flex-col">
                         <p class="text-gray-500 text-sm mb-6">Pilihan program untuk tingkat Sekolah Dasar</p>
-                        
                         <!-- Wadah Program SD -->
                         <div id="program-reguler-sd-list" class="space-y-4 mb-8 flex-1">
                             <div class="animate-pulse flex flex-col items-center justify-center h-full text-brand-pink">
@@ -344,14 +496,15 @@
 
                 <!-- Paket SMA (DIPINDAH KE TENGAH & DI-HIGHLIGHT) -->
                 <div class="bg-white rounded-3xl shadow-xl transform md:-translate-y-4 border-2 border-brand-yellow overflow-hidden flex flex-col relative">
-                    <div class="absolute top-0 right-0 bg-brand-yellow text-brand-dark text-xs font-bold px-3 py-1 rounded-bl-lg z-10">PILIHAN FAVORIT</div>
-                    <div class="h-32 bg-gradient-brand relative flex items-center justify-center">
-                        <i class="fas fa-microscope text-5xl text-white opacity-30 absolute right-4 bottom-4"></i>
+                    <div class="absolute top-0 right-0 bg-brand-yellow text-brand-dark text-xs font-bold px-3 py-1 rounded-bl-lg z-20">PILIHAN FAVORIT</div>
+                    <div class="h-32 bg-gradient-brand relative flex items-center justify-center overflow-hidden">
+                        <!-- Pola titik di header khusus ini -->
+                        <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 15px 15px;"></div>
+                        <i class="fas fa-microscope text-5xl text-white opacity-40 absolute right-4 bottom-4 z-10"></i>
                         <h3 class="text-2xl font-bold text-white relative z-10">Program SMA</h3>
                     </div>
                     <div class="p-8 flex-1 flex flex-col">
                         <p class="text-gray-500 text-sm mb-6">Pilihan program untuk tingkat Menengah Atas & Gap Year</p>
-                        
                         <!-- Wadah Program SMA -->
                         <div id="program-reguler-sma-list" class="space-y-4 mb-8 flex-1">
                             <div class="animate-pulse flex flex-col items-center justify-center h-full text-brand-yellow">
@@ -363,14 +516,14 @@
                 </div>
 
                 <!-- Paket SMP (DIPINDAH KE KANAN) -->
-                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all overflow-hidden border border-gray-100 flex flex-col">
-                    <div class="h-32 bg-orange-100 relative flex items-center justify-center">
-                        <i class="fas fa-rocket text-5xl text-brand-orange opacity-50 absolute right-4 bottom-4"></i>
+                <div class="bg-white rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-xl transition-all overflow-hidden border border-gray-100 flex flex-col">
+                    <div class="h-32 bg-orange-50 relative flex items-center justify-center overflow-hidden">
+                        <div class="absolute top-0 left-0 bg-orange-100 w-24 h-24 rounded-full -ml-8 -mt-8"></div>
+                        <i class="fas fa-rocket text-5xl text-brand-orange opacity-40 absolute right-4 bottom-4 z-10"></i>
                         <h3 class="text-2xl font-bold text-brand-dark relative z-10">Program SMP</h3>
                     </div>
                     <div class="p-8 flex-1 flex flex-col">
                         <p class="text-gray-500 text-sm mb-6">Pilihan program untuk tingkat Menengah Pertama</p>
-                        
                         <!-- Wadah Program SMP -->
                         <div id="program-reguler-smp-list" class="space-y-4 mb-8 flex-1">
                             <div class="animate-pulse flex flex-col items-center justify-center h-full text-brand-orange">
@@ -384,17 +537,18 @@
             </div>
             
             <!-- BLOK 2: PROGRAM PERSIAPAN UJIAN -->
-            <div class="pt-8 mt-16 border-t border-gray-200">
-                <div class="mb-10 text-center md:text-left border-l-4 border-violet-500 pl-4">
+            <div class="pt-8 mt-16 border-t border-gray-100 relative">
+                <div class="mb-10 text-center md:text-left border-l-4 border-violet-500 pl-4 bg-violet-50/50 p-4 rounded-r-2xl">
                     <h3 class="text-2xl md:text-3xl font-extrabold text-gray-800">Program Persiapan Ujian</h3>
-                    <p class="text-gray-500 text-sm mt-1">Fokus intensif latihan soal untuk menghadapi PTS, PAS, TKA, hingga UTBK/SNBT.</p>
+                    <p class="text-gray-600 font-medium text-sm mt-1">Fokus intensif latihan soal untuk menghadapi PTS, PAS, TKA, hingga UTBK/SNBT.</p>
                 </div>
                 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <!-- Paket Ujian SD -->
-                    <div class="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all overflow-hidden border-2 border-fuchsia-500 flex flex-col shadow-[0_0_15px_rgba(217,70,239,0.2)]">
-                        <div class="h-32 bg-fuchsia-600 relative flex items-center justify-center">
-                            <i class="fas fa-trophy text-5xl text-white opacity-20 absolute right-4 bottom-4"></i>
+                    <div class="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all overflow-hidden border-2 border-fuchsia-500 flex flex-col shadow-[0_0_15px_rgba(217,70,239,0.15)]">
+                        <div class="h-32 bg-fuchsia-600 relative flex items-center justify-center overflow-hidden">
+                            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 20px 20px;"></div>
+                            <i class="fas fa-trophy text-5xl text-white opacity-30 absolute right-4 bottom-4 z-10"></i>
                             <h3 class="text-2xl font-bold text-white relative z-10">Program Ujian SD</h3>
                         </div>
                         <div class="p-8 flex-1 flex flex-col bg-white">
@@ -408,10 +562,11 @@
                     </div>
 
                     <!-- Paket Ujian SMA (DI TENGAH) -->
-                    <div class="bg-white rounded-3xl shadow-xl transform md:-translate-y-4 border-2 border-violet-500 overflow-hidden flex flex-col relative shadow-[0_0_20px_rgba(139,92,246,0.4)]">
-                        <div class="absolute top-0 right-0 bg-white text-violet-600 text-xs font-extrabold px-3 py-1 rounded-bl-lg z-10 shadow-sm">INTENSIF</div>
-                        <div class="h-32 bg-gradient-to-r from-violet-600 to-fuchsia-600 relative flex items-center justify-center">
-                            <i class="fas fa-graduation-cap text-5xl text-white opacity-30 absolute right-4 bottom-4"></i>
+                    <div class="bg-white rounded-3xl shadow-xl transform md:-translate-y-4 border-2 border-violet-500 overflow-hidden flex flex-col relative shadow-[0_0_25px_rgba(139,92,246,0.3)]">
+                        <div class="absolute top-0 right-0 bg-white text-violet-600 text-xs font-extrabold px-3 py-1 rounded-bl-lg z-20 shadow-sm">INTENSIF</div>
+                        <div class="h-32 bg-gradient-to-r from-violet-600 to-fuchsia-600 relative flex items-center justify-center overflow-hidden">
+                            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 15px 15px;"></div>
+                            <i class="fas fa-graduation-cap text-5xl text-white opacity-40 absolute right-4 bottom-4 z-10"></i>
                             <h3 class="text-2xl font-bold text-white relative z-10">Program Ujian SMA</h3>
                         </div>
                         <div class="p-8 flex-1 flex flex-col bg-white">
@@ -425,9 +580,10 @@
                     </div>
 
                     <!-- Paket Ujian SMP (DI KANAN) -->
-                    <div class="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all overflow-hidden border-2 border-blue-500 flex flex-col shadow-[0_0_15px_rgba(59,130,246,0.2)]">
-                        <div class="h-32 bg-blue-600 relative flex items-center justify-center">
-                            <i class="fas fa-medal text-5xl text-white opacity-20 absolute right-4 bottom-4"></i>
+                    <div class="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all overflow-hidden border-2 border-blue-500 flex flex-col shadow-[0_0_15px_rgba(59,130,246,0.15)]">
+                        <div class="h-32 bg-blue-600 relative flex items-center justify-center overflow-hidden">
+                            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 20px 20px;"></div>
+                            <i class="fas fa-medal text-5xl text-white opacity-30 absolute right-4 bottom-4 z-10"></i>
                             <h3 class="text-2xl font-bold text-white relative z-10">Program Ujian SMP</h3>
                         </div>
                         <div class="p-8 flex-1 flex flex-col bg-white">
@@ -446,11 +602,21 @@
     </section>
 
     <!-- 3.5 GALERI SECTION -->
-    <section id="galeri" class="py-20 bg-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="galeri" class="py-20 relative overflow-hidden bg-slate-50">
+        <!-- Blobs Warna EXE (Gaya Vector Organik) -->
+        <div class="absolute top-0 right-0 translate-x-1/4 -translate-y-1/4 z-0 opacity-20 w-72 h-72 md:w-[28rem] md:h-[28rem] pointer-events-none">
+            <svg viewBox="0 0 200 200" class="w-full h-full text-brand-orange absolute" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-46C87.4,-32.9,90,-16.4,89.5,0.5C88.9,17.4,85.1,34.8,75.4,48.6C65.7,62.4,49.9,72.6,33.2,78.2C16.5,83.8,-1.1,84.8,-18.2,81.8C-35.3,78.8,-51.9,71.8,-65.4,59.8C-78.9,47.8,-89.3,30.8,-92.3,12.5C-95.3,-5.8,-90.9,-25.4,-80.6,-41.4C-70.3,-57.4,-54.1,-69.8,-38.4,-75.9C-22.7,-82,-7.5,-81.8,7.4,-81.3C22.3,-80.8,30.6,-83.6,44.7,-76.4Z" transform="translate(100 100)" />
+            </svg>
+            <svg viewBox="0 0 200 200" class="w-full h-full text-brand-orange absolute translate-x-5 translate-y-5" xmlns="http://www.w3.org/2000/svg">
+                <path fill="none" stroke="currentColor" stroke-width="2" d="M47.5,-67.2C59.9,-59.6,67.2,-43.3,73.4,-27.1C79.6,-10.8,84.7,5.5,80.1,19.3C75.4,33.1,60.9,44.4,46.5,53C32.2,61.7,18,67.6,1.4,65.6C-15.1,63.6,-30.2,53.8,-42.6,43C-55.1,32.2,-64.8,20.4,-68.8,6.8C-72.7,-6.8,-71,-22.3,-62.7,-34C-54.4,-45.6,-39.6,-53.4,-25.8,-60.1C-12.1,-66.8,1,-72.3,16.5,-75C32.1,-77.7,35,-65.1,47.5,-67.2Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-brand-dark mb-4">Galeri Dokumentasi Privat dan Kelas</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Cuplikan interaksi asyik dan semangat belajar para siswa di kelas online kami.</p>
+                <p class="text-gray-600 max-w-2xl mx-auto font-medium">Cuplikan interaksi asyik dan semangat belajar para siswa di kelas online kami.</p>
                 <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
             </div>
 
@@ -470,39 +636,57 @@
                     <i class="fas fa-chevron-right text-xl"></i>
                 </button>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- 4. TESTIMONI SECTION -->
-        <section id="testimoni" class="py-20 bg-slate-50 overflow-hidden">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl font-bold text-brand-dark mb-4">Apa Kata Mereka?</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto">Bukti nyata kepuasan orang tua dan siswa yang telah bergabung dan merasakan langsung peningkatan belajarnya bersama EXE.</p>
-                    <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
-                </div>
+    <!-- 4. TESTIMONI SECTION -->
+    <section id="testimoni" class="py-20 bg-white overflow-hidden relative">
+        <!-- SVG Blob Kiri (Pink) -->
+        <div class="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/3 z-0 opacity-[0.12] w-80 h-80 md:w-[32rem] md:h-[32rem] pointer-events-none">
+            <svg viewBox="0 0 200 200" class="w-full h-full text-brand-pink absolute" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M42,-64C55.4,-55.8,67.8,-44.7,75.5,-30.8C83.2,-16.9,86.2,-0.2,82.4,14.6C78.6,29.3,68.1,42.1,55,51C41.9,60,26.2,65,-10.1,65C-26.4,65,-40.8,51.8,-53.1,40.1C-65.5,28.4,-75.7,14.2,-78.4,-1.5C-81,-17.1,-76.1,-34.2,-65.3,-46.8C-54.4,-59.5,-37.8,-67.6,-22.4,-72C-6.9,-76.4,7.4,-77,28.6,-72.2C49.9,-67.4,42,-64,42,-64Z" transform="translate(100 100)" />
+            </svg>
+        </div>
 
-                <!-- WADAH FOTO CAROUSEL TESTIMONI -->
-                <div class="relative group">
-                    <button onclick="slideTestimoni(-1)" class="absolute -left-4 md:-left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
-                        <i class="fas fa-chevron-left text-xl"></i>
-                    </button>
+        <!-- Floating Elements -->
+        <div class="absolute bottom-20 left-10 text-brand-yellow opacity-40 animate-bounce-slow hidden md:block z-0">
+            <i class="fas fa-star text-4xl"></i>
+        </div>
 
-                    <div id="testimoni-container" class="flex overflow-x-auto gap-6 pb-8 pt-4 scroll-smooth snap-x snap-mandatory hide-scrollbar justify-start">
-                        <div class="animate-pulse w-full text-center py-10 text-gray-400">
-                            <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i><br>Memuat testimoni...
-                        </div>
-                    </div>
-
-                    <button onclick="slideTestimoni(1)" class="absolute -right-4 md:-right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
-                        <i class="fas fa-chevron-right text-xl"></i>
-                    </button>
-                </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-brand-dark mb-4">Apa Kata Mereka?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto font-medium">Bukti nyata kepuasan orang tua dan siswa yang telah bergabung dan merasakan langsung peningkatan belajarnya bersama EXE.</p>
+                <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
             </div>
-        </section>
+
+            <!-- WADAH FOTO CAROUSEL TESTIMONI -->
+            <div class="relative group">
+                <button onclick="slideTestimoni(-1)" class="absolute -left-4 md:-left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
+                    <i class="fas fa-chevron-left text-xl"></i>
+                </button>
+
+                <div id="testimoni-container" class="flex overflow-x-auto gap-6 pb-8 pt-4 scroll-smooth snap-x snap-mandatory hide-scrollbar justify-start">
+                    <div class="animate-pulse w-full text-center py-10 text-gray-400">
+                        <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i><br>Memuat testimoni...
+                    </div>
+                </div>
+
+                <button onclick="slideTestimoni(1)" class="absolute -right-4 md:-right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
+                    <i class="fas fa-chevron-right text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </section>
 
     <!-- 5. PROMO / CTA SECTION -->
-    <section class="py-16">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="py-16 relative overflow-hidden bg-slate-50">
+        <!-- SVG Background Waves -->
+        <div class="absolute inset-0 z-0">
+            <svg class="w-full h-full object-cover opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none"><path fill="#d81b60" fill-opacity="1" d="M0,160L48,160C96,160,192,160,288,144C384,128,480,96,576,106.7C672,117,768,171,864,197.3C960,224,1056,224,1152,208C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="bg-gradient-brand rounded-3xl p-10 md:p-16 text-center text-white shadow-2xl relative overflow-hidden">
                 <!-- Dekorasi Background -->
                 <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
@@ -520,8 +704,8 @@
     </section>
 
     <!-- 6. FOOTER -->
-    <footer id="kontak" class="bg-brand-dark text-white pt-16 pb-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer id="kontak" class="bg-brand-dark text-white pt-16 pb-8 border-t-8 border-brand-pink relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
                 <!-- Info Brand -->
                 <div>
@@ -616,7 +800,7 @@
     <div id="registration-modal" class="hidden fixed inset-0 z-[100] bg-brand-dark/80 backdrop-blur-sm overflow-y-auto">
         <div class="min-h-screen px-4 text-center">
             <span class="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
-            <div class="inline-block w-full max-w-2xl p-6 md:p-10 my-8 overflow-hidden text-left align-middle transition-all transform bg-white rounded-3xl shadow-2xl relative">
+            <div class="inline-block w-full max-w-2xl p-6 md:p-10 my-8 overflow-hidden text-left align-middle transition-all transform bg-white rounded-3xl shadow-2xl relative border-t-8 border-brand-pink">
                 
                 <button type="button" onclick="closeRegistration()" class="absolute top-6 right-6 text-gray-400 hover:text-brand-pink transition-colors focus:outline-none">
                     <i class="fas fa-times text-2xl"></i>
@@ -635,22 +819,22 @@
                     <!-- Nama Lengkap -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap Siswa</label>
-                        <input type="text" id="reg-nama" required placeholder="Masukkan nama lengkap siswa" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
+                        <input type="text" id="reg-nama" required placeholder="Masukkan nama lengkap siswa" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-gray-50 focus:bg-white">
                     </div>
                     <!-- Nama Orang Tua -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Orang Tua / Wali</label>
-                        <input type="text" id="reg-ortu" required placeholder="Masukkan nama orang tua/wali" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
+                        <input type="text" id="reg-ortu" required placeholder="Masukkan nama orang tua/wali" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-gray-50 focus:bg-white">
                     </div>
                     <!-- Nomor HP -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Nomor HP / WhatsApp Aktif</label>
-                        <input type="tel" id="reg-hp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
+                        <input type="tel" id="reg-hp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-gray-50 focus:bg-white">
                     </div>
                     <!-- Kelas Dropdown -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Kelas Asal</label>
-                        <select id="reg-kelas" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-white text-gray-700">
+                        <select id="reg-kelas" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-gray-50 focus:bg-white text-gray-700">
                             <option value="">-- Pilih Kelas --</option>
                             <option value="Kelas 4 SD">Kelas 4 SD</option>
                             <option value="Kelas 5 SD">Kelas 5 SD</option>
@@ -667,20 +851,20 @@
                     <!-- Alamat -->
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Alamat Lengkap</label>
-                        <textarea id="reg-alamat" rows="3" required placeholder="Jalan, RT/RW, Kelurahan, Kecamatan" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all resize-none"></textarea>
+                        <textarea id="reg-alamat" rows="3" required placeholder="Jalan, RT/RW, Kelurahan, Kecamatan" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all resize-none bg-gray-50 focus:bg-white"></textarea>
                     </div>
                     <!-- Provinsi & Kota grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Provinsi</label>
-                            <select id="reg-provinsi" onchange="updateKota()" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-white text-gray-700">
+                            <select id="reg-provinsi" onchange="updateKota()" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-gray-50 focus:bg-white text-gray-700">
                                 <option value="">-- Pilih Provinsi --</option>
                                 <!-- Opsi di-generate via JavaScript -->
                             </select>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Kota / Kabupaten</label>
-                            <select id="reg-kota" onchange="checkKotaLainnya()" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-white text-gray-700" disabled>
+                            <select id="reg-kota" onchange="checkKotaLainnya()" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-gray-50 focus:bg-white text-gray-700" disabled>
                                 <option value="">-- Pilih Kota --</option>
                             </select>
                         </div>
@@ -688,7 +872,7 @@
                     <!-- Kota Lainnya (Muncul jika pilih 'Lainnya') -->
                     <div id="kota-lainnya-container" class="hidden">
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Ketik Nama Kota/Kabupaten</label>
-                        <input type="text" id="reg-kota-lainnya" placeholder="Masukkan nama kota secara manual" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
+                        <input type="text" id="reg-kota-lainnya" placeholder="Masukkan nama kota secara manual" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-gray-50 focus:bg-white">
                     </div>
                     
                     <!-- Info Harga & Rekening (Baru) -->
@@ -706,7 +890,7 @@
                     <div>
                         <label class="block text-sm font-semibold text-gray-700 mb-1">Bukti Pembayaran / Transfer</label>
                         <p class="text-xs text-gray-500 mb-2 italic">* Setelah klik Submit, WhatsApp Anda akan otomatis terbuka. Silakan lampirkan foto bukti pembayaran di sana.</p>
-                        <input type="file" id="reg-bukti" accept="image/*,.pdf" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-brand-pink hover:file:bg-pink-100 transition-all text-gray-500">
+                        <input type="file" id="reg-bukti" accept="image/*,.pdf" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-brand-pink hover:file:bg-pink-100 transition-all text-gray-500 bg-gray-50">
                     </div>
 
                     <!-- Submit -->
@@ -720,7 +904,7 @@
 
     <!-- MODAL SUCCESS ALERT -->
     <div id="success-modal" class="hidden fixed inset-0 z-[110] bg-brand-dark/80 flex items-center justify-center backdrop-blur-sm px-4">
-        <div class="bg-white p-8 rounded-3xl max-w-sm text-center shadow-2xl">
+        <div class="bg-white p-8 rounded-3xl max-w-sm text-center shadow-2xl border-t-8 border-green-500">
             <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-500 text-4xl mx-auto mb-6">
                 <i class="fas fa-check"></i>
             </div>
@@ -776,7 +960,7 @@
         const themeConfig = {
             "SD": {
                 color: "pink",
-                border: "border-pink-100",
+                border: "border-pink-200",
                 text: "text-brand-pink",
                 bg: "bg-brand-pink",
                 hoverBg: "hover:bg-pink-700",
@@ -873,7 +1057,8 @@
                     showErrorState(result.message || "Error dari server Apps Script.");
                 }
             } catch (error) {
-                showErrorState("Gagal memuat data dari Spreadsheet.");
+                console.error("Terjadi Error di Frontend/Jaringan:", error);
+                showErrorState("Terjadi kesalahan saat memproses data. Coba muat ulang halaman.");
             }
         }
 
@@ -927,27 +1112,27 @@
 
             return `
             <details class="group ${borderStyle} rounded-xl bg-white [&_summary::-webkit-details-marker]:hidden mt-4 first:mt-0 relative overflow-hidden">
-                <summary class="flex flex-col cursor-pointer p-4 font-semibold text-gray-700 hover:${theme.text} focus:outline-none">
+                <summary class="flex flex-col cursor-pointer p-4 font-semibold text-gray-700 hover:${theme.text} focus:outline-none bg-gray-50/50">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
                             <span class="text-sm font-bold text-gray-800">${item['Nama Paket']}</span>
                             ${badgeHTML}
                         </div>
-                        <span class="transition duration-300 group-open:-rotate-180 ${theme.text}">
-                            <i class="fas fa-chevron-down"></i>
+                        <span class="transition duration-300 group-open:-rotate-180 ${theme.text} bg-white p-1 rounded-full shadow-sm border border-gray-100">
+                            <i class="fas fa-chevron-down text-xs w-4 h-4 text-center"></i>
                         </span>
                     </div>
                     <span class="text-xs text-gray-500 font-normal mt-1">${item.Deskripsi}</span>
                 </summary>
-                <div class="px-4 pb-4 pt-2 text-sm text-gray-600 border-t border-gray-100">
+                <div class="px-4 pb-4 pt-2 text-sm text-gray-600 border-t border-gray-100 bg-white">
                     <ul class="space-y-2 mt-2">
                         ${benefitsHTML}
-                        <li class="flex items-start">
-                            <i class="fas fa-caret-right ${theme.text} mt-1 mr-2"></i>
-                            <span><strong class="text-gray-800">Biaya investasi :</strong> ${item.Harga}</span>
+                        <li class="flex items-start pt-2 mt-2 border-t border-dashed border-gray-200">
+                            <i class="fas fa-wallet ${theme.text} mt-1 mr-2"></i>
+                            <span><strong class="text-gray-800">Biaya investasi :</strong> <span class="${theme.text} font-bold">${item.Harga}</span></span>
                         </li>
                     </ul>
-                    <button type="button" onclick="openRegistration('${item['Nama Paket']} (Program ${jenjang})', '${item.Harga}')" class="mt-5 block w-full text-center ${theme.bg} ${theme.btnText} py-2.5 rounded-xl ${theme.hoverBg} hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm shadow-md">
+                    <button type="button" onclick="openRegistration('${item['Nama Paket']} (Program ${jenjang})', '${item.Harga}')" class="mt-5 block w-full text-center ${theme.bg} ${theme.btnText} py-3 rounded-xl ${theme.hoverBg} hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm font-bold shadow-md">
                         <i class="fas fa-edit mr-1"></i> Daftar Sekarang
                     </button>
                 </div>
@@ -959,8 +1144,8 @@
         function renderTutorsToHTML(tutors) {
             const container = document.getElementById('tutor-gallery-container');
             container.innerHTML = tutors.map(t => `
-                <a href="${t['Link Gambar']}" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
-                    <img src="${t['Link Gambar']}" alt="Tutor" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x400/e2e8f0/64748b?text=Tutor'"/>
+                <a href="${t['Link Gambar']}" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_8px_30px_rgba(216,27,96,0.15)] transition-all block group-hover:opacity-100 border-4 border-white">
+                    <img src="${t['Link Gambar']}" alt="Tutor" class="w-full h-72 object-cover bg-slate-100 hover:scale-105 transition-transform duration-500" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x400/e2e8f0/64748b?text=Tutor'"/>
                 </a>
             `).join('');
         }
@@ -969,8 +1154,8 @@
         function renderGalleryToHTML(gallery) {
             const container = document.getElementById('gallery-container');
             container.innerHTML = gallery.map(g => `
-                <a href="${g['Link Gambar']}" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
-                    <img src="${g['Link Gambar']}" alt="Galeri" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x300/e2e8f0/64748b?text=Galeri'"/>
+                <a href="${g['Link Gambar']}" target="_blank" class="flex-none w-72 snap-center rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-xl transition-all block group-hover:opacity-100 border-4 border-white">
+                    <img src="${g['Link Gambar']}" alt="Galeri" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-500" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x300/e2e8f0/64748b?text=Galeri'"/>
                 </a>
             `).join('');
         }
@@ -979,8 +1164,8 @@
         function renderTestimonialsToHTML(testis) {
             const container = document.getElementById('testimoni-container');
             container.innerHTML = testis.map(t => `
-                <a href="${t['Link Gambar']}" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
-                    <img src="${t['Link Gambar']}" alt="Testimoni" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x600/ffffff/d81b60?text=Testimoni'"/>
+                <a href="${t['Link Gambar']}" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-xl transition-all block group-hover:opacity-100 border border-gray-100">
+                    <img src="${t['Link Gambar']}" alt="Testimoni" class="w-full h-[400px] object-cover bg-white hover:scale-105 transition-transform duration-500" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x600/ffffff/d81b60?text=Testimoni'"/>
                 </a>
             `).join('');
         }
