@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXE - Execute Your Excellence</title>
+    
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
+    
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <!-- Konfigurasi Tailwind untuk Custom Colors (Sesuai Logo) -->
     <script>
         tailwind.config = {
@@ -34,6 +39,7 @@
             }
         }
     </script>
+
     <style>
         /* Gradasi khusus sesuai warna logo EXE */
         .bg-gradient-brand {
@@ -43,6 +49,23 @@
             background: linear-gradient(135deg, #d81b60 0%, #f57c00 50%, #fbc02d 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        /* CSS Otomatis untuk Galeri 33 Foto */
+        .auto-galeri a {
+            display: block;
+            border-radius: 0.75rem; /* Melengkungkan sudut */
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .auto-galeri img {
+            width: 100%;
+            height: 150px; /* Tinggi seragam untuk semua foto */
+            object-fit: cover; /* Biar gambar gak gepeng */
+            transition: transform 0.3s ease-in-out;
+        }
+        .auto-galeri a:hover img {
+            transform: scale(1.1); /* Efek membesar saat disentuh mouse */
         }
 
         /* Menyembunyikan Scrollbar di Galeri tapi tetap bisa discroll */
@@ -101,6 +124,7 @@
                 <div class="flex-shrink-0 flex items-center">
                     <img class="h-12 w-auto scale-150 ml-4" src="https://images2.imgbox.com/ad/c5/3XFVIZZN_o.png" alt="Logo EXE Education Centre" onerror="this.src='https://placehold.co/200x80/ffffff/000000?text=LOGO+EXE'">
                 </div>
+                
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="#beranda" class="text-gray-700 hover:text-brand-pink font-medium transition">Beranda</a>
@@ -112,6 +136,7 @@
                         <i class="fab fa-whatsapp mr-2"></i> Hubungi Kami
                     </a>
                 </div>
+
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" class="text-gray-700 hover:text-brand-pink focus:outline-none">
@@ -120,6 +145,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Mobile Menu (Hidden by default) -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
             <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3">
@@ -154,15 +180,15 @@
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                         <a href="https://wa.me/6285141525668" target="_blank" class="bg-gradient-brand text-white px-8 py-3.5 rounded-full font-bold text-lg hover:shadow-xl hover:-translate-y-1 transition-all text-center">
-                            Tanya Jadwal & Promo
+                            Tanya Jadwal & Amankan Kuota Promo
                         </a>
                         <a href="#program" class="bg-white text-brand-dark border-2 border-gray-200 px-8 py-3.5 rounded-full font-bold text-lg hover:border-brand-pink hover:text-brand-pink transition-all text-center">
                             Lihat Program
                         </a>
                     </div>
-                    <!-- Tombol Coba Platform -->
+                    <!-- DITAMBAHKAN: Tombol Coba Platform Belajar EXE tepat di bawahnya -->
                     <div class="mt-4 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="https://exeeducentre.github.io/staging-platform/" target="_blank" class="bg-white text-brand-pink border-2 border-brand-pink px-8 py-3.5 rounded-full font-bold text-lg hover:bg-brand-pink hover:text-white transition-all text-center flex justify-center items-center gap-2 shadow-lg glow-gamepad">
+                        <a href="https://app.exeeducentre.com/" target="_blank" class="bg-white text-brand-pink border-2 border-brand-pink px-8 py-3.5 rounded-full font-bold text-lg hover:bg-brand-pink hover:text-white transition-all text-center flex justify-center items-center gap-2 shadow-lg glow-gamepad">
                             <i class="fas fa-gamepad text-xl"></i> Coba Platform Belajar EXE
                         </a>
                     </div>
@@ -170,6 +196,8 @@
                 <!-- Gambar Hero -->
                 <div class="relative">
                     <div class="absolute inset-0 bg-gradient-brand rounded-3xl transform rotate-3 scale-105 opacity-20"></div>
+                    
+                    <!-- Kumpulan Beberapa Foto Suasana Kelas (Grid Estetik) - VERSI HD -->
                     <div class="relative z-10 grid grid-cols-2 gap-4 items-center">
                         <div class="space-y-4">
                             <img src="https://images2.imgbox.com/f5/80/TjOAtLoI_o.png" alt="Suasana Kelas 1" class="rounded-3xl shadow-xl w-full h-48 md:h-64 object-cover">
@@ -180,6 +208,7 @@
                             <img src="https://images2.imgbox.com/30/c3/LXrciVye_o.png" alt="Suasana Kelas 4" class="rounded-3xl shadow-xl w-full h-48 md:h-64 object-cover">
                         </div>
                     </div>
+                    
                     <!-- Floating Badge -->
                     <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-2xl shadow-xl z-20 flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
                         <div class="bg-green-100 p-3 rounded-full text-green-600">
@@ -218,13 +247,14 @@
                 <h2 class="text-3xl font-bold text-brand-dark mb-4">Endless Spirit of Lifelong Learner</h2>
                 <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full"></div>
             </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Card 1 -->
                 <div class="p-6 bg-slate-50 rounded-2xl hover:shadow-lg transition-all border border-gray-100 group flex flex-col">
                     <div class="w-14 h-14 bg-pink-100 rounded-xl flex items-center justify-center text-brand-pink text-2xl mb-6 group-hover:scale-110 transition-transform">
                         <i class="fas fa-chalkboard-user"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">Tutor Profesional</h3>
+                    <h3 class="text-xl font-bold mb-3">Tutor Profesional dan Berpengalaman</h3>
                     <p class="text-gray-600 text-sm">Pengajar muda, berpengalaman, asyik, dan profesional di bidangnya.</p>
                 </div>
                 <!-- Card 2 -->
@@ -263,28 +293,19 @@
                 <p class="text-gray-600 max-w-2xl mx-auto">Pengajar berpengalaman yang siap membimbing siswa dengan metode yang asyik dan mudah dipahami.</p>
                 <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
             </div>
-            <!-- WADAH FOTO CAROUSEL -->
+
+            <!-- WADAH FOTO CAROUSEL DENGAN PANAH -->
             <div class="relative group">
                 <button onclick="slideTutorCarousel(-1)" class="absolute -left-4 md:-left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
                     <i class="fas fa-chevron-left text-xl"></i>
                 </button>
+
                 <div id="tutor-gallery-container" class="flex overflow-x-auto gap-6 pb-8 pt-4 scroll-smooth snap-x snap-mandatory hide-scrollbar justify-start">
-                    <a href="https://imgbox.com/HWrRNOHa" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
-                        <img src="https://images2.imgbox.com/f7/69/HWrRNOHa_o.jpeg" alt="Tutor 1" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
-                    </a>
-                    <a href="https://imgbox.com/y42WZtJF" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
-                        <img src="https://images2.imgbox.com/f9/a2/y42WZtJF_o.jpeg" alt="Tutor 2" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
-                    </a>
-                    <a href="https://imgbox.com/rUOEA9Vz" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
-                        <img src="https://images2.imgbox.com/4a/33/rUOEA9Vz_o.jpeg" alt="Tutor 3" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
-                    </a>
-                    <a href="https://imgbox.com/JesCIhfb" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
-                        <img src="https://images2.imgbox.com/d3/a8/JesCIhfb_o.jpeg" alt="Tutor 4" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
-                    </a>
-                    <a href="https://imgbox.com/QvkxMWn7" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
-                        <img src="https://images2.imgbox.com/fd/10/QvkxMWn7_o.jpeg" alt="Tutor 5" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
-                    </a>
+                    <div class="animate-pulse w-full text-center py-10 text-gray-400">
+                        <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i><br>Memuat tim tutor...
+                    </div>
                 </div>
+
                 <button onclick="slideTutorCarousel(1)" class="absolute -right-4 md:-right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
                     <i class="fas fa-chevron-right text-xl"></i>
                 </button>
@@ -292,87 +313,135 @@
         </div>
     </section>
 
-    <!-- 3. PROGRAM SECTION (STATIS KE WHATSAPP) -->
+    <!-- 3. PROGRAM SECTION (SEKARANG DINAMIS DARI GOOGLE SHEETS) -->
     <section id="program" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-brand-dark mb-4">Pilihan Program Belajar</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Kami menyediakan dua program terpadu untuk memastikan siswa mencapai potensi akademis terbaik mereka.</p>
+                <h2 class="text-3xl font-bold text-brand-dark mb-4">Pilihan Program Reguler</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Kami menyediakan program terpadu sesuai jenjang pendidikan dengan fokus pada pemahaman konsep dasar.</p>
                 <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
             </div>
-            
-            <!-- Grid 2 Kolom untuk Program -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                
-                <!-- Program Reguler -->
-                <div class="bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all overflow-hidden border border-gray-100 flex flex-col relative group">
-                    <div class="h-40 bg-pink-50 relative flex items-center justify-center overflow-hidden">
-                        <div class="absolute inset-0 bg-brand-pink opacity-5 group-hover:opacity-10 transition-opacity"></div>
-                        <i class="fas fa-book-reader text-6xl text-brand-pink opacity-20 absolute right-6 bottom-4 transform group-hover:scale-110 transition-transform"></i>
-                        <h3 class="text-2xl md:text-3xl font-bold text-brand-dark relative z-10 px-4 text-center">Program Belajar<br><span class="text-brand-pink">Reguler</span></h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Paket SD -->
+                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all overflow-hidden border border-gray-100 flex flex-col">
+                    <div class="h-32 bg-pink-100 relative flex items-center justify-center">
+                        <i class="fas fa-dna text-5xl text-brand-pink opacity-50 absolute right-4 bottom-4"></i>
+                        <h3 class="text-2xl font-bold text-brand-dark relative z-10">Program SD</h3>
                     </div>
                     <div class="p-8 flex-1 flex flex-col">
-                        <p class="text-gray-600 text-center mb-8">Pendampingan belajar harian untuk memastikan pemahaman konsep dasar di setiap mata pelajaran. Sangat cocok untuk menjaga performa akademik tetap stabil.</p>
+                        <p class="text-gray-500 text-sm mb-6">Pilihan program untuk tingkat Sekolah Dasar</p>
                         
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-brand-pink mt-1 mr-3 text-lg"></i>
-                                <span class="text-gray-700">Review & pendalaman materi sekolah</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-brand-pink mt-1 mr-3 text-lg"></i>
-                                <span class="text-gray-700">Bantuan pengerjaan tugas & PR</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-brand-pink mt-1 mr-3 text-lg"></i>
-                                <span class="text-gray-700">Jadwal belajar yang fleksibel</span>
-                            </li>
-                        </ul>
-                        
-                        <div class="mt-auto pt-4">
-                            <!-- Link Langsung ke WhatsApp -->
-                            <a href="https://wa.me/6285141525668?text=Halo%20Admin%20EXE,%20saya%20tertarik%20dengan%20*Program%20Belajar%20Reguler*.%20Bisa%20minta%20info%20lebih%20lanjut?" target="_blank" class="block w-full text-center bg-brand-pink text-white py-4 rounded-2xl font-bold hover:bg-pink-700 hover:shadow-lg hover:-translate-y-1 transition-all">
-                                <i class="fab fa-whatsapp mr-2 text-xl"></i> Tanya Info & Daftar
-                            </a>
+                        <!-- Wadah Program SD -->
+                        <div id="program-reguler-sd-list" class="space-y-4 mb-8 flex-1">
+                            <div class="animate-pulse flex flex-col items-center justify-center h-full text-brand-pink">
+                                <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i>
+                                <span class="text-sm font-semibold">Memuat program terbaru...</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Program Persiapan Ujian -->
-                <div class="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all overflow-hidden border-2 border-brand-yellow flex flex-col relative group">
-                    <div class="absolute top-0 right-0 bg-brand-yellow text-brand-dark text-xs font-bold px-4 py-1.5 rounded-bl-xl z-20 shadow-md">PILIHAN FAVORIT</div>
-                    <div class="h-40 bg-gradient-brand relative flex items-center justify-center overflow-hidden">
-                        <i class="fas fa-graduation-cap text-6xl text-white opacity-20 absolute right-6 bottom-4 transform group-hover:scale-110 transition-transform"></i>
-                        <h3 class="text-2xl md:text-3xl font-bold text-white relative z-10 px-4 text-center">Program Persiapan<br>Ujian</h3>
+                <!-- Paket SMA (DIPINDAH KE TENGAH & DI-HIGHLIGHT) -->
+                <div class="bg-white rounded-3xl shadow-xl transform md:-translate-y-4 border-2 border-brand-yellow overflow-hidden flex flex-col relative">
+                    <div class="absolute top-0 right-0 bg-brand-yellow text-brand-dark text-xs font-bold px-3 py-1 rounded-bl-lg z-10">PILIHAN FAVORIT</div>
+                    <div class="h-32 bg-gradient-brand relative flex items-center justify-center">
+                        <i class="fas fa-microscope text-5xl text-white opacity-30 absolute right-4 bottom-4"></i>
+                        <h3 class="text-2xl font-bold text-white relative z-10">Program SMA</h3>
                     </div>
                     <div class="p-8 flex-1 flex flex-col">
-                        <p class="text-gray-600 text-center mb-8">Fokus intensif untuk menghadapi PTS, PAS, Ujian Sekolah, Persiapan Olimpiade, SAT/GRE, hingga UTBK/SNBT. Latihan soal terarah dengan trik pengerjaan super cepat.</p>
+                        <p class="text-gray-500 text-sm mb-6">Pilihan program untuk tingkat Menengah Atas & Gap Year</p>
                         
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start">
-                                <i class="fas fa-star text-brand-yellow mt-1 mr-3 text-lg"></i>
-                                <span class="text-gray-700">Drill intensif latihan soal ujian</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-star text-brand-yellow mt-1 mr-3 text-lg"></i>
-                                <span class="text-gray-700">Try Out & evaluasi berkala</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-star text-brand-yellow mt-1 mr-3 text-lg"></i>
-                                <span class="text-gray-700">Pembahasan trik & tips lolos ujian</span>
-                            </li>
-                        </ul>
+                        <!-- Wadah Program SMA -->
+                        <div id="program-reguler-sma-list" class="space-y-4 mb-8 flex-1">
+                            <div class="animate-pulse flex flex-col items-center justify-center h-full text-brand-yellow">
+                                <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i>
+                                <span class="text-sm font-semibold">Memuat program terbaru...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paket SMP (DIPINDAH KE KANAN) -->
+                <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all overflow-hidden border border-gray-100 flex flex-col">
+                    <div class="h-32 bg-orange-100 relative flex items-center justify-center">
+                        <i class="fas fa-rocket text-5xl text-brand-orange opacity-50 absolute right-4 bottom-4"></i>
+                        <h3 class="text-2xl font-bold text-brand-dark relative z-10">Program SMP</h3>
+                    </div>
+                    <div class="p-8 flex-1 flex flex-col">
+                        <p class="text-gray-500 text-sm mb-6">Pilihan program untuk tingkat Menengah Pertama</p>
                         
-                        <div class="mt-auto pt-4">
-                            <!-- Link Langsung ke WhatsApp -->
-                            <a href="https://wa.me/6285141525668?text=Halo%20Admin%20EXE,%20saya%20tertarik%20dengan%20*Program%20Persiapan%20Ujian*.%20Bisa%20minta%20info%20lebih%20lanjut?" target="_blank" class="block w-full text-center bg-brand-yellow text-brand-dark py-4 rounded-2xl font-bold hover:bg-yellow-500 hover:shadow-lg hover:-translate-y-1 transition-all">
-                                <i class="fab fa-whatsapp mr-2 text-xl"></i> Tanya Info & Daftar
-                            </a>
+                        <!-- Wadah Program SMP -->
+                        <div id="program-reguler-smp-list" class="space-y-4 mb-8 flex-1">
+                            <div class="animate-pulse flex flex-col items-center justify-center h-full text-brand-orange">
+                                <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i>
+                                <span class="text-sm font-semibold">Memuat program terbaru...</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
             </div>
+            
+            <!-- BLOK 2: PROGRAM PERSIAPAN UJIAN -->
+            <div class="pt-8 mt-16 border-t border-gray-200">
+                <div class="mb-10 text-center md:text-left border-l-4 border-violet-500 pl-4">
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-gray-800">Program Persiapan Ujian</h3>
+                    <p class="text-gray-500 text-sm mt-1">Fokus intensif latihan soal untuk menghadapi PTS, PAS, TKA, hingga UTBK/SNBT.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Paket Ujian SD -->
+                    <div class="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all overflow-hidden border-2 border-fuchsia-500 flex flex-col shadow-[0_0_15px_rgba(217,70,239,0.2)]">
+                        <div class="h-32 bg-fuchsia-600 relative flex items-center justify-center">
+                            <i class="fas fa-trophy text-5xl text-white opacity-20 absolute right-4 bottom-4"></i>
+                            <h3 class="text-2xl font-bold text-white relative z-10">Program Ujian SD</h3>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col bg-white">
+                            <div id="program-ujian-sd-list" class="space-y-4 mb-8 flex-1">
+                                <div class="animate-pulse flex flex-col items-center justify-center h-full text-fuchsia-500">
+                                    <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i>
+                                    <span class="text-sm font-semibold">Memuat program ujian...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paket Ujian SMA (DI TENGAH) -->
+                    <div class="bg-white rounded-3xl shadow-xl transform md:-translate-y-4 border-2 border-violet-500 overflow-hidden flex flex-col relative shadow-[0_0_20px_rgba(139,92,246,0.4)]">
+                        <div class="absolute top-0 right-0 bg-white text-violet-600 text-xs font-extrabold px-3 py-1 rounded-bl-lg z-10 shadow-sm">INTENSIF</div>
+                        <div class="h-32 bg-gradient-to-r from-violet-600 to-fuchsia-600 relative flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-5xl text-white opacity-30 absolute right-4 bottom-4"></i>
+                            <h3 class="text-2xl font-bold text-white relative z-10">Program Ujian SMA</h3>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col bg-white">
+                            <div id="program-ujian-sma-list" class="space-y-4 mb-8 flex-1">
+                                <div class="animate-pulse flex flex-col items-center justify-center h-full text-violet-500">
+                                    <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i>
+                                    <span class="text-sm font-semibold">Memuat program ujian...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paket Ujian SMP (DI KANAN) -->
+                    <div class="bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all overflow-hidden border-2 border-blue-500 flex flex-col shadow-[0_0_15px_rgba(59,130,246,0.2)]">
+                        <div class="h-32 bg-blue-600 relative flex items-center justify-center">
+                            <i class="fas fa-medal text-5xl text-white opacity-20 absolute right-4 bottom-4"></i>
+                            <h3 class="text-2xl font-bold text-white relative z-10">Program Ujian SMP</h3>
+                        </div>
+                        <div class="p-8 flex-1 flex flex-col bg-white">
+                            <div id="program-ujian-smp-list" class="space-y-4 mb-8 flex-1">
+                                <div class="animate-pulse flex flex-col items-center justify-center h-full text-blue-500">
+                                    <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i>
+                                    <span class="text-sm font-semibold">Memuat program ujian...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -380,72 +449,70 @@
     <section id="galeri" class="py-20 bg-white overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-brand-dark mb-4">Galeri Dokumentasi</h2>
+                <h2 class="text-3xl font-bold text-brand-dark mb-4">Galeri Dokumentasi Privat dan Kelas</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Cuplikan interaksi asyik dan semangat belajar para siswa di kelas online kami.</p>
                 <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
             </div>
+
+            <!-- WADAH FOTO CAROUSEL DENGAN PANAH -->
             <div class="relative group">
                 <button onclick="slideGallery(-1)" class="absolute -left-4 md:-left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
                     <i class="fas fa-chevron-left text-xl"></i>
                 </button>
+
                 <div id="gallery-container" class="flex overflow-x-auto gap-4 pb-8 pt-4 scroll-smooth snap-x snap-mandatory hide-scrollbar">
-                    <a href="https://imgbox.com/TjOAtLoI" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
-                        <img src="https://images2.imgbox.com/f5/80/TjOAtLoI_o.png" alt="Galeri 1" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
-                    </a>
-                    <a href="https://imgbox.com/NowXSLAW" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
-                        <img src="https://images2.imgbox.com/d5/95/NowXSLAW_o.png" alt="Galeri 2" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
-                    </a>
-                    <a href="https://imgbox.com/yZwgOiwF" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
-                        <img src="https://images2.imgbox.com/73/3f/yZwgOiwF_o.png" alt="Galeri 3" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
-                    </a>
-                    <a href="https://imgbox.com/LXrciVye" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
-                        <img src="https://images2.imgbox.com/30/c3/LXrciVye_o.png" alt="Galeri 4" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300"/>
-                    </a>
+                    <div class="animate-pulse w-full text-center py-10 text-gray-400">
+                        <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i><br>Memuat galeri...
+                    </div>
                 </div>
+
                 <button onclick="slideGallery(1)" class="absolute -right-4 md:-right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
                     <i class="fas fa-chevron-right text-xl"></i>
                 </button>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- 4. TESTIMONI SECTION -->
-    <section id="testimoni" class="py-20 bg-slate-50 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-brand-dark mb-4">Apa Kata Mereka?</h2>
-                <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
-            </div>
-            <!-- WADAH FOTO CAROUSEL TESTIMONI -->
-            <div class="relative group">
-                <button onclick="slideTestimoni(-1)" class="absolute -left-4 md:-left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
-                    <i class="fas fa-chevron-left text-xl"></i>
-                </button>
-                <div id="testimoni-container" class="flex overflow-x-auto gap-6 pb-8 pt-4 scroll-smooth snap-x snap-mandatory hide-scrollbar justify-start">
-                    <a href="https://imgbox.com/Mbdnr074" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
-                        <img src="https://images2.imgbox.com/41/60/Mbdnr074_o.jpeg" alt="Testimoni 1" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
-                    </a>
-                    <a href="https://imgbox.com/DoEFG17p" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block">
-                        <img src="https://images2.imgbox.com/4e/8b/DoEFG17p_o.jpeg" alt="Testimoni 2" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer"/>
-                    </a>
+        <!-- 4. TESTIMONI SECTION -->
+        <section id="testimoni" class="py-20 bg-slate-50 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-brand-dark mb-4">Apa Kata Mereka?</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto">Bukti nyata kepuasan orang tua dan siswa yang telah bergabung dan merasakan langsung peningkatan belajarnya bersama EXE.</p>
+                    <div class="w-24 h-1 bg-gradient-brand mx-auto rounded-full mt-6"></div>
                 </div>
-                <button onclick="slideTestimoni(1)" class="absolute -right-4 md:-right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
-                    <i class="fas fa-chevron-right text-xl"></i>
-                </button>
+
+                <!-- WADAH FOTO CAROUSEL TESTIMONI -->
+                <div class="relative group">
+                    <button onclick="slideTestimoni(-1)" class="absolute -left-4 md:-left-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
+                        <i class="fas fa-chevron-left text-xl"></i>
+                    </button>
+
+                    <div id="testimoni-container" class="flex overflow-x-auto gap-6 pb-8 pt-4 scroll-smooth snap-x snap-mandatory hide-scrollbar justify-start">
+                        <div class="animate-pulse w-full text-center py-10 text-gray-400">
+                            <i class="fas fa-circle-notch fa-spin text-3xl mb-2"></i><br>Memuat testimoni...
+                        </div>
+                    </div>
+
+                    <button onclick="slideTestimoni(1)" class="absolute -right-4 md:-right-6 top-1/2 transform -translate-y-1/2 z-20 bg-white text-brand-dark w-12 h-12 rounded-full shadow-[0_4px_20px_rgba(0,0,0,0.15)] hover:bg-brand-pink hover:text-white hover:scale-110 transition-all focus:outline-none flex items-center justify-center cursor-pointer">
+                        <i class="fas fa-chevron-right text-xl"></i>
+                    </button>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
     <!-- 5. PROMO / CTA SECTION -->
     <section class="py-16">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-gradient-brand rounded-3xl p-10 md:p-16 text-center text-white shadow-2xl relative overflow-hidden">
+                <!-- Dekorasi Background -->
                 <div class="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
                 <div class="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-white opacity-10 rounded-full"></div>
+                
                 <h2 class="text-3xl md:text-5xl font-extrabold mb-6 relative z-10">🎉 PROMO PERSIAPAN UJIAN!</h2>
                 <p class="text-lg md:text-xl mb-10 opacity-90 max-w-2xl mx-auto relative z-10">
                     Dapatkan <strong>Diskon 20%</strong> untuk pendaftaran bulan ini dan nikmati tambahan <strong>Gratis Modul Belajar</strong> selama 1 semester. Kuota terbatas!
                 </p>
-                <a href="https://wa.me/6285141525668?text=Halo%20Admin,%20saya%20mau%20klaim%20Promo%20Diskon%2020%25!" target="_blank" class="inline-block bg-white text-brand-orange px-8 py-4 rounded-full font-bold text-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all relative z-10">
+                <a href="https://wa.me/6285141525668" target="_blank" class="inline-block bg-white text-brand-orange px-8 py-4 rounded-full font-bold text-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all relative z-10">
                     Klaim Promo 20% Sekarang
                 </a>
             </div>
@@ -456,7 +523,9 @@
     <footer id="kontak" class="bg-brand-dark text-white pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                <!-- Info Brand -->
                 <div>
+                    <!-- Logo Teks EXE Education Centre yang diperbesar -->
                     <h2 class="text-3xl md:text-4xl font-extrabold text-white mb-6 tracking-tight">
                         EXE <span class="text-gradient-brand">Education Centre</span>
                     </h2>
@@ -472,6 +541,8 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Kontak -->
                 <div>
                     <h4 class="text-xl font-bold mb-6 border-b border-gray-700 pb-2 inline-block">Hubungi Kami</h4>
                     <ul class="space-y-4">
@@ -486,10 +557,14 @@
                     </ul>
                 </div>
             </div>
+
             <div class="border-t border-gray-800 pt-8 text-center md:flex md:justify-between md:items-center md:text-left">
                 <p class="text-gray-500 text-sm">
-                    &copy; 2026 <span class="text-base md:text-lg font-bold text-white">EXE Education Centre</span>. All Rights Reserved.
+                    &copy; 2026 <span class="text-base md:text-lg font-bold text-white">EXE Education Centre</span> (Execute Your Excellence). All Rights Reserved.
                 </p>
+                <div class="mt-4 md:mt-0">
+                    <span class="text-gray-600 text-xs">Dibuat dengan ❤️ untuk kemajuan pendidikan.</span>
+                </div>
             </div>
         </div>
     </footer>
@@ -537,6 +612,132 @@
         </div>
     </div>
 
+    <!-- MODAL FORM PENDAFTARAN (POP-UP) -->
+    <div id="registration-modal" class="hidden fixed inset-0 z-[100] bg-brand-dark/80 backdrop-blur-sm overflow-y-auto">
+        <div class="min-h-screen px-4 text-center">
+            <span class="inline-block h-screen align-middle" aria-hidden="true">&#8203;</span>
+            <div class="inline-block w-full max-w-2xl p-6 md:p-10 my-8 overflow-hidden text-left align-middle transition-all transform bg-white rounded-3xl shadow-2xl relative">
+                
+                <button type="button" onclick="closeRegistration()" class="absolute top-6 right-6 text-gray-400 hover:text-brand-pink transition-colors focus:outline-none">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+
+                <div class="text-center mb-8">
+                    <img src="https://images2.imgbox.com/ad/c5/3XFVIZZN_o.png" alt="Logo" class="h-10 mx-auto mb-4" onerror="this.src='https://placehold.co/200x80/ffffff/000000?text=LOGO'">
+                    <h3 class="text-2xl font-bold text-brand-dark mb-2">Formulir Pendaftaran</h3>
+                    <p class="text-gray-500 text-sm">Pilihan Paket: <span id="selected-package" class="font-bold text-brand-pink"></span></p>
+                </div>
+
+                <form id="reg-form" onsubmit="submitRegistration(event)" class="space-y-5">
+                    <!-- Paket Tersembunyi (Diset via JS) -->
+                    <input type="hidden" id="reg-paket" value="">
+
+                    <!-- Nama Lengkap -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap Siswa</label>
+                        <input type="text" id="reg-nama" required placeholder="Masukkan nama lengkap siswa" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
+                    </div>
+                    <!-- Nama Orang Tua -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Orang Tua / Wali</label>
+                        <input type="text" id="reg-ortu" required placeholder="Masukkan nama orang tua/wali" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
+                    </div>
+                    <!-- Nomor HP -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Nomor HP / WhatsApp Aktif</label>
+                        <input type="tel" id="reg-hp" required placeholder="Contoh: 081234567890" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
+                    </div>
+                    <!-- Kelas Dropdown -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Kelas Asal</label>
+                        <select id="reg-kelas" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-white text-gray-700">
+                            <option value="">-- Pilih Kelas --</option>
+                            <option value="Kelas 4 SD">Kelas 4 SD</option>
+                            <option value="Kelas 5 SD">Kelas 5 SD</option>
+                            <option value="Kelas 6 SD">Kelas 6 SD</option>
+                            <option value="Kelas 7 SMP">Kelas 7 SMP</option>
+                            <option value="Kelas 8 SMP">Kelas 8 SMP</option>
+                            <option value="Kelas 9 SMP">Kelas 9 SMP</option>
+                            <option value="Kelas 10 SMA">Kelas 10 SMA</option>
+                            <option value="Kelas 11 SMA">Kelas 11 SMA</option>
+                            <option value="Kelas 12 SMA">Kelas 12 SMA</option>
+                            <option value="Alumni / Gap Year">Alumni / Gap Year</option>
+                        </select>
+                    </div>
+                    <!-- Alamat -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Alamat Lengkap</label>
+                        <textarea id="reg-alamat" rows="3" required placeholder="Jalan, RT/RW, Kelurahan, Kecamatan" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all resize-none"></textarea>
+                    </div>
+                    <!-- Provinsi & Kota grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Provinsi</label>
+                            <select id="reg-provinsi" onchange="updateKota()" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-white text-gray-700">
+                                <option value="">-- Pilih Provinsi --</option>
+                                <!-- Opsi di-generate via JavaScript -->
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-1">Kota / Kabupaten</label>
+                            <select id="reg-kota" onchange="checkKotaLainnya()" required class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all bg-white text-gray-700" disabled>
+                                <option value="">-- Pilih Kota --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Kota Lainnya (Muncul jika pilih 'Lainnya') -->
+                    <div id="kota-lainnya-container" class="hidden">
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Ketik Nama Kota/Kabupaten</label>
+                        <input type="text" id="reg-kota-lainnya" placeholder="Masukkan nama kota secara manual" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-brand-pink focus:border-brand-pink outline-none transition-all">
+                    </div>
+                    
+                    <!-- Info Harga & Rekening (Baru) -->
+                    <div id="price-container" class="hidden bg-blue-50 border border-blue-100 p-4 rounded-xl text-center">
+                        <p class="text-sm font-semibold text-gray-700 mb-1">Total Biaya Investasi:</p>
+                        <p id="reg-harga-display" class="text-2xl font-extrabold text-brand-pink mb-3"></p>
+                        <div class="bg-white p-3 rounded-lg border border-blue-100 shadow-sm">
+                            <p class="text-xs text-gray-500 mb-1">Silakan transfer sesuai nominal di atas ke rekening:</p>
+                            <p class="text-sm font-bold text-gray-800">BCA - 1234567890</p>
+                            <p class="text-xs font-semibold text-gray-600">a.n. EXE Education Centre</p>
+                        </div>
+                    </div>
+
+                    <!-- Bukti Bayar -->
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-1">Bukti Pembayaran / Transfer</label>
+                        <p class="text-xs text-gray-500 mb-2 italic">* Setelah klik Submit, WhatsApp Anda akan otomatis terbuka. Silakan lampirkan foto bukti pembayaran di sana.</p>
+                        <input type="file" id="reg-bukti" accept="image/*,.pdf" class="w-full px-4 py-2.5 rounded-xl border border-gray-300 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-pink-50 file:text-brand-pink hover:file:bg-pink-100 transition-all text-gray-500">
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="w-full bg-gradient-brand text-white font-bold py-4 rounded-xl hover:shadow-lg hover:-translate-y-0.5 transition-all mt-4 text-lg">
+                        <i class="fas fa-paper-plane mr-2"></i> Submit & Kirim Bukti via WA
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL SUCCESS ALERT -->
+    <div id="success-modal" class="hidden fixed inset-0 z-[110] bg-brand-dark/80 flex items-center justify-center backdrop-blur-sm px-4">
+        <div class="bg-white p-8 rounded-3xl max-w-sm text-center shadow-2xl">
+            <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-green-500 text-4xl mx-auto mb-6">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">Pendaftaran Berhasil!</h3>
+            <p class="text-gray-600 mb-6 text-sm">Data Anda telah masuk ke sistem. Jendela WhatsApp akan terbuka otomatis untuk konfirmasi pembayaran.</p>
+            
+            <!-- Tombol fallback manual ke WA -->
+            <a id="wa-fallback-link" href="#" target="_blank" class="block w-full bg-green-500 text-white font-bold py-3 rounded-xl hover:bg-green-600 hover:shadow-lg transition-all mb-3" onclick="closeSuccessModal()">
+                <i class="fab fa-whatsapp mr-1"></i> Buka WhatsApp Sekarang
+            </a>
+            
+            <button onclick="closeSuccessModal()" class="w-full bg-gray-100 text-gray-700 font-bold py-3 rounded-xl hover:bg-gray-200 transition-all">
+                Tutup
+            </button>
+        </div>
+    </div>
+
     <!-- SCRIPT UTAMA -->
     <script>
         /* --- KEAMANAN TAMBAHAN: NONAKTIFKAN KLIK KANAN --- */
@@ -566,6 +767,399 @@
         function slideTestimoni(direction) {
             const container = document.getElementById('testimoni-container');
             container.scrollBy({ left: direction * 320, behavior: 'smooth' });
+        }
+
+        /* --- SCRIPT LOAD DATA PROGRAM DARI GOOGLE SHEETS --- */
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwsoa996uYkI39kKak4mrV2NJRCXWii8DU7VG_PviiBUaMBkhsewLdqEKUY83TEj88C2g/exec';
+
+        /* Konfigurasi warna untuk masing-masing Jenjang agar terbaca oleh Tailwind */
+        const themeConfig = {
+            "SD": {
+                color: "pink",
+                border: "border-pink-100",
+                text: "text-brand-pink",
+                bg: "bg-brand-pink",
+                hoverBg: "hover:bg-pink-700",
+                btnText: "text-white",
+                badgeBg: "bg-pink-100"
+            },
+            "SMP": {
+                color: "orange",
+                border: "border-orange-200",
+                text: "text-brand-orange",
+                bg: "bg-brand-orange",
+                hoverBg: "hover:bg-orange-600",
+                btnText: "text-white",
+                badgeBg: "bg-orange-100"
+            },
+            "SMA": {
+                color: "yellow",
+                border: "border-yellow-200",
+                text: "text-brand-yellow",
+                bg: "bg-brand-yellow",
+                hoverBg: "hover:bg-yellow-500",
+                btnText: "text-brand-dark font-bold",
+                badgeBg: "bg-yellow-100"
+            }
+        };
+
+        const themeUjianConfig = {
+            "SD": {
+                border: "border-fuchsia-500",
+                text: "text-fuchsia-600",
+                bg: "bg-fuchsia-600",
+                hoverBg: "hover:bg-fuchsia-700",
+                btnText: "text-white",
+                badgeBg: "bg-fuchsia-100"
+            },
+            "SMP": {
+                border: "border-blue-500",
+                text: "text-blue-600",
+                bg: "bg-blue-600",
+                hoverBg: "hover:bg-blue-700",
+                btnText: "text-white",
+                badgeBg: "bg-blue-100"
+            },
+            "SMA": {
+                border: "border-violet-500",
+                text: "text-violet-600",
+                bg: "bg-gradient-to-r from-violet-600 to-fuchsia-600",
+                hoverBg: "hover:from-violet-700 hover:to-fuchsia-700",
+                btnText: "text-white font-bold",
+                badgeBg: "bg-violet-100"
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", () => {
+            loadDynamicPrograms();
+        });
+
+        async function loadDynamicPrograms() {
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL);
+                if (!response.ok) throw new Error("Gagal terhubung (Network Error)");
+                const result = await response.json();
+                
+                if (result && result.status === "success") {
+                    
+                    // Render Tutor
+                    if (result.tutors && result.tutors.length > 0) {
+                        renderTutorsToHTML(result.tutors);
+                    }
+                    
+                    // Render Galeri
+                    if (result.gallery && result.gallery.length > 0) {
+                        renderGalleryToHTML(result.gallery);
+                    }
+                    
+                    // Render Testimoni
+                    if (result.testimonials && result.testimonials.length > 0) {
+                        renderTestimonialsToHTML(result.testimonials);
+                    }
+
+                    // Render Program Reguler & Ujian
+                    if (result.programs.length === 0) {
+                        showErrorState("Data program di Spreadsheet masih kosong.");
+                    } else {
+                        // Memisahkan data berdasarkan Kategori
+                        const dataReguler = result.programs.filter(p => p.Kategori !== "ujian");
+                        const dataUjian = result.programs.filter(p => p.Kategori === "ujian");
+                        
+                        renderProgramsToHTML(dataReguler, "reguler");
+                        renderProgramsToHTML(dataUjian, "ujian");
+                    }
+                    
+                } else {
+                    showErrorState(result.message || "Error dari server Apps Script.");
+                }
+            } catch (error) {
+                showErrorState("Gagal memuat data dari Spreadsheet.");
+            }
+        }
+
+        function showErrorState(pesan) {
+            const errorHtml = `
+                <div class="text-center text-red-500 py-6 border border-red-200 rounded-xl bg-red-50 mx-4">
+                    <i class="fas fa-exclamation-triangle mb-2 text-2xl"></i>
+                    <p class="font-semibold text-sm">Gagal memuat program.</p>
+                    <p class="text-xs mt-1 px-4">${pesan}</p>
+                </div>`;
+            document.getElementById('program-reguler-sd-list').innerHTML = errorHtml;
+            document.getElementById('program-reguler-smp-list').innerHTML = errorHtml;
+            document.getElementById('program-reguler-sma-list').innerHTML = errorHtml;
+            document.getElementById('program-ujian-sd-list').innerHTML = errorHtml;
+            document.getElementById('program-ujian-smp-list').innerHTML = errorHtml;
+            document.getElementById('program-ujian-sma-list').innerHTML = errorHtml;
+        }
+
+        function renderProgramsToHTML(data, kategori) {
+            const dataSD = data.filter(item => item.Jenjang && item.Jenjang.toUpperCase() === "SD");
+            const dataSMP = data.filter(item => item.Jenjang && item.Jenjang.toUpperCase() === "SMP");
+            const dataSMA = data.filter(item => item.Jenjang && item.Jenjang.toUpperCase() === "SMA");
+
+            let idSD = kategori === "reguler" ? 'program-reguler-sd-list' : 'program-ujian-sd-list';
+            let idSMP = kategori === "reguler" ? 'program-reguler-smp-list' : 'program-ujian-smp-list';
+            let idSMA = kategori === "reguler" ? 'program-reguler-sma-list' : 'program-ujian-sma-list';
+
+            document.getElementById(idSD).innerHTML = dataSD.length > 0 ? dataSD.map(item => createCardHTML(item, "SD", kategori)).join('') : '<p class="text-sm text-gray-400 text-center italic">Belum ada paket tersedia.</p>';
+            document.getElementById(idSMP).innerHTML = dataSMP.length > 0 ? dataSMP.map(item => createCardHTML(item, "SMP", kategori)).join('') : '<p class="text-sm text-gray-400 text-center italic">Belum ada paket tersedia.</p>';
+            document.getElementById(idSMA).innerHTML = dataSMA.length > 0 ? dataSMA.map(item => createCardHTML(item, "SMA", kategori)).join('') : '<p class="text-sm text-gray-400 text-center italic">Belum ada paket tersedia.</p>';
+        }
+
+        function createCardHTML(item, jenjang, kategori) {
+            const isUjian = kategori === 'ujian';
+            const theme = isUjian ? (themeUjianConfig[jenjang] || themeUjianConfig["SD"]) : (themeConfig[jenjang] || themeConfig["SD"]);
+            
+            const benefitsArray = (item.Benefit || "").split('\n').filter(b => b.trim() !== '');
+            const benefitsHTML = benefitsArray.map(b => `
+                <li class="flex items-start">
+                    <i class="fas fa-caret-right ${theme.text} mt-1 mr-2"></i>
+                    <span>${b}</span>
+                </li>
+            `).join('');
+
+            let badgeHTML = '';
+            if (item.Label && item.Label.trim() !== '') {
+                badgeHTML = `<span class="${theme.badgeBg} ${theme.text} text-[10px] font-extrabold px-2.5 py-0.5 rounded ml-3 uppercase tracking-wider">${item.Label}</span>`;
+            }
+
+            const borderStyle = isUjian ? `border-2 ${theme.border}` : `border ${theme.border}`;
+
+            return `
+            <details class="group ${borderStyle} rounded-xl bg-white [&_summary::-webkit-details-marker]:hidden mt-4 first:mt-0 relative overflow-hidden">
+                <summary class="flex flex-col cursor-pointer p-4 font-semibold text-gray-700 hover:${theme.text} focus:outline-none">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <span class="text-sm font-bold text-gray-800">${item['Nama Paket']}</span>
+                            ${badgeHTML}
+                        </div>
+                        <span class="transition duration-300 group-open:-rotate-180 ${theme.text}">
+                            <i class="fas fa-chevron-down"></i>
+                        </span>
+                    </div>
+                    <span class="text-xs text-gray-500 font-normal mt-1">${item.Deskripsi}</span>
+                </summary>
+                <div class="px-4 pb-4 pt-2 text-sm text-gray-600 border-t border-gray-100">
+                    <ul class="space-y-2 mt-2">
+                        ${benefitsHTML}
+                        <li class="flex items-start">
+                            <i class="fas fa-caret-right ${theme.text} mt-1 mr-2"></i>
+                            <span><strong class="text-gray-800">Biaya investasi :</strong> ${item.Harga}</span>
+                        </li>
+                    </ul>
+                    <button type="button" onclick="openRegistration('${item['Nama Paket']} (Program ${jenjang})', '${item.Harga}')" class="mt-5 block w-full text-center ${theme.bg} ${theme.btnText} py-2.5 rounded-xl ${theme.hoverBg} hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm shadow-md">
+                        <i class="fas fa-edit mr-1"></i> Daftar Sekarang
+                    </button>
+                </div>
+            </details>
+            `;
+        }
+
+        // FUNGSI RENDER TUTOR
+        function renderTutorsToHTML(tutors) {
+            const container = document.getElementById('tutor-gallery-container');
+            container.innerHTML = tutors.map(t => `
+                <a href="${t['Link Gambar']}" target="_blank" class="flex-none w-80 md:w-96 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
+                    <img src="${t['Link Gambar']}" alt="Tutor" class="w-full h-64 object-contain bg-slate-200 hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x400/e2e8f0/64748b?text=Tutor'"/>
+                </a>
+            `).join('');
+        }
+
+        // FUNGSI RENDER GALERI
+        function renderGalleryToHTML(gallery) {
+            const container = document.getElementById('gallery-container');
+            container.innerHTML = gallery.map(g => `
+                <a href="${g['Link Gambar']}" target="_blank" class="flex-none w-72 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
+                    <img src="${g['Link Gambar']}" alt="Galeri" class="w-full h-56 object-cover hover:scale-110 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x300/e2e8f0/64748b?text=Galeri'"/>
+                </a>
+            `).join('');
+        }
+
+        // FUNGSI RENDER TESTIMONI
+        function renderTestimonialsToHTML(testis) {
+            const container = document.getElementById('testimoni-container');
+            container.innerHTML = testis.map(t => `
+                <a href="${t['Link Gambar']}" target="_blank" class="flex-none w-72 md:w-80 snap-center rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all block group-hover:opacity-100">
+                    <img src="${t['Link Gambar']}" alt="Testimoni" class="w-full h-96 object-contain bg-white hover:scale-105 transition-transform duration-300" referrerpolicy="no-referrer" onerror="this.src='https://placehold.co/400x600/ffffff/d81b60?text=Testimoni'"/>
+                </a>
+            `).join('');
+        }
+
+        /* --- DATA PROVINSI & KOTA DI INDONESIA --- */
+        const locationData = {
+            "Aceh": ["Banda Aceh", "Lhokseumawe", "Sabang", "Lainnya"],
+            "Sumatera Utara": ["Medan", "Binjai", "Pematangsiantar", "Deli Serdang", "Lainnya"],
+            "Sumatera Barat": ["Padang", "Bukittinggi", "Pariaman", "Lainnya"],
+            "Riau": ["Pekanbaru", "Dumai", "Bengkalis", "Lainnya"],
+            "Kepulauan Riau": ["Batam", "Tanjungpinang", "Lainnya"],
+            "Sumatera Selatan": ["Palembang", "Lubuklinggau", "Prabumulih", "Lainnya"],
+            "Bengkulu": ["Bengkulu", "Lainnya"],
+            "Lampung": ["Bandar Lampung", "Metro", "Lainnya"],
+            "Banten": ["Kota Tangerang", "Tangerang Selatan", "Kab. Tangerang", "Serang", "Cilegon", "Lainnya"],
+            "DKI Jakarta": ["Jakarta Pusat", "Jakarta Utara", "Jakarta Barat", "Jakarta Selatan", "Jakarta Timur", "Kepulauan Seribu"],
+            "Jawa Barat": ["Kota Bandung", "Kab. Bandung", "Kota Bekasi", "Kab. Bekasi", "Kota Bogor", "Kab. Bogor", "Kota Depok", "Cimahi", "Cirebon", "Sukabumi", "Tasikmalaya", "Lainnya"],
+            "Jawa Tengah": ["Semarang", "Surakarta (Solo)", "Magelang", "Pekalongan", "Salatiga", "Tegal", "Banyumas", "Lainnya"],
+            "DI Yogyakarta": ["Kota Yogyakarta", "Sleman", "Bantul", "Gunungkidul", "Kulon Progo"],
+            "Jawa Timur": ["Surabaya", "Malang", "Batu", "Sidoarjo", "Gresik", "Kediri", "Madiun", "Mojokerto", "Lainnya"],
+            "Bali": ["Denpasar", "Badung", "Gianyar", "Buleleng", "Lainnya"],
+            "Nusa Tenggara Barat": ["Mataram", "Bima", "Lombok Barat", "Lainnya"],
+            "Kalimantan Barat": ["Pontianak", "Singkawang", "Lainnya"],
+            "Kalimantan Selatan": ["Banjarmasin", "Banjarbaru", "Lainnya"],
+            "Kalimantan Timur": ["Samarinda", "Balikpapan", "Bontang", "Lainnya"],
+            "Sulawesi Selatan": ["Makassar", "Parepare", "Palopo", "Lainnya"],
+            "Sulawesi Utara": ["Manado", "Bitung", "Lainnya"],
+            "Papua": ["Jayapura", "Merauke", "Lainnya"],
+            "Provinsi Lainnya (Di luar daftar)": ["Lainnya"]
+        };
+
+        const provSelect = document.getElementById("reg-provinsi");
+        for (let prov in locationData) {
+            let option = document.createElement("option");
+            option.value = prov;
+            option.text = prov;
+            provSelect.add(option);
+        }
+
+        /* --- FUNGSI MODAL & DROPDOWN --- */
+        function updateKota() {
+            const kotaSelect = document.getElementById("reg-kota");
+            const selectedProv = document.getElementById("reg-provinsi").value;
+            const containerLainnya = document.getElementById("kota-lainnya-container");
+            const inputLainnya = document.getElementById("reg-kota-lainnya");
+
+            kotaSelect.innerHTML = '<option value="">-- Pilih Kota --</option>';
+            containerLainnya.classList.add("hidden");
+            inputLainnya.removeAttribute("required");
+
+            if (selectedProv && locationData[selectedProv]) {
+                kotaSelect.disabled = false;
+                let cities = locationData[selectedProv];
+                cities.forEach(function(kota) {
+                    let option = document.createElement("option");
+                    option.value = kota;
+                    option.text = kota;
+                    kotaSelect.add(option);
+                });
+            } else {
+                kotaSelect.disabled = true;
+            }
+        }
+
+        function checkKotaLainnya() {
+            const kotaSelect = document.getElementById("reg-kota").value;
+            const containerLainnya = document.getElementById("kota-lainnya-container");
+            const inputLainnya = document.getElementById("reg-kota-lainnya");
+
+            if (kotaSelect === "Lainnya") {
+                containerLainnya.classList.remove("hidden");
+                inputLainnya.setAttribute("required", "true");
+            } else {
+                containerLainnya.classList.add("hidden");
+                inputLainnya.removeAttribute("required");
+            }
+        }
+
+        function openRegistration(packageName, packagePrice) {
+            document.getElementById('registration-modal').classList.remove('hidden');
+            document.getElementById('selected-package').innerText = packageName;
+            document.getElementById('reg-paket').value = packageName;
+
+            if (packagePrice) {
+                document.getElementById('price-container').classList.remove('hidden');
+                document.getElementById('reg-harga-display').innerText = packagePrice;
+            } else {
+                document.getElementById('price-container').classList.add('hidden');
+            }
+        }
+
+        function closeRegistration() {
+            document.getElementById('registration-modal').classList.add('hidden');
+            document.getElementById('reg-form').reset();
+            document.getElementById('reg-kota').disabled = true;
+            document.getElementById("kota-lainnya-container").classList.add("hidden");
+            document.getElementById("price-container").classList.add("hidden");
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+        }
+
+        /* --- SUBMIT PENDAFTARAN (KIRIM KE SHEET & GENERATE WA) --- */
+        async function submitRegistration(event) {
+            event.preventDefault(); 
+
+            const submitBtn = event.target.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Mengirim Data...';
+
+            /* Ambil data */
+            const paket = document.getElementById('reg-paket').value;
+            const nama = document.getElementById('reg-nama').value;
+            const ortu = document.getElementById('reg-ortu').value;
+            const hp = document.getElementById('reg-hp').value;
+            const kelas = document.getElementById('reg-kelas').value;
+            const alamat = document.getElementById('reg-alamat').value;
+            const provinsi = document.getElementById('reg-provinsi').value;
+            const harga = document.getElementById('reg-harga-display').innerText || "Tanya Admin";
+            let kota = document.getElementById('reg-kota').value;
+            
+            if (kota === "Lainnya") {
+                kota = document.getElementById('reg-kota-lainnya').value;
+            }
+
+            /* 1. KIRIM KE GOOGLE SHEETS */
+            const formData = new FormData();
+            formData.append('paket', paket);
+            formData.append('nama', nama);
+            formData.append('ortu', ortu);
+            formData.append('hp', hp);
+            formData.append('kelas', kelas);
+            formData.append('alamat', alamat);
+            formData.append('provinsi', provinsi);
+            formData.append('kota', kota);
+
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData });
+            } catch (error) {
+                /* Abaikan silent CORS */
+            }
+
+            /* 2. FORMAT PESAN WHATSAPP */
+            const waMessage = 
+                `Halo Admin EXE Education Centre! 👋\n\n` +
+                `Saya ingin mendaftar program belajar:\n` +
+                `------------------------------------\n` +
+                `📌 *Paket:* ${paket}\n` +
+                `👤 *Nama Siswa:* ${nama}\n` +
+                `👨‍👩‍👧 *Nama Ortu:* ${ortu}\n` +
+                `📞 *No. WhatsApp:* ${hp}\n` +
+                `🏫 *Kelas:* ${kelas}\n` +
+                `📍 *Provinsi:* ${provinsi}\n` +
+                `🏙️ *Kota/Kab:* ${kota}\n` +
+                `🏠 *Alamat:* ${alamat}\n` +
+                `💰 *Total Biaya:* ${harga}\n` +
+                `------------------------------------\n` +
+                `_Berikut saya lampirkan foto bukti pembayaran di bawah ini._`;
+
+            const waUrl = `https://wa.me/6285141525668?text=${encodeURIComponent(waMessage)}`;
+
+            /* Tampilkan sukses dan buka WA */
+            
+            /* Set link fallback di tombol modal sukses */
+            document.getElementById('wa-fallback-link').href = waUrl;
+
+            setTimeout(() => {
+                document.getElementById('registration-modal').classList.add('hidden');
+                document.getElementById('success-modal').classList.remove('hidden');
+                
+                /* Buka WhatsApp dengan location.href agar tidak diblokir browser */
+                window.location.href = waUrl;
+                
+                document.getElementById('reg-form').reset(); 
+                submitBtn.disabled = false; 
+                submitBtn.innerHTML = originalBtnText; 
+            }, 800); 
         }
     </script>
 </body>
