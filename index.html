@@ -740,7 +740,7 @@
                 const { data: mediaData, error: mediaError } = await client
                     .from('media_assets')
                     .select('*')
-                    .eq('status', 'active'); // Asumsi ada status filter
+                    .eq('status', 'aktif'); // Asumsi ada status filter
 
                 if (mediaError) throw mediaError;
 
@@ -758,7 +758,7 @@
                 const { data: packagesData, error: packagesError } = await client
                     .from('packages')
                     .select('*')
-                    .eq('status', 'active')
+                    .eq('status', 'aktif')
                     .order('created_at', { ascending: true });
 
                 if (packagesError) throw packagesError;
